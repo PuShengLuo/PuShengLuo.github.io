@@ -213,6 +213,15 @@
 </article>
 
 
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'Hello World'
+    }
+</script>
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -420,5 +429,25 @@
 <script src="/js/oni.js"></script>
 
 
+
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    if(window.commentConfig) {
+      window.commentConfig.owner = '12027165'
+      window.commentConfig.repo = 'https://github.com/PuShengLuo/BlogComments.git'
+      window.commentConfig.client_id = 'ddbc92a16bcf102753d8'
+      window.commentConfig.client_secret = 'cb0fd29fab0a89633641762b3a9d204e6bd8192c'
+      window.commentConfig.redirect_uri = ''
+    } else {
+      window.commentConfig = {
+        owner: '12027165',
+        repo: 'https://github.com/PuShengLuo/BlogComments.git',
+        client_id: 'ddbc92a16bcf102753d8',
+        client_secret: 'cb0fd29fab0a89633641762b3a9d204e6bd8192c',
+        redirect_uri: ''
+      }
+    }
+</script>
+<script src="/js/comment/gitment.js"></script>
 
 </html>
