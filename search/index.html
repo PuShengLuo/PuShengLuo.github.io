@@ -134,10 +134,22 @@
                 
                 
                 
-                <li class="">
-                    <a href="/tags">
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
                         <i class="fa fa-tags"></i>标签
                     </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/工具篇/">工具篇</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
                 </li>
                 
                 
@@ -213,7 +225,7 @@
       	var [month, day] = article.date.split('-')
         ''
         ''
-        var defaultPreview = '/imgs/preview/preview2.jpg'
+        var defaultPreview = '/imgs/preview/preview1.jpg'
         var preview = article.preview ? article.preview : defaultPreview
         var path = '/' + article.path
         resultList.append(`<div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
@@ -393,6 +405,12 @@
             
             <li class="list-group-item">
                 <span class="post-title">
+                    <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
                     <a href="/2018/03/19/hello-world/">Hello World</a>
                 </span>
             </li>
@@ -419,6 +437,12 @@
                 </span>
             </li>
             
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
+                </span>
+            </li>
+            
         </ul>
     </div>
 </aside>
@@ -439,6 +463,8 @@
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/工具篇/" style="font-size: 15.267173684140571px;" class="tag-cloud-link">工具篇</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
