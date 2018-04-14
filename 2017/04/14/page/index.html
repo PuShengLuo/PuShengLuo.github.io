@@ -12,7 +12,7 @@
     
     
     
-    <title>非著名不专业程序员必备工具 | One Piece</title>
+    <title>iOS内存分配 | One Piece</title>
     <link href=”http://yoursite.com“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -176,26 +176,19 @@
         <i class="fa fa-home"></i>
         <a href="http://yoursite.com">One Piece</a>
         >
-        <span>非著名不专业程序员必备工具</span>
+        <span>iOS内存分配</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
+                <a href="/2017/04/14/page/">iOS内存分配</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/工具篇/">工具篇</a>
-                
-            </span>
-            
-            <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2018-03-20
+                <i class="fa fa-calendar"></i> 2017-04-14
             </span>
             
         </div>
@@ -205,36 +198,58 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
+                    <a href="/2017/04/14/page/">iOS内存分配</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2018-03-20
+                <i class="fa fa-calendar"></i> 2017-04-14
             </p>
             <p>
-                
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/工具篇/">工具篇</a>
-                
                 
                 
             </p>
         </center>
     </div>
     <div class="content-article">
-        <h1 id="智能搜索工具Alfred"><a href="#智能搜索工具Alfred" class="headerlink" title="智能搜索工具Alfred"></a>智能搜索工具Alfred</h1><p> 作为一名非著名不专业程序员，搜索几乎占据我们大部分时间。而这款软件可以堪称是利器，无论是谷歌百度还是快捷打开软件都可以大量节省我们时间。<br><br>推荐 Alfred 插件：<br><br>1. CodeVar : 可以让英文稀烂的你一样能写出一个标准英文变量名<br><br>2. Kill Process: 快捷杀死程序</p>
-<h1 id="编程语言Api文档-Dash"><a href="#编程语言Api文档-Dash" class="headerlink" title="编程语言Api文档 Dash"></a>编程语言Api文档 Dash</h1><p>  Dash for mac是使用与Mac OS平台的软件编程文档管理工具，可以浏览API文档，以及管理代码片段工具。Dash自带了丰富的API文档，涉及各种主流的编程语言和框架。</p>
-<h1 id="接口调试工具-postman"><a href="#接口调试工具-postman" class="headerlink" title="接口调试工具 postman"></a>接口调试工具 postman</h1><p> 引用官网一句话： Developers use Postman to build modern software for the API-first world.</p>
-<h1 id="代码管理可视化工具"><a href="#代码管理可视化工具" class="headerlink" title="代码管理可视化工具"></a>代码管理可视化工具</h1><ul>
-<li>SVN： 使用cornerstone</li>
-<li>Git: 使用Sourcetree</li>
-</ul>
-<h1 id="Finder扩展工具-TotalFinder"><a href="#Finder扩展工具-TotalFinder" class="headerlink" title="Finder扩展工具 TotalFinder"></a>Finder扩展工具 TotalFinder</h1><p> TotalFinder是mac搜索增强工具，具有多标签式浏览、拷贝路径、剪切文件、显示隐藏文件、双窗口模式等功能，让你浏览和搜索文件更加方便</p>
-<h1 id="MarkDown笔记编写工具-FaIcon"><a href="#MarkDown笔记编写工具-FaIcon" class="headerlink" title="MarkDown笔记编写工具 FaIcon"></a>MarkDown笔记编写工具 FaIcon</h1><p> 如果你像我一样比较懒不喜欢记MarkDown语法，那么就可以使用这款MarkDown 工具，内置常用语法标签按钮</p>
-<h1 id="邮件应用-Airmail"><a href="#邮件应用-Airmail" class="headerlink" title="邮件应用 Airmail"></a>邮件应用 Airmail</h1><p> 如果你像我一样喜欢根据个人习惯来定制应用，以求效率最大化的人，Airmail 高度的可定制性一定会让你欣喜若狂。只要你上手体验几分钟，你也会像我一样得出「Airmail 是现在 iOS 上可自定义程度最高的邮件应用」</p>
-<h1 id="强大的终端工具-ITerm2"><a href="#强大的终端工具-ITerm2" class="headerlink" title="强大的终端工具 ITerm2"></a>强大的终端工具 ITerm2</h1><p>  如果你像我一样也喜欢搞些花里胡哨的界面，还可以配合oh-my-zsh插件做一些自定义配色方案</p>
-<p>~~~~<br>最后送给大家两个Mac破解软件的网站大部分破解软件都能搜索到。<br><a href="http://xclient.info/" target="_blank" rel="noopener">精品MAC应用分享</a><br><a href="http://www.sdifen.com/" target="_blank" rel="noopener">史蒂芬周的博客</a></p>
+        <p>计算机系统中，应用程序的数据都保存在内存中，不同的数据类型保存的区域也不同。</p>
+<p>#RAM和ROM</p>
+<ol>
+<li>RAM：运行时内存，程序在运行过程中的使用的内存，不能掉电存储</li>
+<li>ROM：存储形内存（内存卡），RAM的速度和价格都高于ROM</li>
+</ol>
+<p><strong>App程序启动，系统会把存储在ROM中的程序拷贝到RAM中，然后从内存里面执行代码</strong></p>
+<p>#内存分区</p>
+<p>##堆区：Heap<br>堆区由程序员来分配(oc: alloc swift: init)和释放<br></p>
+<ol>
+<li>ARC下的内存管理由编译器自动添加retain, release, autorelease等关键字<br></li>
+<li>堆区的地址由低到高分配<br></li>
+<li>不同堆分配的内存无法互相互操作(不同App之间内存无法相互管理)<br></li>
+<li>堆空间的分配总是动态的<br></li>
+<li>需要程序猿进行分配和释放<br></li>
+</ol>
+<p>##栈区 Stack<br>栈区是由编译器自动分配和释放的，用来存放局部变量，函数的参数值，函数跳转地址等iPhone栈区大小是512K<br></p>
+<ol>
+<li>不需要我们管理栈区变量的内存<br></li>
+<li>栈区地址从高到低分配<br></li>
+<li>先进后出<br><br>栈空间有静态分配和动态分配两种<br></li>
+<li>静态分配是由编译器完成，比如自动变量auto的分配. 动态分配由alloca函数完成.<br></li>
+<li>栈的动态分配无需释放, 系统会自动释放, 没有释放函数. 系统不鼓励栈的动态分配.</li>
+</ol>
+<p>##全局区 static<br>全局区也叫做静态区，全局变量和静态变量在内存中是存放在一起的，初始化的全局变量和静态变量放在一块区域，未初始化的全局变量和静态变量放在相邻的宁一块区域，程序结束后由系统释放</p>
+<p>##常量区<br>存放字符串常量，程序结束后由系统自己释放</p>
+<p>##代码区<br>代码区用于存放函数的二进制代码，App的代码，程序结束后由系统释放</p>
+<p>#内存分区地址<br>如图所示：代码区的地址最低，栈区最高，但区与区之间的地址不连续<br><br><img src="http://ww1.sinaimg.cn/mw690/006QlBVjgy1fqc7zht14gj30f10bet94.jpg" alt=""></p>
+<ol>
+<li>栈：由系统自动分配, 速度较快, 不会产生内存碎片. 堆：是由alloc分配的内存, 速度比较慢, 而且容易产生内存碎片, 不过用起来最方便.</li>
+<li>系统使用一个链表来维护已分配的内存空间(仅仅记录, 不管理具体的内容).</li>
+<li>变量使用结束后, 需要释放内存, OC中是当引用计数==0, 就说明没有任何变量使用这块空间, 系统将直接收回.</li>
+<li>当一个app启动时, 代码区, 常量区, 全局区的大小实际已经固定, 因此指向这些区域的内存不会产生崩溃性错误. 堆区和栈区的内存是时刻变化的, 使用一个已经被释放的内存, 很容易产生野指针崩溃.</li>
+</ol>
+<p>#申请内存后系统的响应</p>
+<ol>
+<li>栈: 栈是向低内存扩展的数据结构, 是一块连续的内存, 栈顶地址和栈的最大容量是事先规定好的, 如果申请的空间超过栈的剩余空间, 将会提示overflow.栈是向低地址扩展的数据结构, 是一块儿连续的内存区域. 栈顶的地址和栈的最大容量是系统预先规定好的, 栈的大小是2M(也有的说是1M, 总之是一个编译时就确定的常数), 如果申请的空间超过栈的剩余空间时, 将提示overflow. 因此, 能从栈获得的空间较小.</li>
+<li>堆: 操作系统有一个记录空闲内存地址的链表. 当系统收到申请时, 会遍历该链表, 寻找第一个空间大于所申请空间的堆结点, 然后将该结点从链表中删除, 并将该结点的空间分配给程序. 由于找到的堆结点不一定和申请的大小刚好一致, 系统会将多余的那一部分重新放回到链表中去. 堆是向高地址扩展的数据结构, 是不连续的内存区域. 这是由于系统是用链表来存储的空闲内存地址, 自然是不连续的, 而链表的遍历方向是由低地址向高地址. 堆的大小受限于计算机系统中有效的虚拟内存.堆获得的空间比较灵活, 也比较大.</li>
+</ol>
 
     </div>
 </article>
@@ -245,7 +260,7 @@
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = 'Tue Mar 20 2018 11:45:13 GMT+0800'
+      window.commentConfig.title = 'Fri Apr 14 2017 14:55:26 GMT+0800'
     }
 </script>
 
@@ -341,19 +356,19 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/2018/03/20/非著名不专业程序员必备工具/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2017/04/14/page/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/2018/03/20/非著名不专业程序员必备工具/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2017/04/14/page/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/2018/03/20/非著名不专业程序员必备工具/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2017/04/14/page/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/工具篇/" style="font-size: 13.651766988561764px;" class="tag-cloud-link">工具篇</a>
+    <a href="/tags/工具篇/" style="font-size: 12.445478921000023px;" class="tag-cloud-link">工具篇</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
