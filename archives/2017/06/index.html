@@ -12,7 +12,7 @@
     
     
     
-    <title>iOS内存分配 | One Piece</title>
+    <title>archive_a | One Piece</title>
     <link href=”http://yoursite.com“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -115,7 +115,7 @@
                 
                 
                 
-                <li class="">
+                <li class="current">
                     <a href="/archives">
                         <i class="fa fa-archive"></i>归档
                     </a>
@@ -170,27 +170,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    
-<article class="article well article-body" id="article">
+                    <article class="article well article-body" id="article-archive">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="http://yoursite.com">One Piece</a>
         >
-        <span>iOS内存分配</span>
+        <span>归档</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2017/04/14/page/">iOS内存分配</a>
+                <a href="/archives">归档</a>
             </h1>
-        </div>
-        <div class="tag-article">
-            
-            <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2017-04-14
-            </span>
-            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -198,69 +190,48 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2017/04/14/page/">iOS内存分配</a>
+                    <a href="/archives">归档</a>
                 </h4>
             </div>
-            <p>
-                <i class="fa fa-calendar"></i> 2017-04-14
-            </p>
-            <p>
-                
-                
-            </p>
         </center>
     </div>
-    <div class="content-article">
-        <p>计算机系统中，应用程序的数据都保存在内存中，不同的数据类型保存的区域也不同。</p>
-<h1 id="RAM和ROM"><a href="#RAM和ROM" class="headerlink" title="RAM和ROM"></a>RAM和ROM</h1><ol>
-<li>RAM：运行时内存，程序在运行过程中的使用的内存，不能掉电存储</li>
-<li>ROM：存储形内存（内存卡），RAM的速度和价格都高于ROM</li>
-</ol>
-<p><strong>App程序启动，系统会把存储在ROM中的程序拷贝到RAM中，然后从内存里面执行代码</strong></p>
-<h1 id="内存分区"><a href="#内存分区" class="headerlink" title="内存分区"></a>内存分区</h1><h2 id="堆区：Heap"><a href="#堆区：Heap" class="headerlink" title="堆区：Heap"></a>堆区：Heap</h2><p>堆区由程序员来分配(oc: alloc swift: init)和释放<br></p>
-<ol>
-<li>ARC下的内存管理由编译器自动添加retain, release, autorelease等关键字<br></li>
-<li>堆区的地址由低到高分配<br></li>
-<li>不同堆分配的内存无法互相互操作(不同App之间内存无法相互管理)<br></li>
-<li>堆空间的分配总是动态的<br></li>
-<li>需要程序猿进行分配和释放<br></li>
-</ol>
-<h2 id="栈区-Stack"><a href="#栈区-Stack" class="headerlink" title="栈区 Stack"></a>栈区 Stack</h2><p>栈区是由编译器自动分配和释放的，用来存放局部变量，函数的参数值，函数跳转地址等iPhone栈区大小是512K<br></p>
-<ol>
-<li>不需要我们管理栈区变量的内存<br></li>
-<li>栈区地址从高到低分配<br></li>
-<li>先进后出<br><br>栈空间有静态分配和动态分配两种<br></li>
-<li>静态分配是由编译器完成，比如自动变量auto的分配. 动态分配由alloca函数完成.<br></li>
-<li>栈的动态分配无需释放, 系统会自动释放, 没有释放函数. 系统不鼓励栈的动态分配.</li>
-</ol>
-<h2 id="全局区-static"><a href="#全局区-static" class="headerlink" title="全局区 static"></a>全局区 static</h2><p>全局区也叫做静态区，全局变量和静态变量在内存中是存放在一起的，初始化的全局变量和静态变量放在一块区域，未初始化的全局变量和静态变量放在相邻的宁一块区域，程序结束后由系统释放</p>
-<h2 id="常量区"><a href="#常量区" class="headerlink" title="常量区"></a>常量区</h2><p>存放字符串常量，程序结束后由系统自己释放</p>
-<h2 id="代码区"><a href="#代码区" class="headerlink" title="代码区"></a>代码区</h2><p>代码区用于存放函数的二进制代码，App的代码，程序结束后由系统释放</p>
-<h1 id="内存分区地址"><a href="#内存分区地址" class="headerlink" title="内存分区地址"></a>内存分区地址</h1><p>如图所示：代码区的地址最低，栈区最高，但区与区之间的地址不连续<br><br><img src="http://ww1.sinaimg.cn/mw690/006QlBVjgy1fqc7zht14gj30f10bet94.jpg" alt=""></p>
-<ol>
-<li>栈：由系统自动分配, 速度较快, 不会产生内存碎片. 堆：是由alloc分配的内存, 速度比较慢, 而且容易产生内存碎片, 不过用起来最方便.</li>
-<li>系统使用一个链表来维护已分配的内存空间(仅仅记录, 不管理具体的内容).</li>
-<li>变量使用结束后, 需要释放内存, OC中是当引用计数==0, 就说明没有任何变量使用这块空间, 系统将直接收回.</li>
-<li>当一个app启动时, 代码区, 常量区, 全局区的大小实际已经固定, 因此指向这些区域的内存不会产生崩溃性错误. 堆区和栈区的内存是时刻变化的, 使用一个已经被释放的内存, 很容易产生野指针崩溃.</li>
-</ol>
-<h1 id="申请内存后系统的响应"><a href="#申请内存后系统的响应" class="headerlink" title="申请内存后系统的响应"></a>申请内存后系统的响应</h1><ol>
-<li>栈: 栈是向低内存扩展的数据结构, 是一块连续的内存, 栈顶地址和栈的最大容量是事先规定好的, 如果申请的空间超过栈的剩余空间, 将会提示overflow.栈是向低地址扩展的数据结构, 是一块儿连续的内存区域. 栈顶的地址和栈的最大容量是系统预先规定好的, 栈的大小是2M(也有的说是1M, 总之是一个编译时就确定的常数), 如果申请的空间超过栈的剩余空间时, 将提示overflow. 因此, 能从栈获得的空间较小.</li>
-<li>堆: 操作系统有一个记录空闲内存地址的链表. 当系统收到申请时, 会遍历该链表, 寻找第一个空间大于所申请空间的堆结点, 然后将该结点从链表中删除, 并将该结点的空间分配给程序. 由于找到的堆结点不一定和申请的大小刚好一致, 系统会将多余的那一部分重新放回到链表中去. 堆是向高地址扩展的数据结构, 是不连续的内存区域. 这是由于系统是用链表来存储的空闲内存地址, 自然是不连续的, 而链表的遍历方向是由低地址向高地址. 堆的大小受限于计算机系统中有效的虚拟内存.堆获得的空间比较灵活, 也比较大.</li>
-</ol>
-
+    <div class="content-article" style="margin-top: 30px;">
+        
+        
+            <h1 style="font-size: 24px; margin-top: 40px;">2018年</h1>
+            
+        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
+            
+             
+             
+                        <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
+                        <br>
+            
+             
+                        </div>
+                    <h1 style="font-size: 24px; margin-top: 40px;">2017年</h1>
+                    <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
+                 
+             
+                        <a href="/2017/06/03/Cocoapods/">Cocoapods</a>
+                        <br>
+            
+             
+                        <a href="/2017/05/11/iOS项目工程概念/">iOS项目工程概念</a>
+                        <br>
+            
+             
+                        <a href="/2017/04/28/Instruments使用/">Instruments使用</a>
+                        <br>
+            
+             
+                        <a href="/2017/04/14/page/">iOS内存分配</a>
+                        <br>
+            
+                    </div>
+        
     </div>
 </article>
-
-
-<div id="comments-template"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script>
-	if(!window.commentConfig) {
-      window.commentConfig = {}
-      window.commentConfig.title = 'Fri Apr 14 2017 14:55:26 GMT+0800'
-    }
-</script>
-
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -389,19 +360,19 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/2017/04/14/page/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/archives/2017/06/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/2017/04/14/page/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/archives/2017/06/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/2017/04/14/page/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/archives/2017/06/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/工具篇/" style="font-size: 13.493560488195598px;" class="tag-cloud-link">工具篇</a>
+    <a href="/tags/工具篇/" style="font-size: 10.46621485199843px;" class="tag-cloud-link">工具篇</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
