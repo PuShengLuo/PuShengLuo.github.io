@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Levin Luo">
+    
+    <meta name="description" content="Stay hungry、stay foolish.">
+    
+    
+    
+    
+    
+    
+    <title>runtime实践 | One Piece</title>
+    <link href=”http://yoursite.com“ rel=”prefetch” />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" href="/js/highslide/highslide.css">
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/avatar.jpg'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+</head>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="http://yoursite.com">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">One Piece</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/categories">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                </li>
+                
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/UI篇/">UI篇</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/runtime/">runtime</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/工具篇/">工具篇</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="http://yoursite.com">One Piece</a>
+        >
+        <span>runtime实践</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2017/07/23/runtime实践/">runtime实践</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/runtime/">runtime</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2017-07-23
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2017/07/23/runtime实践/">runtime实践</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2017-07-23
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/runtime/">runtime</a>
+                
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <h1 id="例题分析"><a href="#例题分析" class="headerlink" title="例题分析"></a>例题分析</h1><h2 id="self-class-与-super-class"><a href="#self-class-与-super-class" class="headerlink" title="[self class]与[super class]"></a>[self class]与[super class]</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@implementation Son : Father</span><br><span class="line">- (id)init &#123;</span><br><span class="line">    self = [super init];</span><br><span class="line">    if (self)</span><br><span class="line">    &#123;</span><br><span class="line">        NSLog(@&quot;%@&quot;, NSStringFromClass([self class]));</span><br><span class="line">        NSLog(@&quot;%@&quot;, NSStringFromClass([super class]));</span><br><span class="line">    &#125;</span><br><span class="line">return self;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2018-04-15 12:27:36.776910+0800 Runtime[2173:159137] Son</span><br><span class="line">2018-04-15 12:27:36.777059+0800 Runtime[2173:159137] Son</span><br></pre></td></tr></table></figure>
+<p>当调用[self class]时, 先调用的是 objc_msgSend 函数, 第一个参数是Son这个类的实例, 然后去示例的ISA(Son类)中找 - (Class)class 这个方法, 没找到, 然后去Son类的父类(Father类)中找, 没找到, 一直找到NSObject类中找到. 而 - (Class)class 的实现就是返回self的类别, 故上述输出结果为 Son.</p>
+<p>当调用[supe class]时, 先调用的是class_getSuperclass函数, 该函数第一个参数是结构体 objc_super(第一个参数是self, 第二个参数是当前实例变量的super_class, 就是Father类). 然后直接从实例变量所在类的父类(Father)去找- (Class)class 这个方法, 没找到, 然后去Son类的父类(Father类)中找, 没找到, 一直找到NSObject类中找到. 最后内部是使用 objc_msgSend(objc_super-&gt;receiver, @selector(class))去调用, 此时已经和[self class]调用相同了, 故上述输出结果仍然返回 Son.</p>
+<h2 id="isKindOfClass与isMemberOfClass"><a href="#isKindOfClass与isMemberOfClass" class="headerlink" title="isKindOfClass与isMemberOfClass"></a>isKindOfClass与isMemberOfClass</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BOOL res1 = [[NSObject class] isKindOfClass:[NSObject class]];</span><br><span class="line">BOOL res2 = [[NSObject class] isMemberOfClass:[NSObject class]];</span><br><span class="line"></span><br><span class="line">BOOL res3 = [[Father class] isKindOfClass:[Father class]];</span><br><span class="line">BOOL res4 = [[Father class] isMemberOfClass:[Father class]];</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;%d %d %d %d&quot;, res1, res2, res3, res4);</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2018-04-15 13:03:38.053683+0800 Runtime[2262:176716] 1 0 0 0</span><br></pre></td></tr></table></figure>
+<p>内部实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">+ (Class)class &#123;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line">- (Class)class &#123;</span><br><span class="line">    return object_getClass(self);</span><br><span class="line">&#125;</span><br><span class="line">Class object_getClass(id obj) &#123;</span><br><span class="line">    if (obj) return obj-&gt;getIsa();</span><br><span class="line">    else return Nil;</span><br><span class="line">&#125;</span><br><span class="line">- (BOOL)isKindOf:(Class)cls &#123;</span><br><span class="line">    Class cls;</span><br><span class="line">    for (cls = isa; cls; cls = cls-&gt;superclass) </span><br><span class="line">        if (cls == (Class)aClass)</span><br><span class="line">            return YES;</span><br><span class="line">    return NO;</span><br><span class="line">&#125;</span><br><span class="line">+ (BOOL)isKindOfClass:(Class)cls &#123;</span><br><span class="line">    for (Class tcls = object_getClass((id)self); tcls; tcls = tcls-&gt;superclass) &#123;</span><br><span class="line">        if (tcls == cls) return YES;</span><br><span class="line">    &#125;</span><br><span class="line">    return NO;</span><br><span class="line">&#125;</span><br><span class="line">- (BOOL)isMemberOf:(Class)cls &#123;</span><br><span class="line">    return [self class] == cls;</span><br><span class="line">&#125;</span><br><span class="line">+ (BOOL)isMemberOfClass:(Class)cls &#123;</span><br><span class="line">    return object_getClass((id)self) == cls;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/006QlBVjgy1fqemgbz1ocj30yy10oae8.jpg" alt=""></p>
+<ol>
+<li>res1：[NSObject class]返回NSObject,接着执行 + isKindOfClass, object_getClass((id)self)返回的是NSObject的isa 也就是NSObject 的meta class,所以第一次循环判断不等，第二次tcls = tcls-&gt;superclass也就是NSObject所以相等.结果为YES.<br></li>
+<li>res2：[NSObject class]返回NSObject,接着执行+ (BOOL)isMemberOfClass:(Class)cls,结果为NO<br></li>
+<li>res3：[Father class]返回Father,接着执行 + isKindOfClass, object_getClass((id)self)返回的是Father的isa 也就是Father 的meta class,第二次tcls = tcls-&gt;superclass也就是NSObject的Meta Class,第三次是NSObject的Meta Class的superclass也就是NSObject,第四次是NSObject的superclass 为nil。退出循环，结果为NO.<br></li>
+<li>[Father class]返回Father,接着执行+ (BOOL)isMemberOfClass:(Class)cls,结果为NO<br></li>
+</ol>
+<h2 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">下面的代码会？Compile Error / Runtime Crash / NSLog…?</span><br><span class="line"> @interface NSObject (Student)</span><br><span class="line"> + (void)foo;</span><br><span class="line"> - (void)foo;</span><br><span class="line"> @end</span><br><span class="line"> @implementation NSObject (Student)</span><br><span class="line"> - (void)foo &#123;</span><br><span class="line">    NSLog(@&quot;IMP: -[NSObject(Student) foo]&quot;);</span><br><span class="line"> &#125;</span><br><span class="line">@end</span><br><span class="line">#import &quot;NSObject+Student.h&quot;</span><br><span class="line">int main(int argc, char * argv[]) &#123;</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        [NSObject foo];</span><br><span class="line">        [[NSObject new] foo];</span><br><span class="line">        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2018-04-16 17:34:33.595243+0800 Runtime[12538:440536] IMP: -[NSObject(Student) foo]</span><br><span class="line">2018-04-16 17:34:33.595243+0800 Runtime[12538:440536] IMP: -[NSObject(Student) foo]</span><br></pre></td></tr></table></figure>
+<p>分析：category中新增的方法, 如果是实例方法, 协议以及属性是直接添加到当前类上面, 如果是类方法和协议则会添加到当前类的原类上面去.<br></p>
+<p>所以调用[NSObject foo]时, 由于是类方法, 根据objc_msgSend的相关知识, 会先在NSObject(Class)的isa中也就是NSObject的meta-class中, 去查找foo方法的IMP, 没找到, 然后去NSObject的meta-class的superclass(NSObject)中找, 找到了, 执行foo方法. 调用[[NSObject new] foo]时, 会先在NSObject(Object)的isa中, 也就是NSObject(Class)中找, 找到了, 直接执行, 输出结果.</p>
+<h1 id="Runtime的常见用法"><a href="#Runtime的常见用法" class="headerlink" title="Runtime的常见用法"></a>Runtime的常见用法</h1><h2 id="Method-Swizzling"><a href="#Method-Swizzling" class="headerlink" title="Method Swizzling"></a>Method Swizzling</h2><p>Method Swizzling本质上就是对IMP和SEL进行交换, 当Method Swilzzling代码执行完毕之后互换才起作用, Method Swizzling也是iOS中AOP(面相切面编程)的一种实现方式. 我们替换ViewController的viewWillAppear:方法为例, 使用方式如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">@implementation ViewController (MethodSwizzling)</span><br><span class="line">+ (void)load &#123;</span><br><span class="line">    static dispatch_once_t once;</span><br><span class="line">    dispatch_once(&amp;once, ^&#123;</span><br><span class="line">        Class class = [self class];</span><br><span class="line">        //这里需要注意, 如果要Swizzling类方法则要获取当前类的原类, 因为根据objc_msgSend, 实例方法我们从对象的isa也就是对象所在的类中开始找, 类方法则是从类的isa也就是类的原类中开始找. object_getClass((id)self) 与 [self class] 返回的结果类型都是 Class, 但前者为元类, 后者为其本身.</span><br><span class="line">        // Class class = object_getClass((id)self);</span><br><span class="line">        SEL originalSelector = @selector(viewWillAppear:);</span><br><span class="line">        SEL swizzledSelector = @selector(xxx_viewWillAppear:);</span><br><span class="line">        Method originalMethod = class_getInstanceMethod(class, originalSelector);</span><br><span class="line">        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);</span><br><span class="line">        //我们先把要替换的类添加到category中</span><br><span class="line">        BOOL didAddMethod = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));</span><br><span class="line">        if (didAddMethod) &#123;</span><br><span class="line">            //class_replaceMethod相当于直接调用class_addMethod向类中添加该方法的实现</span><br><span class="line">            class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            //交换IMP, IMP是函数指针, 直接指向方法的内存地址</span><br><span class="line">            method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">- (void)xxx_viewWillAppear:(BOOL)animated &#123;</span><br><span class="line">    [self xxx_viewWillAppear:animated];</span><br><span class="line">    NSLog(@&quot;%@ viewWillAppear&quot;, self);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>这里有几点是要注意的:<br></p>
+<ol>
+<li>Objective-C在运行时会自动调用类的两个方法+load和+initialize. +load会在类初始加载时调用, +initialize方法是以懒加载的方式被调用的, 只有当你给某个类或它的子类发送消息, 那么这个类的+initialize方法才会被调用. 所以Swizzling要写在+load方法中, 因为写在+initialize方法中, 是有可能永远都不被执行.<br></li>
+<li>Swizzling应该只被执行一次, 如果Swizzling的方法被多次执行, 那么就有可能造成Swizzling失效, 所以我们要用dispatch_once来保证只被执行一次.<br></li>
+<li>Swizzling在+load中执行时, 不要调用[super load]. 如果是多继承, 并且对同一个方法都进行了Swizzling, 那么调用[super load]以后, 父类的Swizzling就失效了.<br></li>
+<li>在swizzling的过程中, 方法中的[self xxx_viewWillAppear:animated]已经被重新指定到UIViewController类的-viewWillAppear:中. 这时不会产生无限循环. 如果我们调用的是[self viewWillAppear:animated], 因为viewWillAppear:被重定向到xxx_viewWillAppear:, 就会产生无限循环.<br></li>
+<li>如果要Swizzling类方法则要获取当前类的原类, 因为根据objc_msgSend, 实例方法我们从对象的isa也就是对象所在的类中开始找, 类方法则是从类的isa也就是类的原类中开始找. object_getClass((id)self) 与 [self class] 返回的结果类型都是 Class, 但前者为元类, 后者为其本身.<br></li>
+<li>我们也可以使用这个来做一些异常保护, 例如数组的越界问题, 我们可以Swizzling数组的objectAtIndex:方法, 在新方法中做一些异常处理, 来抛出一些异常信息, 方便我们定位问题.</li>
+</ol>
+<h2 id="NSCoding的自动归档和自动解档"><a href="#NSCoding的自动归档和自动解档" class="headerlink" title="NSCoding的自动归档和自动解档"></a>NSCoding的自动归档和自动解档</h2><p>主要思路是获取成员变量列表, 利用KVC读取和赋值来完成encodeWithCoder和initWithCoder.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Student.h&quot;</span><br><span class="line">#import &lt;objc/runtime.h&gt;</span><br><span class="line">#import &lt;objc/message.h&gt;</span><br><span class="line">@implementation Student</span><br><span class="line">- (void)encodeWithCoder:(NSCoder *)aCoder&#123;</span><br><span class="line">    unsigned int outCount = 0;</span><br><span class="line">    Ivar *vars = class_copyIvarList([self class], &amp;outCount);</span><br><span class="line">    for (int i = 0; i &lt; outCount; i ++) &#123;</span><br><span class="line">        Ivar var = vars[i];</span><br><span class="line">        const char *name = ivar_getName(var);</span><br><span class="line">        NSString *key = [NSString stringWithUTF8String:name];</span><br><span class="line">        id value = [self valueForKey:key];</span><br><span class="line">        [aCoder encodeObject:value forKey:key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">- (nullable __kindof)initWithCoder:(NSCoder *)aDecoder&#123;</span><br><span class="line">    if (self = [super init]) &#123;</span><br><span class="line">        unsigned int outCount = 0;</span><br><span class="line">        Ivar *vars = class_copyIvarList([self class], &amp;outCount);</span><br><span class="line">        for (int i = 0; i &lt; outCount; i ++) &#123;</span><br><span class="line">            Ivar var = vars[i];</span><br><span class="line">            const char *name = ivar_getName(var);</span><br><span class="line">            NSString *key = [NSString stringWithUTF8String:name];</span><br><span class="line">            id value = [aDecoder decodeObjectForKey:key];</span><br><span class="line">            [self setValue:value forKey:key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>参考资料：</p>
+<ol>
+<li><p><a href="https://halfrost.com/objc_runtime_isa_class/" target="_blank" rel="noopener">神经病院 Objective-C Runtime 入院系列</a></p>
+</li>
+<li><p><a href="http://yulingtianxia.com/blog/2014/11/05/objective-c-runtime/" target="_blank" rel="noopener">Objective-C Runtime</a></p>
+</li>
+<li><p><a href="http://southpeak.github.io/2014/10/25/objective-c-runtime-1/" target="_blank" rel="noopener">Objective-C Runtime 运行时系列</a></p>
+</li>
+<li><p><a href="https://halfrost.com/ios_aspect/" target="_blank" rel="noopener">iOS 如何实现 Aspect Oriented Programming</a></p>
+</li>
+<li><p><a href="http://tech.glowing.com/cn/method-swizzling-aop/" target="_blank" rel="noopener">Method Swizzling 和 AOP 实践</a></p>
+</li>
+<li><p><a href="http://www.cocoachina.com/ios/20141224/10740.html" target="_blank" rel="noopener">刨根问底Objective－C Runtime</a></p>
+</li>
+<li><p><a href="https://tech.meituan.com/DiveIntoCategory.html" target="_blank" rel="noopener">深入理解Objective-C：Category</a></p>
+</li>
+<li><p><a href="http://yulingtianxia.com/blog/2016/06/15/Objective-C-Message-Sending-and-Forwarding/" target="_blank" rel="noopener">Objective-C 消息发送与转发机制原理</a></p>
+</li>
+</ol>
+
+    </div>
+</article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'Sun Jul 23 2017 00:14:14 GMT+0800'
+    }
+</script>
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            Levin Luo
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/avatar.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"><p>Stay hungry、stay foolish.</p>
+</p>
+        </div>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/04/14/路由协议/">路由协议</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/07/23/runtime实践/">runtime实践</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/07/18/runtime/">iOS中的runtime</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/06/16/UICollectionView自定义布局/">UICollectionView自定义布局</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/06/03/Cocoapods/">Cocoapods</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/05/11/iOS项目工程概念/">iOS项目工程概念</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/04/28/Instruments使用/">Instruments使用</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/04/14/iOS内存分配/">iOS内存分配</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+                <li class="">
+                    <a href="/2017/07/23/runtime实践/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                <li class="">
+                    <a href="/2017/07/23/runtime实践/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                </li>
+                <li class="">
+                    <a href="/2017/07/23/runtime实践/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/UI篇/" style="font-size: 12.87728368825885px;" class="tag-cloud-link">UI篇</a>
+    
+    <a href="/tags/runtime/" style="font-size: 11.979389016669051px;" class="tag-cloud-link">runtime</a>
+    
+    <a href="/tags/工具篇/" style="font-size: 14.677534055463397px;" class="tag-cloud-link">工具篇</a>
+    
+</div>
+                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
+    
+    <li>
+        <a href="http://www.levinluo.com" target="_blank">Levin Luo</a>
+    </li>
+    
+</div>
+                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
+    
+    <li>
+        <a href="http://www.levinluo.com" target="_blank">Levin Luo</a>
+    </li>
+    
+</div>
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2017 Levin Luo Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+</body>
+<script src="/js/activate-power-mode.js"></script>
+<script>
+    // 配置highslide
+  hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+</script>
+<script>
+  POWERMODE.colorful = 'true';    // make power mode colorful
+  POWERMODE.shake = 'true';       // turn off shake
+  // TODO 这里根据具体情况修改
+  document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '/imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '6'
+    }
+</script>
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+
+
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    if(window.commentConfig) {
+      window.commentConfig.id = 'Sun Jul 23 2017 00:14:14 GMT+0800'
+      window.commentConfig.owner = 'PuShengLuo'
+      window.commentConfig.repo = 'PuShengLuo.github.io'
+      window.commentConfig.client_id = 'cc1a44fe73dbdbe0edb7'
+      window.commentConfig.client_secret = 'b101ced75c5c8a67aff6dd02e85125eb775ffd1c'
+      window.commentConfig.redirect_uri = ''
+    } else {
+      window.commentConfig = {
+        id: 'Sun Jul 23 2017 00:14:14 GMT+0800',
+        owner: 'PuShengLuo',
+        repo: 'PuShengLuo.github.io',
+        client_id: 'cc1a44fe73dbdbe0edb7',
+        client_secret: 'b101ced75c5c8a67aff6dd02e85125eb775ffd1c',
+        redirect_uri: ''
+      }
+    }
+</script>
+<script src="/js/comment/gitment.js"></script>
+
+</html>
