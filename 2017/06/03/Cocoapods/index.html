@@ -60,24 +60,6 @@
 </section>
     <!-- 欧尼酱功能, 谁用谁知道 -->
     
-    <div class="gal-menu gal-dropdown">
-    <div class="circle" id="gal">
-        <div class="ring">
-            <a href="http://yoursite.com" class="menuItem" style="left: 50%; top: 15%;">首页</a>
-            
-            <a class="menuItem" style="left: 80.3109%; top: 32.5%;">下一页</a>
-            
-            <a href="/archives" class="menuItem" style="left: 80.3109%; top: 67.5%;">归档</a>
-            <a href="/about" class="menuItem" style="left: 50%; top: 85%;">关于</a>
-            <a href="/message" class="menuItem" style="left: 19.6891%; top: 67.5%;">留言板</a>
-            
-            <a class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
-            
-        </div>
-        <audio id="audio" src="/imgs/oni.mp3"></audio>
-    </div>
-</div>
-    
     <header class="navbar navbar-inverse" id="gal-header">
     <div class="container">
         <div class="navbar-header">
@@ -144,11 +126,11 @@
                         
                         
                         <li>
-                            <a href="/tags/runtime/">runtime</a>
+                            <a href="/tags/工具篇/">工具篇</a>
                         </li>
                         
                         <li>
-                            <a href="/tags/工具篇/">工具篇</a>
+                            <a href="/tags/runtime/">runtime</a>
                         </li>
                         
                         
@@ -377,69 +359,6 @@
 </aside>
     
     
-    <aside id="sidebar-rand_posts">
-    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
-        <div class="panel-heading">
-            <i class="fa fa-refresh"></i>
-            随机文章
-            <i class="fa fa-times-circle panel-remove"></i>
-            <i class="fa fa-chevron-circle-up panel-toggle"></i>
-        </div>
-        <ul class="list-group list-group-flush">
-            
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2017/06/03/Cocoapods/">Cocoapods</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2017/04/14/page/">iOS内存分配</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2018/04/15/runtime实践/">runtime实践</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2017/07/18/runtime/">iOS中的runtime</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2017/05/11/iOS项目工程概念/">iOS项目工程概念</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2017/04/28/Instruments使用/">Instruments使用</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2018/04/14/路由协议/">路由协议</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
-                </span>
-            </li>
-            
-        </ul>
-    </div>
-</aside>
-    
     
     <aside id="gal-sets">
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
@@ -457,9 +376,9 @@
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/runtime/" style="font-size: 18.659599073386634px;" class="tag-cloud-link">runtime</a>
+    <a href="/tags/工具篇/" style="font-size: 17.294120239730507px;" class="tag-cloud-link">工具篇</a>
     
-    <a href="/tags/工具篇/" style="font-size: 10.424656480321062px;" class="tag-cloud-link">工具篇</a>
+    <a href="/tags/runtime/" style="font-size: 16.960765691393135px;" class="tag-cloud-link">runtime</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -497,9 +416,8 @@
 </body>
 <script src="/js/activate-power-mode.js"></script>
 <script>
-
     // 配置highslide
-	hs.graphicsDir = '/js/highslide/graphics/'
+  hs.graphicsDir = '/js/highslide/graphics/'
     hs.outlineType = "rounded-white";
     hs.dimmingOpacity = 0.8;
     hs.outlineWhileAnimating = true;
@@ -520,20 +438,18 @@
         hideOnMouseOut: true
       }
     })
-
     // 初始化aos
     AOS.init({
       duration: 1000,
       delay: 0,
       easing: 'ease-out-back'
     });
-
 </script>
 <script>
-	POWERMODE.colorful = 'true';    // make power mode colorful
-	POWERMODE.shake = 'true';       // turn off shake
-	// TODO 这里根据具体情况修改
-	document.body.addEventListener('input', POWERMODE);
+  POWERMODE.colorful = 'true';    // make power mode colorful
+  POWERMODE.shake = 'true';       // turn off shake
+  // TODO 这里根据具体情况修改
+  document.body.addEventListener('input', POWERMODE);
 </script>
 <script>
     window.slideConfig = {
@@ -545,13 +461,12 @@
 <script src="/js/hs.js"></script>
 <script src="/js/blog.js"></script>
 
-<script src="/js/oni.js"></script>
-
 
 
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
+      window.commentConfig.id = 'Sat Jun 03 2017 17:29:56 GMT+0800'
       window.commentConfig.owner = 'PuShengLuo'
       window.commentConfig.repo = 'PuShengLuo.github.io'
       window.commentConfig.client_id = 'cc1a44fe73dbdbe0edb7'
@@ -559,6 +474,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
+        id: 'Sat Jun 03 2017 17:29:56 GMT+0800',
         owner: 'PuShengLuo',
         repo: 'PuShengLuo.github.io',
         client_id: 'cc1a44fe73dbdbe0edb7',
