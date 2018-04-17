@@ -12,7 +12,7 @@
     
     
     
-    <title>archive_a | One Piece</title>
+    <title>UIViewController介绍 | One Piece</title>
     <link href=”http://yoursite.com“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -97,7 +97,7 @@
                 
                 
                 
-                <li class="current">
+                <li class="">
                     <a href="/archives">
                         <i class="fa fa-archive"></i>归档
                     </a>
@@ -160,19 +160,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-archive">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="http://yoursite.com">One Piece</a>
         >
-        <span>归档</span>
+        <span>UIViewController介绍</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/archives">归档</a>
+                <a href="/2017/07/15/UIViewController介绍/">UIViewController介绍</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/UI篇/">UI篇</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2017-07-15
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -180,72 +195,71 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/archives">归档</a>
+                    <a href="/2017/07/15/UIViewController介绍/">UIViewController介绍</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2017-07-15
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/UI篇/">UI篇</a>
+                
+                
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        
-        
-            <h1 style="font-size: 24px; margin-top: 40px;">2018年</h1>
-            
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-             
-             
-                        <a href="/2018/04/14/路由协议/">路由协议</a>
-                        <br>
-            
-             
-                        <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
-                        <br>
-            
-             
-                        </div>
-                    <h1 style="font-size: 24px; margin-top: 40px;">2017年</h1>
-                    <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-                 
-             
-                        <a href="/2017/07/23/runtime实践/">runtime实践</a>
-                        <br>
-            
-             
-                        <a href="/2017/07/18/runtime/">iOS中的runtime</a>
-                        <br>
-            
-             
-                        <a href="/2017/07/17/UIView介绍/">UIView介绍</a>
-                        <br>
-            
-             
-                        <a href="/2017/07/15/UIViewController介绍/">UIViewController介绍</a>
-                        <br>
-            
-             
-                        <a href="/2017/06/16/UICollectionView自定义布局/">UICollectionView自定义布局</a>
-                        <br>
-            
-             
-                        <a href="/2017/06/03/Cocoapods/">Cocoapods</a>
-                        <br>
-            
-             
-                        <a href="/2017/05/11/iOS项目工程概念/">iOS项目工程概念</a>
-                        <br>
-            
-             
-                        <a href="/2017/04/28/Instruments使用/">Instruments使用</a>
-                        <br>
-            
-             
-                        <a href="/2017/04/14/iOS内存分配/">iOS内存分配</a>
-                        <br>
-            
-                    </div>
-        
+    <div class="content-article">
+        <h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><p><img src="http://ww1.sinaimg.cn/large/006QlBVjgy1fqfks2bxlbj30dw0euju9.jpg" alt=""></p>
+<ol>
+<li>initWithCoder: 或 initWithNibName:bundle:, 首先从归档文件中加载UIViewController对象. 非StoryBoard创建调用initWithNibName:bundle:, 如果使用StoryBoard进行视图管理, 从nib中加载对象实例时, 程序不会直接初始化一个UIViewController, StoryBoard会自动初始化或在segue被触发时自动初始化initWithCoder:.<br></li>
+<li>awakeFromNib, 从xib或者storyboard加载完毕就会调用.<br></li>
+<li>loadView, 每次访问UIViewController的view(比如controller.view, self.view)而且view为nil, loadView方法就会被调用. loadView方法是用来负责创建UIViewController的view. 如果在初始化UIViewController指定了xib文件名, 就会根据传入的xib文件名加载对应的xib文件, 如果没有明显地传xib文件名, 就会加载跟UIViewController同名的xib文件. 如果没有找到相关联的xib文件, 就会创建一个空白的UIView, 然后赋值给UIViewController的view属性. 苹果设计这个方法就是给我们自定义UIViewController的view用的, 我们直接在该方法中指定UIViewController的View.<br></li>
+<li>viewDidLoad, 无论你是通过xib文件还是重写loadView方法创建UIViewController的view, 在view创建完毕后, 最终都会调用viewDidLoad方法. 在这里视图层次已经加载到内存中. 通常, 我们对于各种初始化数据的载入, 初始设定, 修改约束, 移除视图等很多操作都可以这个方法中实现.<br></li>
+<li>viewWillAppear:, 系统在载入所有的数据后, 将会在屏幕上显示视图, 这时会先调用这个方法, 通常我们会在这个方法对即将显示的视图做进一步的设置.<br></li>
+<li>viewWillLayoutSubviews, view 即将布局其Subviews. 比如view的bounds改变了(例如:状态栏从不显示到显示,视图方向变化), 要调整Subviews的位置, 在调整之前要做的工作可以放在该方法中实现.<br></li>
+<li>viewDidLayoutSubviews, view已经布局其Subviews, 这里可以放置调整完成之后需要做的工作.<br></li>
+<li>viewDidAppear:, 在view被添加到视图层级中以及多视图上下级视图切换时调用这个方法, 可以对正在显示的视图做进一步的设置.<br></li>
+<li>viewWillDisappear:, 当前视图在即将被移除, 或被覆盖时, 会调用该方法. 此时还没有调用removeFromSuperview.<br></li>
+<li>viewDidDisappear:, view已经消失或被覆盖, 此时已经调用removeFromSuperView.<br></li>
+<li>dealloc, UIViewController被销毁时调用, 此次需要对你在init和viewDidLoad中创建的对象进行释放.<br></li>
+<li>didReceiveMemoryWarning, 内存不够时, 系统会自动调用这个方法. 默认实现是如果当前UIViewController的view不在应用程序的视图层次结构(View Hierarchy)中, 即view的superview为nil的时候, 就会将view释放, 并且调用viewDidUnload方法.<br></li>
+<li>viewDidUnload, 收到内存警告时, 如果当前UIViewController的View的superView为nil时, 就会将View释放, 并且调用viewDidUnload.</li>
+</ol>
+<h1 id="edgesForExtendedLayout-translucent-extendedLayoutIncludesOpaqueBars-automaticallyAdjustsScrollViewInsets"><a href="#edgesForExtendedLayout-translucent-extendedLayoutIncludesOpaqueBars-automaticallyAdjustsScrollViewInsets" class="headerlink" title="edgesForExtendedLayout, translucent, extendedLayoutIncludesOpaqueBars, automaticallyAdjustsScrollViewInsets"></a>edgesForExtendedLayout, translucent, extendedLayoutIncludesOpaqueBars, automaticallyAdjustsScrollViewInsets</h1><ol>
+<li>edgesForExtendedLayout:iOS7以后 UIViewController 开始使用全屏布局，而且是默认的属性。通常涉及到布局，就离不开这个属性 edgesForExtendedLayout，它是一个类型为UIExtendedEdge的属性，指定UIViewController上的根视图self.view边缘要延伸的方向。由于iOS7鼓励全屏布局，所以它的默认值是UIRectEdgeAll，四周边缘均延伸，就是说，如果即使视图中上有UINavigationBar，下有UITabBar，那么视图仍会延伸覆盖到四周的区域。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_OPTIONS(NSUInteger, UIRectEdge) &#123;</span><br><span class="line"> </span><br><span class="line">     UIRectEdgeNone   = 0,</span><br><span class="line">     UIRectEdgeTop    = 1 &lt;&lt; 0,</span><br><span class="line">     UIRectEdgeLeft   = 1 &lt;&lt; 1,</span><br><span class="line">     UIRectEdgeBottom = 1 &lt;&lt; 2,</span><br><span class="line">     UIRectEdgeRight  = 1 &lt;&lt; 3,</span><br><span class="line">     UIRectEdgeAl = UIRectEdgeTop | UIRectEdgeLeft | UIRectEdgeBottom | UIRectEdgeRight  </span><br><span class="line"></span><br><span class="line">&#125; NS_ENUM_AVAILABLE_IOS(7_0);</span><br></pre></td></tr></table></figure>
+<p><strong><strong>设置为 UIRectEdgeNone就是不会延伸至UINavigationBar和UITabBar</strong></strong><br></p>
+<ol>
+<li>translucent:这个是self.navigationController.navigationBar的属性，设置导航条UINavigationBar是否半透明.默认是YES，也就是半透明.<br></li>
+<li>extendedLayoutIncludesOpaqueBars:不透明的条下是否可以扩展.默认为NO，也就是不可以扩展。当translucent设置为NO，即导航栏UINavigationBar不透明的时候，默认不能扩展(空出导航栏部分).<br></li>
+<li>automaticallyAdjustsScrollViewInsets: 自动校准滚动视图的嵌入视图,默认YES.automaticallyAdjustsScrollViewInsets根据按所在界面的status bar，navigationbar，与tabbar的高度，自动调整scrollview的 inset,设置为no，不让viewController调整，这种对于一个页面内有多个scrollView或者其子类十分有必要，我们自己修改布局即可.</li>
+</ol>
+<h1 id="addchildviewcontroller"><a href="#addchildviewcontroller" class="headerlink" title="addchildviewcontroller"></a>addchildviewcontroller</h1><p>addChildViewController是一个从iOS5开始支持的api接口，相关的一系列的接口是用来处理viewcontroller中嵌套显示其他viewcontroller的场景的。<br><br>这样做的好处是:<br></p>
+<ol>
+<li>对页面中的逻辑更加分明了。相应的View对应相应的ViewController.<br></li>
+<li>当某个子View没有显示时，将不会被Load，减少了内存的使用.<br></li>
+<li>当内存紧张时，没有Load的View将被首先释放，优化了程序的内存释放机制.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//在parent view controller 中添加 child view controller</span><br><span class="line">　　 FirstViewController *firstViewController=[[FirstViewController alloc] initWithNibName:@&quot;FirstViewController&quot; bundle:nil];</span><br><span class="line">[self addChildViewController:firstViewController];</span><br><span class="line">SecondViewController *secondViewController=[[SecondViewController alloc] initWithNibName:@&quot;SecondViewController&quot; bundle:nil];</span><br><span class="line">[self addChildViewController:secondViewController];</span><br><span class="line">ThirdViewController *thirdViewController=[[ThirdViewController alloc] initWithNibName:@&quot;ThirdViewController&quot; bundle:nil];</span><br><span class="line">[self addChildViewController:thirdViewController];</span><br><span class="line">[self.view  addSubview:thirdViewController.view];</span><br><span class="line">　　// addChildViewController会调用[child willMoveToParentViewController:self] ，但是不会调用didMoveToParentViewController，所以需要xian调用</span><br><span class="line">[thirdViewController didMoveToParentViewController:self];</span><br><span class="line">currentViewController=thirdViewController;</span><br><span class="line">/////////////////////////////////</span><br><span class="line">     *  fromViewController   当前显示在父视图控制器中的子视图控制器</span><br><span class="line">      *  toViewController 将要显示的姿势图控制器</span><br><span class="line">     *  duration 动画时间(这个属性,old friend 了 O(∩_∩)O)</span><br><span class="line">     *  options 动画效果(渐变,从下往上等等,具体查看API)</span><br><span class="line">     *  animations   转换过程中得动画</span><br><span class="line">     *  completion   转换完成</span><br><span class="line">     */</span><br><span class="line">//切换child view controller</span><br><span class="line">[self transitionFromViewController:currentViewController toViewController:firstViewController duration:4 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^&#123;</span><br><span class="line"></span><br><span class="line">&#125;  completion:^(BOOL finished) &#123;</span><br><span class="line">    //......</span><br><span class="line">&#125;];</span><br><span class="line">currentViewController=firstViewController;</span><br><span class="line">　//移除child view controller</span><br><span class="line">// removeFromParentViewController在移除child前不会调用[self willMoveToParentViewController:nil] ，所以需要显示调用</span><br><span class="line">[currentViewController willMoveToParentViewController:nil];</span><br><span class="line">[currentViewController removeFromSuperview];</span><br><span class="line">[currentViewController removeFromParentViewController];</span><br></pre></td></tr></table></figure>
+
     </div>
 </article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'Sat Jul 15 2017 18:07:58 GMT+0800'
+    }
+</script>
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -359,23 +373,23 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/archives/2017/07/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2017/07/15/UIViewController介绍/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2017/07/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2017/07/15/UIViewController介绍/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2017/07/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2017/07/15/UIViewController介绍/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/UI篇/" style="font-size: 18.241399341578727px;" class="tag-cloud-link">UI篇</a>
+    <a href="/tags/UI篇/" style="font-size: 17.775067409551607px;" class="tag-cloud-link">UI篇</a>
     
-    <a href="/tags/runtime/" style="font-size: 17.583495530345807px;" class="tag-cloud-link">runtime</a>
+    <a href="/tags/runtime/" style="font-size: 10.153243516086942px;" class="tag-cloud-link">runtime</a>
     
-    <a href="/tags/工具篇/" style="font-size: 15.379595469696564px;" class="tag-cloud-link">工具篇</a>
+    <a href="/tags/工具篇/" style="font-size: 11.355690712820468px;" class="tag-cloud-link">工具篇</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -463,7 +477,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = ''
+      window.commentConfig.id = 'Sat Jul 15 2017 18:07:58 GMT+0800'
       window.commentConfig.owner = 'PuShengLuo'
       window.commentConfig.repo = 'PuShengLuo.github.io'
       window.commentConfig.client_id = 'cc1a44fe73dbdbe0edb7'
@@ -471,7 +485,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-        id: '',
+        id: 'Sat Jul 15 2017 18:07:58 GMT+0800',
         owner: 'PuShengLuo',
         repo: 'PuShengLuo.github.io',
         client_id: 'cc1a44fe73dbdbe0edb7',
