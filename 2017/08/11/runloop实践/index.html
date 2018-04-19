@@ -12,7 +12,7 @@
     
     
     
-    <title>iOS项目工程概念 | One Piece</title>
+    <title>runloop实践 | One Piece</title>
     <link href=”http://yoursite.com“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -170,19 +170,26 @@
         <i class="fa fa-home"></i>
         <a href="http://yoursite.com">One Piece</a>
         >
-        <span>iOS项目工程概念</span>
+        <span>runloop实践</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2017/05/11/iOS项目工程概念/">iOS项目工程概念</a>
+                <a href="/2017/08/11/runloop实践/">runloop实践</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2017-05-11
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/runloop/">runloop</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2017-08-11
             </span>
             
         </div>
@@ -192,54 +199,47 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2017/05/11/iOS项目工程概念/">iOS项目工程概念</a>
+                    <a href="/2017/08/11/runloop实践/">runloop实践</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2017-05-11
+                <i class="fa fa-calendar"></i> 2017-08-11
             </p>
             <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/runloop/">runloop</a>
+                
                 
                 
             </p>
         </center>
     </div>
     <div class="content-article">
-        <h1 id="Xcode-Workspace"><a href="#Xcode-Workspace" class="headerlink" title="Xcode Workspace"></a>Xcode Workspace</h1><p>workspace是Xcode的一种文件，用来管理工程和里面的文件，一个workspace可以包含若干个工程，甚至可以添加任何你想添加的文件。workspace提供了工程和工程里面的target之间隐式和显式依赖关系，用来管理和组织工程里面的所有文件.</p>
-<p>一个workspace可以管理多个Project,pod install的过程就是生成了一个workspace和一个全是Pod组件的Project, 然后我们通过生成的workspace来管理新生成的Project和原本的Project.</p>
-<h1 id="Xcode-Project"><a href="#Xcode-Project" class="headerlink" title="Xcode Project"></a>Xcode Project</h1><p>project就是一个个的仓库，里面会包含属于这个项目的所有文件，资源，以及生成一个或者多个软件产品的信息。每一个project会包含一个或者多个 targets，而每一个 target 告诉我们如何生产 products。project 会为所有 targets 定义了默认的 build settings，每一个 target 也能自定义自己的 build settings，且 target 的 build settings 会重写 project 的 build settings。</p>
-<p>Xcode中的 project里面包含了所有的源文件，资源文件和构建一个或者多个product的信息。project利用他们去编译我们所需的product，也帮我们组织它们之间的关系。一个project可以包含一个或者多个target。project定义了一些基本的编译设置，每个target都继承了project的默认设置，每个target可以通过重新设置target的编译选项来定义自己的特殊编译选项。</p>
-<p>project包含了以下信息：<br></p>
+        <h1 id="常驻线程"><a href="#常驻线程" class="headerlink" title="常驻线程"></a>常驻线程</h1><p>需要创建一个在后台一直存在的程序, 来做一些需要频繁处理的任务. 比如检测网络状态等. 默认情况一个线程创建出来, 运行完要做的事情, 线程就会消亡. 而程序启动的时候, 就创建的主线程已经加入到runloop, 所以主线程不会消亡. AFN里面就有一条通过添加NSPort来实现常驻的线程, 常见的有两种方式:</p>
 <ul>
-<li>源文件 <br><ol>
-<li>代码的头文件和实现文件<br></li>
-<li>静态库，动态库<br></li>
-<li>资源文件(如图片，文本，xml，plist等)<br></li>
-<li>界面资源文件(xib， storyboard等)<br></li>
-</ol>
-</li>
-<li>在文件结构的导航中，采用group去组织文件(实际开发中，尽量使用实体文件夹)<br></li>
-<li>project的编译级别配置文件如(debug， release)<br></li>
-<li>target<br></li>
-<li>运行环境如：debug，test<br></li>
+<li>添加NSPort</li>
 </ul>
-<p>project可以单独存在，或者存在于一个workspace中.</p>
-<h1 id="Xcode-Target"><a href="#Xcode-Target" class="headerlink" title="Xcode Target"></a>Xcode Target</h1><p>target 定义了生成的唯一 product, 它将构建该 product 所需的文件和处理这些文件所需的指令集整合进 build system 中。Projects 会包含一个或者多个 targets,每一个 target 将会产出一个 product.</p>
-<p>这些指令以 build setting 和 build phases 的形式存在，你可在 Xcode 的项目编辑器(TARGETS-&gt;Build Setting, TARGETS-&gt;Build Phases)中进行查看和编辑。target 中的 build setting 参数继承自 project 的 build settings, 但是你可以在 target 中修改任意 settings 来重写 project settings，这样，最终生效的 settings 参数以在 target 中设置的为准. Project 可包含多个 target, 但是在同一时刻，只会有一个 target 生效，可用 Xcode 的 scheme 来指定是哪一个 target 生效.</p>
-<p>target 和其生成的 product 可与另一个 target 有关，如果一个 target 的 build 依赖于另一个 target 的输出，那么我们就说前一个 target 依赖于后一个 target .如果这些 target 在同一个 workspace 中，那么 Xcode 能够发现这种依赖关系，从而使其以我们期望的顺序生成 products.这种关系被称为隐式依赖关系。同时，你可以显示指定 targets 之间的依赖关系，并且这种依赖关系会覆盖 Xcode 推测出的隐式依赖关系。</p>
-<p>指定 targets 之间的依赖关系的地方在 Project Editor-&gt;TRAGETS-&gt;Build Phases-&gt;Target Dependencies 处设置.</p>
-<h1 id="Scheme"><a href="#Scheme" class="headerlink" title="Scheme"></a>Scheme</h1><p>一个Scheme就包含了一套targets(这些targets之间可能有依赖关系)，一个configuration，一套待执行的tests。指定了编译哪个target，使用哪个build configuration去编译target，提供运行target的执行环境等等。可以通过scheme editor来编辑scheme.</p>
-<p>scheme定义了一系列构建的targets，构建时的配置，和一系列执行的测试。可以有很多scheme,但同一时刻只能有一个有效的。选择scheme时，意味着你也选择了一个运行目标（product构建的硬件平台)。可以指定scheme是否存储在project中，以便包含此project的所有workspace都可以使用些scheme,当然也可以指定只存储在某个workspace中。</p>
-<h1 id="Build-Settings"><a href="#Build-Settings" class="headerlink" title="Build Settings"></a>Build Settings</h1><p>一个build setting是一个指示产品某个方面构建方式的变量，比如决定xcode传给编译器的参数选项是怎样。其是一个常量或者一个公式供给xcode在构建的时候计算build setting。</p>
-<p>build setting 中包含了 product 生成过程中所需的参数信息。你可以在 project-level 和 target-level 层指定 build settings。project-level 的 build settings 适用于 project 中的所有targets，但是当 target-level 的 build settings 重写了 project-level 的 build settings，以 target-level 中的 build settings 中的值为准</p>
-<p>一个 build configaration 指定了一套 build settings 用于生成某一 target 的 product，例如，在 Xcode 创建项目时默认就有两套独立的 build configarations, 分别用于生成 debug 和 release 模式下的 product。</p>
-<p>除了创建工程时生成的默认 build settings，你也可以自定义 project-level 或者 target-level 的 build settings.关于继承关系，<a href="https://pewpewthespells.com/blog/xcconfig_guide.html#BuildSettingInheritance" target="_blank" rel="noopener">The Unofficial Guide to xcconfig files</a>这里也有详细的说明，强烈建议阅读。<br><br>动态环境配置就是使用自定义的 build settings 来实现的.</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料:"></a>参考资料:</h1><ol>
-<li><a href="http://liumh.com/2016/05/22/use-xcconfig-config-specific-variable/" target="_blank" rel="noopener">Xcode使用xcconfig文件配置环境</a></li>
-<li><a href="https://developer.apple.com/library/content/featuredarticles/XcodeConcepts/Concept-Targets.html" target="_blank" rel="noopener">Apple官方文档</a></li>
-<li><a href="https://xiuchundao.me/post/xcode-scheme-and-build-configuration" target="_blank" rel="noopener">Xcode中的Scheme和Build Configuration</a></li>
-<li><a href="https://www.jianshu.com/p/1f312abafeff" target="_blank" rel="noopener">Xcode workSpace 多个project联编</a></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    self.thread = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];</span><br><span class="line">    [self.thread start];</span><br><span class="line">&#125;</span><br><span class="line">- (void)run &#123;</span><br><span class="line">    NSLog(@&quot;----------run----%@&quot;, [NSThread currentThread]);</span><br><span class="line">    @autoreleasepool&#123;</span><br><span class="line">    /*如果不加这句，会发现runloop创建出来就挂了，因为runloop如果没有CFRunLoopSourceRef事件源输入或者定时器，就会立马消亡。</span><br><span class="line">      下面的方法给runloop添加一个NSport，就是添加一个事件源，也可以添加一个定时器，或者observer，让runloop不会挂掉*/</span><br><span class="line">    [[NSRunLoop currentRunLoop] addPort:[NSPort port] forMode:NSDefaultRunLoopMode];</span><br><span class="line">    // 方法1</span><br><span class="line">    [[NSRunLoop currentRunLoop] run];</span><br><span class="line">   &#125;</span><br><span class="line">    // 方法2</span><br><span class="line">    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];</span><br><span class="line">    // 方法3</span><br><span class="line">    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];</span><br><span class="line">    NSLog(@&quot;---------&quot;);</span><br><span class="line">&#125;</span><br><span class="line">- (void)test &#123;</span><br><span class="line">    NSLog(@&quot;----------test----%@&quot;, [NSThread currentThread]);</span><br><span class="line">&#125;</span><br><span class="line">- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    [self performSelector:@selector(test) onThread:self.thread withObject:nil waitUntilDone:NO];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加NSTimer</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    self.thread = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];</span><br><span class="line">    [self.thread start];</span><br><span class="line">&#125;</span><br><span class="line">- (void)run &#123;</span><br><span class="line">    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(test) userInfo:nil repeats:YES];</span><br><span class="line">    [[NSRunLoop currentRunLoop] run];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果没有实现添加NSPort或者NSTimer, 会发现执行完run方法, 线程就会消亡, 后续再执行touchbegan方法无效. 我们必须保证线程不消亡, 才可以在后台接受时间处理.</p>
+<p>RunLoop 启动前内部必须要有至少一个 Timer/Observer/Source, 所以在 [runLoop run] 之前先创建了一个新的 NSMachPort 添加进去了. 通常情况下, 调用者需要持有这个 NSMachPort (mach_port) 并在外部线程通过这个 port 发送消息到 loop 内; 但此处添加 port 只是为了让 RunLoop 不至于退出, 并没有用于实际的发送消息.</p>
+<p>可以发现执行完了run方法, 这个时候再点击屏幕, 可以不断执行test方法, 因为线程self.thread一直常驻后台, 等待事件加入其中, 然后执行.</p>
+<p>参考链接：<a href="https://www.jianshu.com/p/7eaedfc8f8f6" target="_blank" rel="noopener">避免使用 GCD Global队列创建Runloop常驻线程</a></p>
+<h1 id="滚动scrollView导致定时器失效"><a href="#滚动scrollView导致定时器失效" class="headerlink" title="滚动scrollView导致定时器失效"></a>滚动scrollView导致定时器失效</h1><p>如果在界面上有一个UIscrollview控件(tableview, collectionview等), 如果此时还有一个定时器在执行一个事件, 你会发现当你滚动scrollview的时候, 定时器会失效.</p>
+<p>原因是当滚动UIscrollview的时候, runloop会进入UITrackingRunLoopMode 模式, 而定时器运行在defaultMode下面, 系统一次只能处理一种模式的runloop, 所以导致defaultMode下的定时器失效. 解决方案有两种:</p>
+<p>1.把定时器的runloop的model改为NSRunLoopCommonModes 模式, 这个模式是一种占位mode, 并不是真正可以运行的mode, 它是用来标记一个mode的. 默认情况下default和tracking这两种mode 都会被标记上NSRunLoopCommonModes 标签 改变定时器的mode为commonmodel, 可以让定时器运行在defaultMode和trackingModel两种模式下, 不会出现滚动scrollview导致定时器失效的故障.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>使用GCD创建定时器<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 获得队列</span><br><span class="line">dispatch_queue_t queue = dispatch_get_main_queue();</span><br><span class="line">// 创建一个定时器(dispatch_source_t本质还是个OC对象)</span><br><span class="line">self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);</span><br><span class="line">// 设置定时器的各种属性（几时开始任务，每隔多长时间执行一次）</span><br><span class="line">// GCD的时间参数，一般是纳秒（1秒 == 10的9次方纳秒）</span><br><span class="line">// 比当前时间晚1秒开始执行</span><br><span class="line">dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));</span><br><span class="line">//每隔一秒执行一次</span><br><span class="line">uint64_t interval = (uint64_t)(1.0 * NSEC_PER_SEC);</span><br><span class="line">dispatch_source_set_timer(self.timer, start, interval, 0);</span><br><span class="line">// 设置回调</span><br><span class="line">dispatch_source_set_event_handler(self.timer, ^&#123;</span><br><span class="line">    NSLog(@&quot;------------%@&quot;, [NSThread currentThread]);</span><br><span class="line">&#125;);</span><br><span class="line">// 启动定时器</span><br><span class="line">dispatch_resume(self.timer);</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
+<h1 id="图片下载"><a href="#图片下载" class="headerlink" title="图片下载"></a>图片下载</h1><p>由于图片渲染到屏幕需要消耗较多资源, 为了提高用户体验, 当用户滚动UIscrollview的时候, 只在后台下载图片, 但是不显示图片, 当用户停下来的时候才显示图片. 核心代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self.imageView performSelector:@selector(setImage:) withObject:[UIImage imageNamed:@&quot;placeholder&quot;] afterDelay:3.0 inModes:@[NSDefaultRunLoopMode]];</span><br></pre></td></tr></table></figure>
+<p>这是因为限定了方法setImage只能在NSDefaultRunLoopMode 模式下使用. 而滚动UIscrollview的时候, 程序运行在tracking模式下面, 所以方法setImage不会执行.</p>
 
     </div>
 </article>
@@ -250,7 +250,7 @@
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = 'Thu May 11 2017 17:16:18 GMT+0800'
+      window.commentConfig.title = 'Fri Aug 11 2017 16:58:43 GMT+0800'
     }
 </script>
 
@@ -367,27 +367,27 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/2017/05/11/iOS项目工程概念/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2017/08/11/runloop实践/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/2017/05/11/iOS项目工程概念/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2017/08/11/runloop实践/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/2017/05/11/iOS项目工程概念/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2017/08/11/runloop实践/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/iOS优质博客/" style="font-size: 15.867103154902654px;" class="tag-cloud-link">iOS优质博客</a>
+    <a href="/tags/iOS优质博客/" style="font-size: 8.326671280794129px;" class="tag-cloud-link">iOS优质博客</a>
     
-    <a href="/tags/UI篇/" style="font-size: 12.059466775231407px;" class="tag-cloud-link">UI篇</a>
+    <a href="/tags/UI篇/" style="font-size: 10.519178380044233px;" class="tag-cloud-link">UI篇</a>
     
-    <a href="/tags/runloop/" style="font-size: 18.761474870066706px;" class="tag-cloud-link">runloop</a>
+    <a href="/tags/runloop/" style="font-size: 17.30090885178975px;" class="tag-cloud-link">runloop</a>
     
-    <a href="/tags/runtime/" style="font-size: 10.67029972805733px;" class="tag-cloud-link">runtime</a>
+    <a href="/tags/runtime/" style="font-size: 16.2212293921687px;" class="tag-cloud-link">runtime</a>
     
-    <a href="/tags/工具篇/" style="font-size: 18.53751732931407px;" class="tag-cloud-link">工具篇</a>
+    <a href="/tags/工具篇/" style="font-size: 19.61345232248858px;" class="tag-cloud-link">工具篇</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -475,7 +475,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = 'Thu May 11 2017 17:16:18 GMT+0800'
+      window.commentConfig.id = 'Fri Aug 11 2017 16:58:43 GMT+0800'
       window.commentConfig.owner = 'PuShengLuo'
       window.commentConfig.repo = 'PuShengLuo.github.io'
       window.commentConfig.client_id = 'cc1a44fe73dbdbe0edb7'
@@ -483,7 +483,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-        id: 'Thu May 11 2017 17:16:18 GMT+0800',
+        id: 'Fri Aug 11 2017 16:58:43 GMT+0800',
         owner: 'PuShengLuo',
         repo: 'PuShengLuo.github.io',
         client_id: 'cc1a44fe73dbdbe0edb7',
