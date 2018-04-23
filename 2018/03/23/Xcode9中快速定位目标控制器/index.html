@@ -12,7 +12,7 @@
     
     
     
-    <title>archive_a | One Piece</title>
+    <title>Xcode9中快速定位目标控制器 | One Piece</title>
     <link href=”http://yoursite.com“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -97,7 +97,7 @@
                 
                 
                 
-                <li class="current">
+                <li class="">
                     <a href="/archives">
                         <i class="fa fa-archive"></i>归档
                     </a>
@@ -164,19 +164,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-archive">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="http://yoursite.com">One Piece</a>
         >
-        <span>归档</span>
+        <span>Xcode9中快速定位目标控制器</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/archives">归档</a>
+                <a href="/2018/03/23/Xcode9中快速定位目标控制器/">Xcode9中快速定位目标控制器</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Tip/">Tip</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-03-23
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -184,92 +199,51 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/archives">归档</a>
+                    <a href="/2018/03/23/Xcode9中快速定位目标控制器/">Xcode9中快速定位目标控制器</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-03-23
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Tip/">Tip</a>
+                
+                
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        
-        
-            <h1 style="font-size: 24px; margin-top: 40px;">2018年</h1>
-            
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-             
-             
-                        <a href="/2018/04/14/路由协议/">路由协议</a>
-                        <br>
-            
-             
-                        <a href="/2018/03/23/Xcode9中快速定位目标控制器/">Xcode9中快速定位目标控制器</a>
-                        <br>
-            
-             
-                        <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
-                        <br>
-            
-             
-                        <a href="/2018/03/18/iOS优质博客/">iOS优质博客</a>
-                        <br>
-            
-             
-                        </div>
-                    <h1 style="font-size: 24px; margin-top: 40px;">2017年</h1>
-                    <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-                 
-             
-                        <a href="/2017/08/11/runloop实践/">runloop实践</a>
-                        <br>
-            
-             
-                        <a href="/2017/08/07/runloop/">runloop</a>
-                        <br>
-            
-             
-                        <a href="/2017/07/23/runtime实践/">runtime实践</a>
-                        <br>
-            
-             
-                        <a href="/2017/07/18/runtime/">iOS中的runtime</a>
-                        <br>
-            
-             
-                        <a href="/2017/07/17/UIView介绍/">UIView介绍</a>
-                        <br>
-            
-             
-                        <a href="/2017/07/15/UIViewController介绍/">UIViewController介绍</a>
-                        <br>
-            
-             
-                        <a href="/2017/06/20/UICollectionView刷新闪一下的问题/">UICollectionView刷新闪一下的问题</a>
-                        <br>
-            
-             
-                        <a href="/2017/06/16/UICollectionView自定义布局/">UICollectionView自定义布局</a>
-                        <br>
-            
-             
-                        <a href="/2017/06/03/Cocoapods/">Cocoapods</a>
-                        <br>
-            
-             
-                        <a href="/2017/05/11/iOS项目工程概念/">iOS项目工程概念</a>
-                        <br>
-            
-             
-                        <a href="/2017/04/28/Instruments使用/">Instruments使用</a>
-                        <br>
-            
-             
-                        <a href="/2017/04/14/iOS内存分配/">iOS内存分配</a>
-                        <br>
-            
-                    </div>
-        
+    <div class="content-article">
+        <p>接手一个老项目或项目目录结构复杂的时候，我们要修改某个控制器的界面/功能时，控制器的定位就有些许困难。</p>
+<p>充分条件:</p>
+<ol>
+<li>Xcode 9.0 及以上</li>
+<li>模拟器/真机 iOS 11.0 及以上</li>
+</ol>
+<p>过程:</p>
+<ol>
+<li>模拟器/真机定位需要调试的界面</li>
+<li>定位到 debug 工具 -&gt; 点击 debug view hierarchies<br><img src="http://ww1.sinaimg.cn/mw690/006QlBVjgy1fqmfwn7hz0j309y013t8m.jpg" alt=""></li>
+<li>轻转一下视图层次,就可以看到整个的页面的层次结构,今天的重点在这里,控制器实例<br><img src="http://ww1.sinaimg.cn/mw690/006QlBVjgy1fqmfx2dklej30dr0nfq4d.jpg" alt=""></li>
+<li>点击控制器实例(上图红框部分),看 Xcode 右侧 show the object inspector<br><img src="http://ww1.sinaimg.cn/mw690/006QlBVjgy1fqmfx9idewj307b04owel.jpg" alt=""></li>
+</ol>
+
     </div>
 </article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'Fri Mar 23 2018 11:43:04 GMT+0800'
+    }
+</script>
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -383,29 +357,29 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/archives/2017/08/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2018/03/23/Xcode9中快速定位目标控制器/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2017/08/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2018/03/23/Xcode9中快速定位目标控制器/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2017/08/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2018/03/23/Xcode9中快速定位目标控制器/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/Tip/" style="font-size: 8.628979696715735px;" class="tag-cloud-link">Tip</a>
+    <a href="/tags/Tip/" style="font-size: 8.043097542752129px;" class="tag-cloud-link">Tip</a>
     
-    <a href="/tags/UI篇/" style="font-size: 11.975263566759956px;" class="tag-cloud-link">UI篇</a>
+    <a href="/tags/UI篇/" style="font-size: 14.175023583069668px;" class="tag-cloud-link">UI篇</a>
     
-    <a href="/tags/iOS优质博客/" style="font-size: 13.820662832240565px;" class="tag-cloud-link">iOS优质博客</a>
+    <a href="/tags/iOS优质博客/" style="font-size: 17.9024834739758px;" class="tag-cloud-link">iOS优质博客</a>
     
-    <a href="/tags/runloop/" style="font-size: 10.006103480922736px;" class="tag-cloud-link">runloop</a>
+    <a href="/tags/runloop/" style="font-size: 17.02418773410334px;" class="tag-cloud-link">runloop</a>
     
-    <a href="/tags/runtime/" style="font-size: 18.76264499790851px;" class="tag-cloud-link">runtime</a>
+    <a href="/tags/runtime/" style="font-size: 19.522316456968735px;" class="tag-cloud-link">runtime</a>
     
-    <a href="/tags/工具篇/" style="font-size: 15.31317932501107px;" class="tag-cloud-link">工具篇</a>
+    <a href="/tags/工具篇/" style="font-size: 12.172527146443977px;" class="tag-cloud-link">工具篇</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -493,7 +467,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = ''
+      window.commentConfig.id = 'Fri Mar 23 2018 11:43:04 GMT+0800'
       window.commentConfig.owner = 'PuShengLuo'
       window.commentConfig.repo = 'PuShengLuo.github.io'
       window.commentConfig.client_id = 'cc1a44fe73dbdbe0edb7'
@@ -501,7 +475,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-        id: '',
+        id: 'Fri Mar 23 2018 11:43:04 GMT+0800',
         owner: 'PuShengLuo',
         repo: 'PuShengLuo.github.io',
         client_id: 'cc1a44fe73dbdbe0edb7',
