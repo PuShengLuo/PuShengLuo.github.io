@@ -219,11 +219,8 @@
     <div class="content-article">
         <p>UICollectionView在reloadItems的时候 默认会附加一个隐式的fade动画,有时候可能会闪一下，有时候item的大小会有一个从0到frame拉大效果。不管是哪种效果都显得非常的难看。</p>
 <p>但是可以使用下面几种方法去掉UICollectionView隐式fade动画</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//方法一</span><br><span class="line">[UIView performWithoutAnimation:^&#123;</span><br><span class="line"></span><br><span class="line">    [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">//方法二</span><br><span class="line">[UIView animateWithDuration:0 animations:^&#123;</span><br><span class="line">    [collectionView performBatchUpdates:^&#123;</span><br><span class="line">        [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];</span><br><span class="line">    &#125; completion:nil];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">//方法三</span><br><span class="line">[UIView setAnimationsEnabled:NO];</span><br><span class="line">[self.trackPanel performBatchUpdates:^&#123;</span><br><span class="line">    [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];</span><br><span class="line">&#125; completion:^(BOOL finished) &#123;</span><br><span class="line">    [UIView setAnimationsEnabled:YES];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
-<p>问题还没有结束 上面介绍的方法只能解决UIView的Animation 如果你的cell中还包含有CALayer的动画 比如这样</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)layoutSubviews</span><br><span class="line">&#123;</span><br><span class="line">    [super layoutSubviews];</span><br><span class="line">    </span><br><span class="line">    self.frameLayer.frame = self.frameView.bounds;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述情况多用于自定义控件使用了layer.mask的情况 如果有这种情况 上面提到的方法是无法取消CALayer的动画的 但是解决办法也很简单</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (void)layoutSubviews</span><br><span class="line">&#123;</span><br><span class="line">    [super layoutSubviews];</span><br><span class="line">    </span><br><span class="line">    [CATransaction begin];</span><br><span class="line">    [CATransaction setDisableActions:YES];</span><br><span class="line">    </span><br><span class="line">    self.frameLayer.frame = self.frameView.bounds;</span><br><span class="line">    </span><br><span class="line">    [CATransaction commit];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let time: TimeInterval = 0</span><br><span class="line"> DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) &#123;</span><br><span class="line"> </span><br><span class="line">     UIView.performWithoutAnimation &#123;</span><br><span class="line">         self.collectionView.reloadData()</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样写有可能会造成一个问题，比方说在列表页下拉的同时又进行上拉，这种写法会造成reloadData()方法比正常的要有延迟，所以在下拉加载更多reloadData的时候cellforitem方法中可能上拉的数据返回，导致数组越界。<br>这时需要在cellforitem方法中做一个越界判断避免程序crash</p>
 
     </div>
 </article>
@@ -363,19 +360,19 @@
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/Tip/" style="font-size: 11.035810621403915px;" class="tag-cloud-link">Tip</a>
+    <a href="/tags/Tip/" style="font-size: 12.67325375351529px;" class="tag-cloud-link">Tip</a>
     
-    <a href="/tags/UI篇/" style="font-size: 17.361167903367292px;" class="tag-cloud-link">UI篇</a>
+    <a href="/tags/UI篇/" style="font-size: 13.73353308376711px;" class="tag-cloud-link">UI篇</a>
     
-    <a href="/tags/iOS优质博客/" style="font-size: 19.191352093934174px;" class="tag-cloud-link">iOS优质博客</a>
+    <a href="/tags/iOS优质博客/" style="font-size: 11.348855923869406px;" class="tag-cloud-link">iOS优质博客</a>
     
-    <a href="/tags/runloop/" style="font-size: 11.481154127103515px;" class="tag-cloud-link">runloop</a>
+    <a href="/tags/runloop/" style="font-size: 8.742335660029685px;" class="tag-cloud-link">runloop</a>
     
-    <a href="/tags/runtime/" style="font-size: 8.95642954567339px;" class="tag-cloud-link">runtime</a>
+    <a href="/tags/runtime/" style="font-size: 9.394532062189882px;" class="tag-cloud-link">runtime</a>
     
-    <a href="/tags/工具篇/" style="font-size: 9.892701687555558px;" class="tag-cloud-link">工具篇</a>
+    <a href="/tags/工具篇/" style="font-size: 15.941506090907955px;" class="tag-cloud-link">工具篇</a>
     
-    <a href="/tags/线程/" style="font-size: 15.824694377126612px;" class="tag-cloud-link">线程</a>
+    <a href="/tags/线程/" style="font-size: 10.513689610283285px;" class="tag-cloud-link">线程</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
