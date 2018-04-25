@@ -130,11 +130,11 @@
                         </li>
                         
                         <li>
-                            <a href="/tags/iOS优质博客/">iOS优质博客</a>
+                            <a href="/tags/UI篇/">UI篇</a>
                         </li>
                         
                         <li>
-                            <a href="/tags/UI篇/">UI篇</a>
+                            <a href="/tags/iOS优质博客/">iOS优质博客</a>
                         </li>
                         
                         
@@ -285,7 +285,7 @@
 </ol>
 <h3 id="NSOperationQueue"><a href="#NSOperationQueue" class="headerlink" title="NSOperationQueue"></a>NSOperationQueue</h3><p>NSOperationQueue类似于GCD中的队列, 只需要吧任务加入到NSOperationQueue中, 就会自动运行, 由系统通过最大并发数来控制是并行还是串行, 官方提供的API如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">static const NSInteger NSOperationQueueDefaultMaxConcurrentOperationCount = -1;</span><br><span class="line">    </span><br><span class="line">NS_CLASS_AVAILABLE(10_5, 2_0)</span><br><span class="line">@interface NSOperationQueue : NSObject &#123;</span><br><span class="line">@private</span><br><span class="line">   id _private;</span><br><span class="line">   void *_reserved;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">- (void)addOperation:(NSOperation *)op;//向队列中添加任务</span><br><span class="line">- (void)addOperations:(NSArray&lt;NSOperation *&gt; *)ops waitUntilFinished:(BOOL)wait API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//添加一组任务</span><br><span class="line">    </span><br><span class="line">- (void)addOperationWithBlock:(void (^)(void))block API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//添加一个block形式的任务</span><br><span class="line">    </span><br><span class="line">@property (readonly, copy) NSArray&lt;__kindof NSOperation *&gt; *operations;//队列中所有任务的数组</span><br><span class="line">@property (readonly) NSUInteger operationCount API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//队列中所有任务数</span><br><span class="line">    </span><br><span class="line">@property NSInteger maxConcurrentOperationCount;//最大并发数</span><br><span class="line">    </span><br><span class="line">@property (getter=isSuspended) BOOL suspended;//暂停</span><br><span class="line">    </span><br><span class="line">@property (nullable, copy) NSString *name API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//名称</span><br><span class="line">    </span><br><span class="line">@property NSQualityOfService qualityOfService API_AVAILABLE(macos(10.10), ios(8.0), watchos(2.0), tvos(9.0));//服务质量, 系统会为权重高的服务分配更多的资源</span><br><span class="line">    </span><br><span class="line">@property (nullable, assign /* actually retain */) dispatch_queue_t underlyingQueue API_AVAILABLE(macos(10.10), ios(8.0), watchos(2.0), tvos(9.0));</span><br><span class="line">    </span><br><span class="line">- (void)cancelAllOperations;//取消队列中所有的任务</span><br><span class="line">    </span><br><span class="line">- (void)waitUntilAllOperationsAreFinished;//阻塞当前线程, 等到队列中的全部任务全部执行完毕</span><br><span class="line">    </span><br><span class="line">@property (class, readonly, strong, nullable) NSOperationQueue *currentQueue API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//获取当前队列</span><br><span class="line">@property (class, readonly, strong) NSOperationQueue *mainQueue API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//获取主队列</span><br><span class="line">    </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">static const NSInteger NSOperationQueueDefaultMaxConcurrentOperationCount = -1;</span><br><span class="line">    </span><br><span class="line">NS_CLASS_AVAILABLE(10_5, 2_0)</span><br><span class="line">@interface NSOperationQueue : NSObject &#123;</span><br><span class="line">@private</span><br><span class="line">   id _private;</span><br><span class="line">   void *_reserved;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">- (void)addOperation:(NSOperation *)op;//向队列中添加任务</span><br><span class="line">- (void)addOperations:(NSArray&lt;NSOperation *&gt; *)ops waitUntilFinished:(BOOL)wait API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//添加一组任务</span><br><span class="line">    </span><br><span class="line">- (void)addOperationWithBlock:(void (^)(void))block API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//添加一个block形式的任务</span><br><span class="line">    </span><br><span class="line">@property (readonly, copy) NSArray&lt;__kindof NSOperation *&gt; *operations;//队列中所有任务的数组</span><br><span class="line">@property (readonly) NSUInteger operationCount API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//队列中所有任务数</span><br><span class="line">    </span><br><span class="line">@property NSInteger maxConcurrentOperationCount;//最大并发数</span><br><span class="line">    </span><br><span class="line">@property (getter=isSuspended) BOOL suspended;//暂停</span><br><span class="line">    </span><br><span class="line">@property (nullable, copy) NSString *name API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//名称</span><br><span class="line">    </span><br><span class="line">@property NSQualityOfService qualityOfService API_AVAILABLE(macos(10.10), ios(8.0), watchos(2.0), tvos(9.0));//服务质量, 系统会为权重高的服务分配更多的资源</span><br><span class="line">    </span><br><span class="line">@property (nullable, assign /* actually retain */) dispatch_queue_t underlyingQueue API_AVAILABLE(macos(10.10), ios(8.0), watchos(2.0), tvos(9.0));</span><br><span class="line">    </span><br><span class="line">- (void)cancelAllOperations;//取消队列中所有的任务</span><br><span class="line">    </span><br><span class="line">- (void)waitUntilAllOperationsAreFinished;//阻塞当前线程, 等到队列中的全部任务全部执行完毕</span><br><span class="line">    </span><br><span class="line">@property (class, readonly, strong, nullable) NSOperationQueue *currentQueue API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//获取当前队列</span><br><span class="line">@property (class, readonly, strong) NSOperationQueue *mainQueue API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));//获取主队列</span><br><span class="line">    </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//以三种方式为队列添加了三个任务, </span><br><span class="line">- (void)NSOperationQueueRun &#123;</span><br><span class="line">   NSOperationQueue *queue = [[NSOperationQueue alloc] init];</span><br><span class="line">   NSInvocationOperation *invocationOper = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(invocationOperSel) object:nil];</span><br><span class="line">   [queue addOperation:invocationOper];</span><br><span class="line">   NSBlockOperation *blockOper = [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">       NSLog(@&quot;NSBlockOperationRun_%@&quot;, [NSThread currentThread]);</span><br><span class="line">   &#125;];</span><br><span class="line">   [queue addOperation:blockOper];</span><br><span class="line">   [queue addOperationWithBlock:^&#123;</span><br><span class="line">       NSLog(@&quot;QUEUEBlockOperationRun_%@&quot;, [NSThread currentThread]);</span><br><span class="line">   &#125;];</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">- (void)invocationOperSel &#123;</span><br><span class="line">   NSLog(@&quot;NSInvocationOperationRun_%@&quot;, [NSThread currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>一般情况下, NSOperationQueue会按照任务添加的顺序来执行任务, 但是我们可以通过使用优先级和依赖关系来改变执行顺序.</p>
 
     </div>
@@ -346,6 +346,12 @@
             
             <li class="list-group-item">
                 <span class="post-title">
+                    <a href="/2018/04/25/多线程使用/">多线程使用</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
                     <a href="/2018/04/14/路由协议/">路由协议</a>
                 </span>
             </li>
@@ -398,12 +404,6 @@
                 </span>
             </li>
             
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2017/07/17/UIView介绍/">UIView介绍</a>
-                </span>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -426,19 +426,19 @@
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/Tip/" style="font-size: 8.17107760790466px;" class="tag-cloud-link">Tip</a>
+    <a href="/tags/Tip/" style="font-size: 16.99713122784469px;" class="tag-cloud-link">Tip</a>
     
-    <a href="/tags/iOS优质博客/" style="font-size: 8.200854998237432px;" class="tag-cloud-link">iOS优质博客</a>
+    <a href="/tags/UI篇/" style="font-size: 18.34142342901261px;" class="tag-cloud-link">UI篇</a>
     
-    <a href="/tags/UI篇/" style="font-size: 13.70320107656747px;" class="tag-cloud-link">UI篇</a>
+    <a href="/tags/iOS优质博客/" style="font-size: 8.184785035126396px;" class="tag-cloud-link">iOS优质博客</a>
     
-    <a href="/tags/runloop/" style="font-size: 8.65838069895743px;" class="tag-cloud-link">runloop</a>
+    <a href="/tags/runloop/" style="font-size: 11.735371834436368px;" class="tag-cloud-link">runloop</a>
     
-    <a href="/tags/线程/" style="font-size: 16.19945527074914px;" class="tag-cloud-link">线程</a>
+    <a href="/tags/runtime/" style="font-size: 15.772686146916119px;" class="tag-cloud-link">runtime</a>
     
-    <a href="/tags/runtime/" style="font-size: 11.062682679362776px;" class="tag-cloud-link">runtime</a>
+    <a href="/tags/工具篇/" style="font-size: 10.468200041132038px;" class="tag-cloud-link">工具篇</a>
     
-    <a href="/tags/工具篇/" style="font-size: 11.75247010222802px;" class="tag-cloud-link">工具篇</a>
+    <a href="/tags/线程/" style="font-size: 19.13801579225599px;" class="tag-cloud-link">线程</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
