@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Levin Luo">
+    
+    <meta name="description" content="Stay hungry、stay foolish.">
+    
+    
+    
+    
+    
+    
+    <title>多线程使用 | One Piece</title>
+    <link href=”http://yoursite.com“ rel=”prefetch” />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" href="/js/highslide/highslide.css">
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/avatar.jpg'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+</head>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="http://yoursite.com">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">One Piece</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/categories">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                </li>
+                
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/Tip/">Tip</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/iOS优质博客/">iOS优质博客</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/UI篇/">UI篇</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="/tags">...</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="http://yoursite.com">One Piece</a>
+        >
+        <span>多线程使用</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2017/09/26/多线程使用/">多线程使用</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/线程/">线程</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2017-09-26
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2017/09/26/多线程使用/">多线程使用</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2017-09-26
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/线程/">线程</a>
+                
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_main_queue();</span><br><span class="line">    </span><br><span class="line">dispatch_sync(queue, ^&#123;</span><br><span class="line">   NSLog(@&quot;任务1...%@&quot;,[NSThread currentThread]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"> NSLog(@&quot;任务2...%@&quot;,[NSThread currentThread]);</span><br></pre></td></tr></table></figure>
+<p>以上queue为主队列所以dispatch_sync默认在主线程执行，dispatch_sync又是同步所以会阻塞当前线程（主线程），而主队列又是串行队列，所以任务只能按照顺序执行.这就造成了dispatch_sync阻塞将任务1加入队列放到任务2后面，等待任务2执行完毕才能执行，而任务2又在等dispatch_sync中的任务1执行完毕才能执行。最后形成任务互相等待的结局，造成了死锁.</p>
+<h1 id="GCD向串行队列中添加异步任务"><a href="#GCD向串行队列中添加异步任务" class="headerlink" title="GCD向串行队列中添加异步任务"></a>GCD向串行队列中添加异步任务</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//创建串行队列, 第一个参数为串行队列的名称, 第二个参数为队列的属性, NULL或者DISPATCH_QUEUE_SERIAL表示是串行队列</span><br><span class="line">    dispatch_queue_t queue = dispatch_queue_create(&quot;com.levinluo.thread&quot;, NULL);</span><br><span class="line">    </span><br><span class="line">    //向队列中添加异步任务</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;下载图片1----%@&quot;, [NSThread currentThread]);</span><br><span class="line">        sleep(5);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //向队列中添加异步任务</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;下载图片2----%@&quot;, [NSThread currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //向队列中添加异步任务</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;下载图片3----%@&quot;, [NSThread currentThread]);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>该过程一共分为两步, 第一步创建串行队列, 第二步向串行队列中添加异步任务. 任务会遵守FIFO原则来执行, 每个任务何时执行完我们却并不知道. 但是由于我们是在串行队列中添加的任务, 所有任务在同一个线程中执行, 所有的异步任务会按照顺序前一个执行完毕再执行后一个.</p>
+<h1 id="GCD向串行队列中添加同步任务"><a href="#GCD向串行队列中添加同步任务" class="headerlink" title="GCD向串行队列中添加同步任务"></a>GCD向串行队列中添加同步任务</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//创建串行队列, 第一个参数为串行队列的名称, 第二个参数为队列的属性, NULL或者DISPATCH_QUEUE_SERIAL表示是串行队列</span><br><span class="line">    dispatch_queue_t queue = dispatch_queue_create(&quot;com.levinluo.thread&quot;, NULL);</span><br><span class="line">    </span><br><span class="line">    //向队列中添加同步任务</span><br><span class="line">    dispatch_sync(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;下载图片1----%@&quot;, [NSThread currentThread]);</span><br><span class="line">        sleep(5);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //向队列中添加同步任务</span><br><span class="line">    dispatch_sync(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;下载图片2----%@&quot;, [NSThread currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //向队列中添加同步任务</span><br><span class="line">    dispatch_sync(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;下载图片3----%@&quot;, [NSThread currentThread]);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>该过程一共分为两步, 第一步创建串行队列, 第二步向串行队列中添加同步任务. 任务会遵守FIFO原则来执行, 每个任务何时执行完我们却并不知道. 但是由于我们是在串行队列中添加的任务, 所有任务在同一个线程中执行, 所有的异步任务会按照顺序前一个执行完毕再执行后一个.注意，如果这里是主队列的话就会造成死锁.</p>
+<h1 id="GCD向并行队列中添加异步任务"><a href="#GCD向并行队列中添加异步任务" class="headerlink" title="GCD向并行队列中添加异步任务"></a>GCD向并行队列中添加异步任务</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//获取系统提供的全局队列</span><br><span class="line">   dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">   </span><br><span class="line">   //向队列中添加异步任务</span><br><span class="line">   dispatch_async(queue, ^&#123;</span><br><span class="line">       NSLog(@&quot;下载图片1----%@&quot;, [NSThread currentThread]);</span><br><span class="line">       sleep(5);</span><br><span class="line">   &#125;);</span><br><span class="line">   </span><br><span class="line">   //向队列中添加异步任务</span><br><span class="line">   dispatch_async(queue, ^&#123;</span><br><span class="line">       NSLog(@&quot;下载图片2----%@&quot;, [NSThread currentThread]);</span><br><span class="line">   &#125;);</span><br><span class="line">   </span><br><span class="line">   //向队列中添加异步任务</span><br><span class="line">   dispatch_async(queue, ^&#123;</span><br><span class="line">       NSLog(@&quot;下载图片3----%@&quot;, [NSThread currentThread]);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<p>该过程一共分为两步, 第一步获取系统提供的全局并行队列, 第二步向并行队列中添加异步任务. 任务会遵守FIFO原则来执行, 但是每个任务何时执行完我们却并不知道. 但是系统会新开线程来执行异步任务, 三个异步任务会分别在三个线程中执行, 各个任务的执行顺序无法确定.</p>
+<h1 id="GCD向并行队列添加同步任务"><a href="#GCD向并行队列添加同步任务" class="headerlink" title="GCD向并行队列添加同步任务"></a>GCD向并行队列添加同步任务</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">  </span><br><span class="line">  //向队列中添加异步任务</span><br><span class="line">  dispatch_sync(queue, ^&#123;</span><br><span class="line">      NSLog(@&quot;下载图片1----%@&quot;, [NSThread currentThread]);</span><br><span class="line">      sleep(5);</span><br><span class="line">  &#125;);</span><br><span class="line">  </span><br><span class="line">  //向队列中添加异步任务</span><br><span class="line">  dispatch_sync(queue, ^&#123;</span><br><span class="line">      NSLog(@&quot;下载图片2----%@&quot;, [NSThread currentThread]);</span><br><span class="line">  &#125;);</span><br><span class="line">  </span><br><span class="line">  //向队列中添加异步任务</span><br><span class="line">  dispatch_sync(queue, ^&#123;</span><br><span class="line">      NSLog(@&quot;下载图片3----%@&quot;, [NSThread currentThread]);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>该过程一共分为两步, 第一步获取系统提供的全局并行队列, 第二步向并行队列中添加同步任务. 任务会遵守FIFO原则来执行, 每个任务何时执行完我们却并不知道. 虽然是并行队列, 单由于添加的是同步任务, 不会新开线程, 全都在当前线程中执行, 所以三个任务会顺序执行, 并行队列失去了并行的能力.</p>
+<h1 id="Dispatch-Group"><a href="#Dispatch-Group" class="headerlink" title="Dispatch Group"></a>Dispatch Group</h1><p>分组模式 dispatch_group_notify. 可以异步执行多个耗时操作. 等耗时操作都执行完毕之后会回到主线程执行操作, 主要用于监听任务是否完成. 主要有两种用法:</p>
+<p>第一种用法是通过dispatch_group_async, 首先创建一个全局并行队列和一个group队列组, 再次创建异步group任务加入到前面创建的group队列中去. 当所有异步任务完成后, 会通过dispatch_group_notify回到主线程.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//获取全局队列</span><br><span class="line">   dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">   //创建一个队列组</span><br><span class="line">   dispatch_group_t group = dispatch_group_create();</span><br><span class="line">   </span><br><span class="line">   dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">       NSLog(@&quot;--- 1 开始--- %@&quot;, [NSThread currentThread]);</span><br><span class="line">       //延时5秒 模仿堵塞子线程</span><br><span class="line">       [NSThread sleepForTimeInterval:5];</span><br><span class="line">       NSLog(@&quot;--- 1 --- 完成 %@&quot;, [NSThread currentThread]);</span><br><span class="line">   &#125;);</span><br><span class="line">   </span><br><span class="line">   dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">       NSLog(@&quot;--- 2 开始--- %@&quot;, [NSThread currentThread]);</span><br><span class="line">       //延时5秒 模仿堵塞子线程</span><br><span class="line">       [NSThread sleepForTimeInterval:5];</span><br><span class="line">       NSLog(@&quot;--- 2 --- 完成 %@&quot;, [NSThread currentThread]);</span><br><span class="line">   &#125;);</span><br><span class="line">   </span><br><span class="line">   //在这个队列组里面，会等group中的全部代码执行完毕再去执行其它的操作</span><br><span class="line">   dispatch_group_notify(group, dispatch_get_main_queue(), ^&#123;</span><br><span class="line">       // 等前面的异步操作都执行完毕后，回到主线程...</span><br><span class="line">       NSLog(@&quot;全部完成&quot;);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<p>第二种用法是通过信号量dispatch_group_enter 和 dispatch_group_leave. 创建一个并行线程和多个异步任务, 将异步任务添加到并行线程中区. 通过dispatch_group_enter来告知group一个异步任务开始, 未执行完毕任务数加1. 在异步线程任务执行完毕时, 通过dispatch_group_leave告知group, 一个任务结束, 未执行完毕任务数减1. 当未执行完毕任务数为0的时候, 这时group才认为组内任务都执行完毕了(这个和GCD的信号量的机制有些相似), 这时候才会回调dispatch_group_notify中的block. 此处需要注意, dispatch_group_enter和dispatch_group_leave的数量一定要一致.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">   dispatch_group_t group = dispatch_group_create();</span><br><span class="line">   </span><br><span class="line">   dispatch_group_enter(group);</span><br><span class="line">   dispatch_async(queue, ^&#123;</span><br><span class="line">       sleep(2); //这里线程睡眠1秒钟，模拟异步请求</span><br><span class="line">       NSLog(@&quot;%@ one finish&quot;, [NSThread currentThread]);</span><br><span class="line">       dispatch_group_leave(group);</span><br><span class="line">   &#125;);</span><br><span class="line">   </span><br><span class="line">   dispatch_group_enter(group);</span><br><span class="line">   dispatch_async(queue, ^&#123;</span><br><span class="line">       sleep(2); //这里线程睡眠1秒钟，模拟异步请求</span><br><span class="line">       NSLog(@&quot;%@ two finish&quot;, [NSThread currentThread]);</span><br><span class="line">       dispatch_group_leave(group);</span><br><span class="line">   &#125;);</span><br><span class="line">   </span><br><span class="line">   dispatch_group_notify(group, queue, ^&#123;</span><br><span class="line">       NSLog(@&quot;group finished&quot;);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="GCD延时操作-dispatch-after"><a href="#GCD延时操作-dispatch-after" class="headerlink" title="GCD延时操作(dispatch_after)"></a>GCD延时操作(dispatch_after)</h1><p>使用很简单, 两个核心的对象dispatch_time_t和dispatch_after. 大家都经常使用, 不用多说. 下面的代码和在3妙手用dispatch_async函数追加block到主线程的操作是相同的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">double delayInSeconds = 2.0;</span><br><span class="line">   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t) (delayInSeconds * NSEC_PER_SEC));</span><br><span class="line">   //第一个参数代表时间, 第二各参数代表要在哪个线程执行接下来的任务, 第三个参数就是任务block</span><br><span class="line">   dispatch_after(popTime, dispatch_get_main_queue(), ^(void)&#123;</span><br><span class="line">       NSLog(@&quot;%@&quot;, [NSThread currentThread]);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="GCD单例"><a href="#GCD单例" class="headerlink" title="GCD单例"></a>GCD单例</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@interface Tool : NSObject</span><br><span class="line">+ (instancetype)sharedTool;</span><br><span class="line">@end</span><br><span class="line">@implementation Tool</span><br><span class="line">static id _instance;</span><br><span class="line">+ (instancetype)sharedTool &#123;</span><br><span class="line">    static dispatch_once_t onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">        _instance = [[Tool alloc] init];</span><br><span class="line">    &#125;);</span><br><span class="line">    return _instance;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<h1 id="GCD-线程间的通讯"><a href="#GCD-线程间的通讯" class="headerlink" title="GCD 线程间的通讯"></a>GCD 线程间的通讯</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">   dispatch_async(queue, ^&#123;</span><br><span class="line">       //在这里执行耗时的操作</span><br><span class="line">       dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">           //在主线程使用上面操作的结果</span><br><span class="line">       &#125;);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="GCD重复执行同一个任务"><a href="#GCD重复执行同一个任务" class="headerlink" title="GCD重复执行同一个任务"></a>GCD重复执行同一个任务</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">   dispatch_apply(10, queue, ^(size_t index) &#123;</span><br><span class="line">       //并行处理10次任务</span><br><span class="line">       NSLog(@&quot;%zu&quot;, index);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<p>由于dispatch_apply函数与dispatch_sync函数相同, 会等待任务执行结束, 所以推荐在dispatch_async函数中异步执行.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">    </span><br><span class="line">    //在全局并行队列中异步执行</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        //等待函数中操作全部执行完毕</span><br><span class="line">        dispatch_apply(10, queue, ^(size_t index) &#123;</span><br><span class="line">            //并行处理10次任务</span><br><span class="line">            sleep(2);</span><br><span class="line">            NSLog(@&quot;%zu&quot;, index);</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        //dispatch_apply中的处理全部结束, 在主线程异步执行</span><br><span class="line">        dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">            NSLog(@&quot;Done&quot;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="GCD设置优先级"><a href="#GCD设置优先级" class="headerlink" title="GCD设置优先级"></a>GCD设置优先级</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_queue_create(&quot;test&quot;, NULL);</span><br><span class="line">   dispatch_queue_t queue1 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">   //把第一个参数的执行优先级设置的和第二个参数的优先级一致.</span><br><span class="line">   dispatch_set_target_queue(queue, queue1);</span><br></pre></td></tr></table></figure>
+<h1 id="GCD栅栏"><a href="#GCD栅栏" class="headerlink" title="GCD栅栏"></a>GCD栅栏</h1><p>假设一个并行队列中添加了五个异步任务, 虽然遵循FIFO的原则, 这五个任务的执行必定是无序的. 当我们在第三个任务之后加入dispatch_barrier_async任务, 那么这五个任务就被分割成两部分, 前三次无序执行, 然后执行dispatch_barrier_async任务, 然后再无序执行后两次任务. 注意此处的队列只能使用自定义的并行队列, 系统提供的全局队列不行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//此处的队列只能使用自定义的并行队列, 系统提供的全局队列不行</span><br><span class="line">    dispatch_queue_t queue = dispatch_queue_create(&quot;barrierTest&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    </span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;1&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;2&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;3&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_barrier_async(queue, ^&#123;</span><br><span class="line">        sleep(3);</span><br><span class="line">        NSLog(@&quot;插入执行&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;4&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;5&quot;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="GCD信号量"><a href="#GCD信号量" class="headerlink" title="GCD信号量"></a>GCD信号量</h1><p>信号量来控制任务的执行. dispatch_semaphore_t类似于单个队列的最大并发数控制机制, 提高并行效率的同时, 也可以防止太多线程的开辟对系统造成太大的负担.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);  </span><br><span class="line">   dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);  </span><br><span class="line">     </span><br><span class="line">   NSMutableArray *array = [[NSMutableArray alloc]init];  </span><br><span class="line">   for (NSInteger i = 0; i &lt; 100000; i++) &#123;  </span><br><span class="line">       dispatch_async(queue, ^&#123;  </span><br><span class="line">           /* </span><br><span class="line">            此时semaphore信号量的值如果 &gt;= 1时：对semaphore计数进行减1,然后dispatch_semaphore_wait 函数返回。该函数所处线程就继续执行下面的语句。 </span><br><span class="line">             </span><br><span class="line">            此时semaphore信号量的值如果=0：那么就阻塞该函数所处的线程,阻塞时长为timeout指定的时间，如果阻塞时间内semaphore的值被dispatch_semaphore_signal函数加1了，该函数所处线程获得了信号量被唤醒。然后对semaphore计数进行减1并返回，继续向下执行。 如果阻塞时间内没有获取到信号量唤醒线程或者信号量的值一直为0，那么就要等到指定的阻塞时间后，该函数所处线程才继续向下执行。 </span><br><span class="line">             </span><br><span class="line">            执行到这里semaphore的值总是1 </span><br><span class="line">            */  </span><br><span class="line">           dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);  </span><br><span class="line">             </span><br><span class="line">           /* 因为dispatch_semaphore_create创建的semaphore的初始值为1，执行完上面的 </span><br><span class="line">            dispatch_semaphore_wait函数之后，semaphore计数值减1会变为0，所以可访问array对象的线程只有1个，因此可安全地对array进行操作。 </span><br><span class="line">            */  </span><br><span class="line">           [array addObject:[NSNumber numberWithInteger:i]];  </span><br><span class="line">             </span><br><span class="line">           /* </span><br><span class="line">            对array操作之后，通过dispatch_semaphore_signal将semaphore的计数值加1，此时semaphore的值由变成了1，所处 </span><br><span class="line">            */  </span><br><span class="line">           dispatch_semaphore_signal(semaphore);  </span><br><span class="line">       &#125;);  </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="GCD定时器"><a href="#GCD定时器" class="headerlink" title="GCD定时器"></a>GCD定时器</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">NSLog(@&quot;%@&quot;, [NSThread currentThread]);</span><br><span class="line">   //指定DISPATCH_SOURCE_TYPE_TIMER类型, 作成Dispatch Source</span><br><span class="line">   </span><br><span class="line">   //在定时器经过指定时间, 把任务追加到main queue</span><br><span class="line">   dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());</span><br><span class="line">   </span><br><span class="line">   //定时器的相关设置, 将定时器设置为5s后, 不指定为重复, 允许延迟1s</span><br><span class="line">   dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, 5ull * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 1ull * NSEC_PER_SEC);</span><br><span class="line">   </span><br><span class="line">   //指定定时器指定时间内执行的处理</span><br><span class="line">   dispatch_source_set_event_handler(timer, ^&#123;</span><br><span class="line">       NSLog(@&quot;wake up&quot;);</span><br><span class="line">       dispatch_source_cancel(timer);</span><br><span class="line">   &#125;);</span><br><span class="line">   </span><br><span class="line">   //取消定时器时的处理</span><br><span class="line">   dispatch_source_set_cancel_handler(timer, ^&#123;</span><br><span class="line">       NSLog(@&quot;canceled&quot;);</span><br><span class="line">   &#125;);</span><br><span class="line">   </span><br><span class="line">   //定时器启动</span><br><span class="line">   dispatch_resume(timer);</span><br></pre></td></tr></table></figure>
+<h1 id="NSOperation的优先级"><a href="#NSOperation的优先级" class="headerlink" title="NSOperation的优先级"></a>NSOperation的优先级</h1><p>NSOperationQueue中NSOperation对象的执行方式是按照FIFO的原则顺序执行, 但是如果我们设置了任务的优先级, 那么系统就会给优先级高的优先分配资源.</p>
+<p>优先级一共有这几种, 从高到低依次排列.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, NSOperationQueuePriority) &#123;</span><br><span class="line">	NSOperationQueuePriorityVeryLow = -8L,</span><br><span class="line">	NSOperationQueuePriorityLow = -4L,</span><br><span class="line">	NSOperationQueuePriorityNormal = 0,</span><br><span class="line">	NSOperationQueuePriorityHigh = 4,</span><br><span class="line">	NSOperationQueuePriorityVeryHigh = 8</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>示例代码如下, 三个任务被添加到队列中去, 这三个任务分别在三个线程, 互不干扰, 类似于GCD的异步并行模式, 如果我们设置invocationOper.queuePriority = NSOperationQueuePriorityVeryLow理论上, invocationOper任务会在最后执行, 但是我们发现并没有, 那是因为我们没有设置最大并发数的原因, 我猜测系统可能是做了某些限制, 虽然是新开了线程, 但是由于最大并发数小于等于1实际还是按照FIFO顺序执行, 所以注意一定要设置最大并发数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//把注释打开就可以看到想要的效果</span><br><span class="line">- (void)NSOperationQueueRun &#123;</span><br><span class="line">    NSOperationQueue *queue = [[NSOperationQueue alloc] init];</span><br><span class="line">    //queue.maxConcurrentOperationCount = 3;</span><br><span class="line">    NSInvocationOperation *invocationOper = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(invocationOperSel) object:nil];</span><br><span class="line">    //invocationOper.queuePriority = NSOperationQueuePriorityVeryLow;</span><br><span class="line">    [queue addOperation:invocationOper];</span><br><span class="line">    NSBlockOperation *blockOper = [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">        NSLog(@&quot;NSBlockOperationRun_%@&quot;, [NSThread currentThread]);</span><br><span class="line">    &#125;];</span><br><span class="line">    [queue addOperation:blockOper];</span><br><span class="line">    [queue addOperationWithBlock:^&#123;</span><br><span class="line">        NSLog(@&quot;QUEUEBlockOperationRun_%@&quot;, [NSThread currentThread]);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br><span class="line">- (void)invocationOperSel &#123;</span><br><span class="line">    NSLog(@&quot;NSInvocationOperationRun_%@&quot;, [NSThread currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="NSOperation的依赖关系"><a href="#NSOperation的依赖关系" class="headerlink" title="NSOperation的依赖关系"></a>NSOperation的依赖关系</h1><p>首先我们创建一个队列, 分别创建要执行的任务, 在把要执行的任务添加到队列中去之前, 通过addDependency来建立任务间的依赖关系. 如果我们没有设置依赖的话, 如果设置的并发数大于1, 那么blockOper_1和`blockOper_2的执行顺序是随机的. 可是当我们执行[blockOper_1 addDependency:blockOper_2]时, 就给两个任务添加了依赖关系, blockOper_1永远只会在blockOper_2后执行. 即使我们给blockOper_1设置了最高的优先级, 因为依赖的优先级要高于queuePriority.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (void)NSOperationQueueRun2 &#123;</span><br><span class="line">    NSOperationQueue *queue = [[NSOperationQueue alloc] init];</span><br><span class="line">//    queue.maxConcurrentOperationCount = 2;</span><br><span class="line">    NSBlockOperation *blockOper_1 = [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">        NSLog(@&quot;blockOper_1_%@_%@&quot;,@(1),[NSThread currentThread]);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    NSBlockOperation *blockOper_2 = [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">        NSLog(@&quot;blockOper_2_%@_%@&quot;,@(2),[NSThread currentThread]);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">//    blockOper_1.queuePriority = NSOperationQueuePriorityVeryHigh;</span><br><span class="line">    [blockOper_1 addDependency:blockOper_2];</span><br><span class="line">    [queue addOperation:blockOper_1];</span><br><span class="line">    [queue addOperation:blockOper_2];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+</article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'Tue Sep 26 2017 11:19:55 GMT+0800'
+    }
+</script>
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            Levin Luo
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/avatar.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"><p>Stay hungry、stay foolish.</p>
+</p>
+        </div>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/04/14/路由协议/">路由协议</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/23/快速定位目标控制器/">快速定位目标控制器</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/18/iOS优质博客/">iOS优质博客</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/09/26/多线程使用/">多线程使用</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/09/15/多线程/">多线程</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/08/11/runloop实践/">runloop实践</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/08/07/runloop/">runloop</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/07/23/runtime实践/">runtime实践</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/07/18/runtime/">iOS中的runtime</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+                <li class="">
+                    <a href="/2017/09/26/多线程使用/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                <li class="">
+                    <a href="/2017/09/26/多线程使用/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                </li>
+                <li class="">
+                    <a href="/2017/09/26/多线程使用/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/Tip/" style="font-size: 13.39368098401711px;" class="tag-cloud-link">Tip</a>
+    
+    <a href="/tags/iOS优质博客/" style="font-size: 18.233196114609px;" class="tag-cloud-link">iOS优质博客</a>
+    
+    <a href="/tags/UI篇/" style="font-size: 19.26371793362591px;" class="tag-cloud-link">UI篇</a>
+    
+    <a href="/tags/runloop/" style="font-size: 13.175011940643106px;" class="tag-cloud-link">runloop</a>
+    
+    <a href="/tags/线程/" style="font-size: 16.054085300086047px;" class="tag-cloud-link">线程</a>
+    
+    <a href="/tags/runtime/" style="font-size: 14.512808418209453px;" class="tag-cloud-link">runtime</a>
+    
+    <a href="/tags/工具篇/" style="font-size: 13.868293009306901px;" class="tag-cloud-link">工具篇</a>
+    
+</div>
+                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
+    
+    <li>
+        <a href="http://www.levinluo.com" target="_blank">Levin Luo</a>
+    </li>
+    
+</div>
+                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
+    
+    <li>
+        <a href="http://www.levinluo.com" target="_blank">Levin Luo</a>
+    </li>
+    
+</div>
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2017 Levin Luo Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+</body>
+<script src="/js/activate-power-mode.js"></script>
+<script>
+    // 配置highslide
+  hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+</script>
+<script>
+  POWERMODE.colorful = 'true';    // make power mode colorful
+  POWERMODE.shake = 'true';       // turn off shake
+  // TODO 这里根据具体情况修改
+  document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '/imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '6'
+    }
+</script>
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+
+
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    if(window.commentConfig) {
+      window.commentConfig.id = 'Tue Sep 26 2017 11:19:55 GMT+0800'
+      window.commentConfig.owner = 'PuShengLuo'
+      window.commentConfig.repo = 'PuShengLuo.github.io'
+      window.commentConfig.client_id = 'cc1a44fe73dbdbe0edb7'
+      window.commentConfig.client_secret = 'b101ced75c5c8a67aff6dd02e85125eb775ffd1c'
+      window.commentConfig.redirect_uri = ''
+    } else {
+      window.commentConfig = {
+        id: 'Tue Sep 26 2017 11:19:55 GMT+0800',
+        owner: 'PuShengLuo',
+        repo: 'PuShengLuo.github.io',
+        client_id: 'cc1a44fe73dbdbe0edb7',
+        client_secret: 'b101ced75c5c8a67aff6dd02e85125eb775ffd1c',
+        redirect_uri: ''
+      }
+    }
+</script>
+<script src="/js/comment/gitment.js"></script>
+
+</html>
