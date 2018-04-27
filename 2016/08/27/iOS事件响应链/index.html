@@ -12,7 +12,7 @@
     
     
     
-    <title>archive_a | One Piece</title>
+    <title>iOS事件响应链 | One Piece</title>
     <link href=”http://yoursite.com“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -97,7 +97,7 @@
                 
                 
                 
-                <li class="current">
+                <li class="">
                     <a href="/archives">
                         <i class="fa fa-archive"></i>归档
                     </a>
@@ -164,19 +164,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-archive">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="http://yoursite.com">One Piece</a>
         >
-        <span>归档</span>
+        <span>iOS事件响应链</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/archives">归档</a>
+                <a href="/2016/08/27/iOS事件响应链/">iOS事件响应链</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2016-08-27
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -184,109 +192,48 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/archives">归档</a>
+                    <a href="/2016/08/27/iOS事件响应链/">iOS事件响应链</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2016-08-27
+            </p>
+            <p>
+                
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        
-        
-            <h1 style="font-size: 24px; margin-top: 40px;">2018年</h1>
-            
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-             
-             
-                        <a href="/2018/03/23/快速定位目标控制器/">快速定位目标控制器</a>
-                        <br>
-            
-             
-                        <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
-                        <br>
-            
-             
-                        <a href="/2018/03/18/iOS优质博客/">iOS优质博客</a>
-                        <br>
-            
-             
-                        </div>
-                    <h1 style="font-size: 24px; margin-top: 40px;">2017年</h1>
-                    <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-                 
-             
-                        <a href="/2017/10/14/iOS组件化/">路由协议</a>
-                        <br>
-            
-             
-                        <a href="/2017/09/26/多线程使用/">多线程使用</a>
-                        <br>
-            
-             
-                        <a href="/2017/09/15/多线程/">多线程</a>
-                        <br>
-            
-             
-                        <a href="/2017/08/11/runloop实践/">runloop实践</a>
-                        <br>
-            
-             
-                        <a href="/2017/08/07/runloop/">runloop</a>
-                        <br>
-            
-             
-                        <a href="/2017/07/23/runtime实践/">runtime实践</a>
-                        <br>
-            
-             
-                        <a href="/2017/07/18/runtime/">iOS中的runtime</a>
-                        <br>
-            
-             
-                        <a href="/2017/07/17/UIView介绍/">UIView介绍</a>
-                        <br>
-            
-             
-                        <a href="/2017/07/15/UIViewController介绍/">UIViewController介绍</a>
-                        <br>
-            
-             
-                        <a href="/2017/06/20/UICollectionView刷新闪一下的问题/">UICollectionView刷新闪一下的问题</a>
-                        <br>
-            
-             
-                        <a href="/2017/06/16/UICollectionView自定义布局/">UICollectionView自定义布局</a>
-                        <br>
-            
-             
-                        <a href="/2017/06/03/Cocoapods/">Cocoapods</a>
-                        <br>
-            
-             
-                        <a href="/2017/05/11/iOS项目工程概念/">iOS项目工程概念</a>
-                        <br>
-            
-             
-                        <a href="/2017/04/28/Instruments使用/">Instruments使用</a>
-                        <br>
-            
-             
-                        <a href="/2017/04/14/iOS内存分配/">iOS内存分配</a>
-                        <br>
-            
-             
-                        </div>
-                    <h1 style="font-size: 24px; margin-top: 40px;">2016年</h1>
-                    <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-                 
-             
-                        <a href="/2016/08/27/iOS事件响应链/">iOS事件响应链</a>
-                        <br>
-            
-                    </div>
-        
+    <div class="content-article">
+        <h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><ol>
+<li>触摸屏产生触摸事件后，触摸事件会被添加到由UIApplication管理的事件队列中去.</li>
+<li>UIApplication会从事件队列中取出最前面的事件，把事件传递给应用程序的主窗口（keywindow）</li>
+<li>主窗口会在视图层级结构中找到一个最合适的View来处理触摸事件</li>
+<li>最合适的View调用自己的touches方法处理事件</li>
+<li>把事件沿着响应者链向上抛</li>
+</ol>
+<p>注：事件的传递是从上到下（父控件到子控件）,事件响应是从下到上（子控件到父控件）</p>
+<h1 id="如何找到最合适的View"><a href="#如何找到最合适的View" class="headerlink" title="如何找到最合适的View"></a>如何找到最合适的View</h1><h2 id="hitTest-withEvent"><a href="#hitTest-withEvent" class="headerlink" title="hitTest:withEvent"></a>hitTest:withEvent</h2><p>只要事件一传递给一个控件, 这个控件就会调用他自己的hitTest:withEvent:方法. 他的作用就是寻找并返回最合适的view(能够响应事件的那个最合适的view). 不管这个控件能不能处理事件, 也不管触摸点在不在这个控件上, 事件都会先传递给这个控件, 随后再调用 hitTest:withEvent:方法.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event &#123;</span><br><span class="line">   // 1.判断当前控件能否接收事件</span><br><span class="line">    if (self.userInteractionEnabled == NO || self.hidden == YES || self.alpha &lt;= 0.01) return nil;</span><br><span class="line">   // 2. 判断点在不在当前控件</span><br><span class="line">    if ([self pointInside:point withEvent:event] == NO) return nil;</span><br><span class="line">   // 3.从后往前遍历自己的子控件</span><br><span class="line">    NSInteger count = self.subviews.count;</span><br><span class="line">    for (NSInteger i = count - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">        UIView *childView = self.subviews[i];</span><br><span class="line">        // 把当前控件上的坐标系转换成子控件上的坐标系</span><br><span class="line">        CGPoint childP = [self convertPoint:point toView:childView];</span><br><span class="line">        UIView *fitView = [childView hitTest:childP withEvent:event];</span><br><span class="line">        if (fitView) &#123; // 寻找到最合适的view</span><br><span class="line">            return fitView;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 循环结束,表示没有比自己更合适的view</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="pointInside-withEvent"><a href="#pointInside-withEvent" class="headerlink" title="pointInside:withEvent:"></a>pointInside:withEvent:</h2><p>pointInside:withEvent:方法判断点在不在当前view上(方法调用者的坐标系上)如果返回YES, 代表点在方法调用者的坐标系上; 返回NO代表点不在方法调用者的坐标系上, 那么方法调用者也就不能处理事件.</p>
+<ol>
+<li><a href="https://zhoon.github.io/ios/2015/04/12/ios-event.html" target="_blank" rel="noopener">深入浅出iOS事件机制</a></li>
+<li><a href="https://www.jianshu.com/p/2e074db792ba" target="_blank" rel="noopener">iOS之事件的传递和响应机制-原理篇</a></li>
+</ol>
+
     </div>
 </article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'Sat Aug 27 2016 16:55:04 GMT+0800'
+    }
+</script>
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -400,31 +347,31 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/archives/2017/07/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2016/08/27/iOS事件响应链/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2017/07/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2016/08/27/iOS事件响应链/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2017/07/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2016/08/27/iOS事件响应链/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/Tip/" style="font-size: 14.914538015445958px;" class="tag-cloud-link">Tip</a>
+    <a href="/tags/Tip/" style="font-size: 12.447409310118175px;" class="tag-cloud-link">Tip</a>
     
-    <a href="/tags/UI篇/" style="font-size: 17.19179714811439px;" class="tag-cloud-link">UI篇</a>
+    <a href="/tags/UI篇/" style="font-size: 16.58565225298843px;" class="tag-cloud-link">UI篇</a>
     
-    <a href="/tags/iOS优质博客/" style="font-size: 8.971349649997999px;" class="tag-cloud-link">iOS优质博客</a>
+    <a href="/tags/iOS优质博客/" style="font-size: 16.577251131431584px;" class="tag-cloud-link">iOS优质博客</a>
     
-    <a href="/tags/runloop/" style="font-size: 19.426401209495886px;" class="tag-cloud-link">runloop</a>
+    <a href="/tags/runloop/" style="font-size: 16.11911865393361px;" class="tag-cloud-link">runloop</a>
     
-    <a href="/tags/runtime/" style="font-size: 11.76418273006525px;" class="tag-cloud-link">runtime</a>
+    <a href="/tags/runtime/" style="font-size: 9.333792753319932px;" class="tag-cloud-link">runtime</a>
     
-    <a href="/tags/线程/" style="font-size: 8.6282397921455px;" class="tag-cloud-link">线程</a>
+    <a href="/tags/线程/" style="font-size: 9.698034706383444px;" class="tag-cloud-link">线程</a>
     
-    <a href="/tags/工具篇/" style="font-size: 18.842663255025727px;" class="tag-cloud-link">工具篇</a>
+    <a href="/tags/工具篇/" style="font-size: 16.684867575416607px;" class="tag-cloud-link">工具篇</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -512,7 +459,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = ''
+      window.commentConfig.id = 'Sat Aug 27 2016 16:55:04 GMT+0800'
       window.commentConfig.owner = 'PuShengLuo'
       window.commentConfig.repo = 'PuShengLuo.github.io'
       window.commentConfig.client_id = 'cc1a44fe73dbdbe0edb7'
@@ -520,7 +467,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-        id: '',
+        id: 'Sat Aug 27 2016 16:55:04 GMT+0800',
         owner: 'PuShengLuo',
         repo: 'PuShengLuo.github.io',
         client_id: 'cc1a44fe73dbdbe0edb7',
