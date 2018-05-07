@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Levin Luo">
+    
+    <meta name="description" content="Stay hungry、stay foolish.">
+    
+    
+    
+    
+    
+    
+    <title>RxSwift操作符 | One Piece</title>
+    <link href=”http://yoursite.com“ rel=”prefetch” />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" href="/js/highslide/highslide.css">
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/avatar.jpg'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+</head>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="http://yoursite.com">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">One Piece</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/categories">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                </li>
+                
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/RxSwift/">RxSwift</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/Tip/">Tip</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/UI篇/">UI篇</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="/tags">...</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="http://yoursite.com">One Piece</a>
+        >
+        <span>RxSwift操作符</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2017/11/03/RxSwift操作符/">RxSwift操作符</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/RxSwift/">RxSwift</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2017-11-03
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2017/11/03/RxSwift操作符/">RxSwift操作符</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2017-11-03
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/RxSwift/">RxSwift</a>
+                
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <h1 id="amb"><a href="#amb" class="headerlink" title="amb"></a>amb</h1><p>当你传入多个 Observables 到 amb 操作符时，它将取其中一个 Observable：第一个产生事件的那个 Observable，可以是一个 next，error 或者 completed 事件. amb 将忽略掉其他的 Observables.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">     let subject1 = PublishSubject&lt;Int&gt;()</span><br><span class="line">        let subject2 = PublishSubject&lt;Int&gt;()</span><br><span class="line">        let subject3 = PublishSubject&lt;Int&gt;()</span><br><span class="line">        </span><br><span class="line">        subject1</span><br><span class="line">            .amb(subject2)</span><br><span class="line">            .amb(subject3)</span><br><span class="line">            .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">        </span><br><span class="line">        subject2.onNext(1)</span><br><span class="line">        subject1.onNext(20)</span><br><span class="line">        subject2.onNext(2)</span><br><span class="line">        subject1.onNext(40)</span><br><span class="line">        subject3.onNext(0)</span><br><span class="line">        subject2.onNext(3)</span><br><span class="line">        subject1.onNext(60)</span><br><span class="line">        subject3.onNext(0)</span><br><span class="line">        subject3.onNext(0)</span><br><span class="line"></span><br><span class="line">运行结果：</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<h1 id="buffer"><a href="#buffer" class="headerlink" title="buffer"></a>buffer</h1><p>缓存元素，然后将缓存的元素集合，周期性的发出来.buffer 操作符将缓存 Observable 中发出的新元素，当元素达到某个数量，或者经过了特定的时间，它就会将这个元素集合发送出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> let subject = PublishSubject&lt;String&gt;()</span><br><span class="line">        </span><br><span class="line">        //每缓存3个元素则组合起来一起发出。</span><br><span class="line">        //如果1秒钟内不够3个也会发出（有几个发几个，一个都没有发空数组 []）</span><br><span class="line">        subject</span><br><span class="line">            .buffer(timeSpan: 1, count: 3, scheduler: MainScheduler.instance)</span><br><span class="line">            .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">        </span><br><span class="line">        subject.onNext(&quot;a&quot;)</span><br><span class="line">        subject.onNext(&quot;b&quot;)</span><br><span class="line">        subject.onNext(&quot;c&quot;)</span><br><span class="line">        </span><br><span class="line">        subject.onNext(&quot;1&quot;)</span><br><span class="line">        subject.onNext(&quot;2&quot;)</span><br><span class="line">        subject.onNext(&quot;3&quot;)</span><br><span class="line"></span><br><span class="line">运行结果：</span><br><span class="line">[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span><br><span class="line">[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</span><br><span class="line">[]</span><br><span class="line">[]</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
+<h1 id="catchError"><a href="#catchError" class="headerlink" title="catchError"></a>catchError</h1><p>catchError 操作符将会拦截一个 error 事件，将它替换成其他的元素或者一组元素，然后传递给观察者。这样可以使得 Observable 正常结束，或者根本都不需要结束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">enum TestError: Error &#123;</span><br><span class="line">    case test</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> let sequenceThatFails = PublishSubject&lt;String&gt;()</span><br><span class="line">        let recoverySequence = PublishSubject&lt;String&gt;()</span><br><span class="line">        </span><br><span class="line">        sequenceThatFails</span><br><span class="line">            .catchError &#123;</span><br><span class="line">                print(&quot;Error:&quot;, $0)</span><br><span class="line">                return recoverySequence</span><br><span class="line">            &#125;</span><br><span class="line">            .subscribe &#123; print($0) &#125;</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">     </span><br><span class="line">        sequenceThatFails.onNext(&quot;1&quot;)</span><br><span class="line">        sequenceThatFails.onNext(&quot;2&quot;)</span><br><span class="line">        sequenceThatFails.onNext(&quot;3&quot;)</span><br><span class="line">        sequenceThatFails.onError(TestError.test）    </span><br><span class="line">        sequenceThatFails.onNext(&quot;4&quot;)</span><br><span class="line">      </span><br><span class="line">        recoverySequence.onNext(&quot;a&quot;)</span><br><span class="line">        recoverySequence.onNext(&quot;b&quot;)</span><br><span class="line">        recoverySequence.onNext(&quot;c&quot;)</span><br><span class="line"></span><br><span class="line">运行结果：</span><br><span class="line">next(1)</span><br><span class="line">next(2)</span><br><span class="line">next(3)</span><br><span class="line">Error: test</span><br><span class="line">next(a)</span><br><span class="line">next(b)</span><br><span class="line">next(c)</span><br></pre></td></tr></table></figure>
+<h1 id="catchErrorJustReturn"><a href="#catchErrorJustReturn" class="headerlink" title="catchErrorJustReturn"></a>catchErrorJustReturn</h1><p>catchErrorJustReturn 操作符会将error 事件替换成其他的一个元素，然后结束该序列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">       let sequenceThatFails = PublishSubject&lt;String&gt;()</span><br><span class="line"></span><br><span class="line">        sequenceThatFails</span><br><span class="line">            .catchErrorJustReturn(&quot;tihuan&quot;)</span><br><span class="line">            .subscribe &#123; print($0) &#125;</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">    </span><br><span class="line">        sequenceThatFails.onNext(&quot;1&quot;)</span><br><span class="line">        sequenceThatFails.onNext(&quot;2&quot;)</span><br><span class="line">        sequenceThatFails.onError(TestError.test)</span><br><span class="line">        sequenceThatFails.onNext(&quot;3&quot;)</span><br><span class="line"></span><br><span class="line">运行结果：</span><br><span class="line">next(1)</span><br><span class="line">next(2)</span><br><span class="line">next(tihuan)</span><br><span class="line">completed</span><br></pre></td></tr></table></figure>
+<h1 id="combineLatest"><a href="#combineLatest" class="headerlink" title="combineLatest"></a>combineLatest</h1><p>combineLatest 操作符将多个 Observables 中最新的元素通过一个函数组合起来，然后将这个组合的结果发出来。这些源 Observables 中任何一个发出一个元素，他都会发出一个元素（前提是，这些 Observables 曾经发出过元素.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> let first = PublishSubject&lt;String&gt;()</span><br><span class="line">       let second = PublishSubject&lt;String&gt;()</span><br><span class="line">        </span><br><span class="line">        Observable.combineLatest(first, second) &#123; $0 + $1 &#125;</span><br><span class="line">            .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">        </span><br><span class="line">        first.onNext(&quot;1&quot;)</span><br><span class="line">        second.onNext(&quot;A&quot;)</span><br><span class="line">        first.onNext(&quot;2&quot;)</span><br><span class="line">        second.onNext(&quot;B&quot;)</span><br><span class="line">        second.onNext(&quot;C&quot;)</span><br><span class="line">        second.onNext(&quot;D&quot;)</span><br><span class="line">        first.onNext(&quot;3&quot;)</span><br><span class="line">        first.onNext(&quot;4&quot;)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">1A</span><br><span class="line">2A</span><br><span class="line">2B</span><br><span class="line">2C</span><br><span class="line">2D</span><br><span class="line">3D</span><br><span class="line">4D</span><br></pre></td></tr></table></figure>
+<h1 id="concat"><a href="#concat" class="headerlink" title="concat"></a>concat</h1><p>concat 操作符将多个 Observables 按顺序串联起来，当前一个 Observable 元素发送完毕后，后一个 Observable 才可以开始发出元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">let subject1 = BehaviorSubject(value: &quot;🍎&quot;)</span><br><span class="line">        let subject2 = BehaviorSubject(value: &quot;🐶&quot;)</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        let variable = Variable(subject1)</span><br><span class="line">        </span><br><span class="line">        variable.asObservable()</span><br><span class="line">            .concat()</span><br><span class="line">            .subscribe &#123; print($0) &#125;</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">        </span><br><span class="line">        subject1.onNext(&quot;🍐&quot;)</span><br><span class="line">        subject1.onNext(&quot;🍊&quot;)</span><br><span class="line">        </span><br><span class="line">        variable.value = subject2</span><br><span class="line">        </span><br><span class="line">        subject2.onNext(&quot;I would be ignored&quot;)</span><br><span class="line">        subject2.onNext(&quot;🐱&quot;)</span><br><span class="line">        </span><br><span class="line">        subject1.onCompleted()</span><br><span class="line">        </span><br><span class="line">        subject2.onNext(&quot;🐭&quot;)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">next(🍎)</span><br><span class="line">next(🍐)</span><br><span class="line">next(🍊)</span><br><span class="line">next(🐱)</span><br><span class="line">next(🐭)</span><br></pre></td></tr></table></figure>
+<h1 id="concatMap"><a href="#concatMap" class="headerlink" title="concatMap"></a>concatMap</h1><p>concatMap 操作符将源 Observable 的每一个元素应用一个转换方法，将他们转换成 Observables。然后让这些 Observables 按顺序的发出元素，当前一个 Observable 元素发送完毕后，后一个 Observable 才可以开始发出元素。等待前一个 Observable 产生完成事件后，才对后一个 Observable 进行订阅。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">let subject1 = BehaviorSubject(value: &quot;🍎&quot;)</span><br><span class="line">let subject2 = BehaviorSubject(value: &quot;🐶&quot;)</span><br><span class="line"></span><br><span class="line">let variable = Variable(subject1)</span><br><span class="line"></span><br><span class="line">variable.asObservable()</span><br><span class="line">        .concatMap &#123; $0 &#125;</span><br><span class="line">        .subscribe &#123; print($0) &#125;</span><br><span class="line">        .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">subject1.onNext(&quot;🍐&quot;)</span><br><span class="line">subject1.onNext(&quot;🍊&quot;)</span><br><span class="line"></span><br><span class="line">variable.value = subject2</span><br><span class="line"></span><br><span class="line">subject2.onNext(&quot;I would be ignored&quot;)</span><br><span class="line">subject2.onNext(&quot;🐱&quot;)</span><br><span class="line"></span><br><span class="line">subject1.onCompleted()</span><br><span class="line"></span><br><span class="line">subject2.onNext(&quot;🐭&quot;)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">next(🍎)</span><br><span class="line">next(🍐)</span><br><span class="line">next(🍊)</span><br><span class="line">next(🐱)</span><br><span class="line">next(🐭)</span><br></pre></td></tr></table></figure>
+<h1 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h1><p>通知 ConnectableObservable 可以开始发出元素了,ConnectableObservable 和普通的 Observable 十分相似，不过在被订阅后不会发出元素，直到 connect 操作符被应用为止。这样一来你可以等所有观察者全部订阅完成后，才发出元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance)</span><br><span class="line">    .publish()</span><br><span class="line"></span><br><span class="line">_ = intSequence</span><br><span class="line">    .subscribe(onNext: &#123; print(&quot;Subscription 1:, Event: \($0)&quot;) &#125;)</span><br><span class="line"></span><br><span class="line">DispatchQueue.main.asyncAfter(deadline: .now() + 2) &#123;</span><br><span class="line">    _ = intSequence.connect()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DispatchQueue.main.asyncAfter(deadline: .now() + 4) &#123;</span><br><span class="line">  _ = intSequence</span><br><span class="line">      .subscribe(onNext: &#123; print(&quot;Subscription 2:, Event: \($0)&quot;) &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DispatchQueue.main.asyncAfter(deadline: .now() + 6) &#123;</span><br><span class="line">  _ = intSequence</span><br><span class="line">      .subscribe(onNext: &#123; print(&quot;Subscription 3:, Event: \($0)&quot;) &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">Subscription 1:, Event: 0</span><br><span class="line">Subscription 1:, Event: 1</span><br><span class="line">Subscription 2:, Event: 1</span><br><span class="line">Subscription 1:, Event: 2</span><br><span class="line">Subscription 2:, Event: 2</span><br><span class="line">Subscription 1:, Event: 3</span><br><span class="line">Subscription 2:, Event: 3</span><br><span class="line">Subscription 3:, Event: 3</span><br><span class="line">Subscription 1:, Event: 4</span><br><span class="line">Subscription 2:, Event: 4</span><br><span class="line">Subscription 3:, Event: 4</span><br><span class="line">Subscription 1:, Event: 5</span><br><span class="line">Subscription 2:, Event: 5</span><br><span class="line">Subscription 3:, Event: 5</span><br><span class="line">Subscription 1:, Event: 6</span><br><span class="line">Subscription 2:, Event: 6</span><br><span class="line">Subscription 3:, Event: 6</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h1 id="create"><a href="#create" class="headerlink" title="create"></a>create</h1><p>通过一个构建函数完整的创建一个 Observable</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//创建一个 [0, 1, ... 8, 9] 的序列：</span><br><span class="line">let id = Observable&lt;Int&gt;.create &#123; observer in</span><br><span class="line">    observer.onNext(0)</span><br><span class="line">    observer.onNext(1)</span><br><span class="line">    observer.onNext(2)</span><br><span class="line">    observer.onNext(3)</span><br><span class="line">    observer.onNext(4)</span><br><span class="line">    observer.onNext(5)</span><br><span class="line">    observer.onNext(6)</span><br><span class="line">    observer.onNext(7)</span><br><span class="line">    observer.onNext(8)</span><br><span class="line">    observer.onNext(9)</span><br><span class="line">    observer.onCompleted()</span><br><span class="line">    return Disposables.create()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="debounce"><a href="#debounce" class="headerlink" title="debounce"></a>debounce</h1><p>debounce 操作符将发出这种元素，在 Observable 产生这种元素后，一段时间内没有新元素产生。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">        let intSequence = PublishSubject&lt;Int&gt;()</span><br><span class="line">        </span><br><span class="line">        intSequence.debounce(4, scheduler: MainScheduler.instance).subscribe &#123; print($0) &#125;</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">        </span><br><span class="line">        DispatchQueue.main.asyncAfter(deadline: .now() + 2) &#123;</span><br><span class="line">            intSequence.onNext(1)</span><br><span class="line">        &#125;</span><br><span class="line">        DispatchQueue.main.asyncAfter(deadline: .now() + 4) &#123;</span><br><span class="line">            intSequence.onNext(2)</span><br><span class="line">        &#125;</span><br><span class="line">        DispatchQueue.main.asyncAfter(deadline: .now() + 6) &#123;</span><br><span class="line">            intSequence.onNext(3)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">next(3)</span><br></pre></td></tr></table></figure>
+<h1 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h1><p>打印所有的订阅，事件以及销毁信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">        let sequence = Observable&lt;String&gt;.create &#123; observer in</span><br><span class="line">            observer.onNext(&quot;🍎&quot;)</span><br><span class="line">            observer.onNext(&quot;🍐&quot;)</span><br><span class="line">            observer.onCompleted()</span><br><span class="line">            return Disposables.create()</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        sequence</span><br><span class="line">            .debug(&quot;Fruit&quot;)</span><br><span class="line">            .subscribe()</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">2017-11-04 10:20:36.519: Fruit -&gt; subscribed</span><br><span class="line">2017-11-04 10:20:36.527: Fruit -&gt; Event next(🍎)</span><br><span class="line">2017-11-04 10:20:36.528: Fruit -&gt; Event next(🍐)</span><br><span class="line">2017-11-04 10:20:36.528: Fruit -&gt; Event completed</span><br><span class="line">2017-11-04 10:20:36.528: Fruit -&gt; isDisposed</span><br></pre></td></tr></table></figure>
+<h1 id="deferred"><a href="#deferred" class="headerlink" title="deferred"></a>deferred</h1><p>deferred 操作符将等待观察者订阅它，才创建一个 Observable，它会通过一个构建函数为每一位订阅者创建新的 Observable。看上去每位订阅者都是对同一个 Observable 产生订阅，实际上它们都获得了独立的序列。</p>
+<h1 id="delay"><a href="#delay" class="headerlink" title="delay"></a>delay</h1><p>delay 操作符将修改一个 Observable，它会将 Observable 的所有元素都拖延一段设定好的时间， 然后才将它们发送出来。</p>
+<h1 id="delaySubscription"><a href="#delaySubscription" class="headerlink" title="delaySubscription"></a>delaySubscription</h1><p>delaySubscription 操作符将在经过所设定的时间后，才对 Observable 进行订阅操作。</p>
+<h1 id="dematerialize"><a href="#dematerialize" class="headerlink" title="dematerialize"></a>dematerialize</h1><p>dematerialize 操作符将 materialize 转换后的元素还原</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">       //materialize 该操作符可以将序列产生的事件，转换成元素</span><br><span class="line">        Observable.of(1, 2, 3)</span><br><span class="line">            .materialize()</span><br><span class="line">            .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">        </span><br><span class="line">        Observable.of(1, 2, 3)</span><br><span class="line">            .materialize()</span><br><span class="line">            .dematerialize()</span><br><span class="line">            .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">next(1)</span><br><span class="line">next(2)</span><br><span class="line">next(3)</span><br><span class="line">completed</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<h1 id="distinctUntilChanged"><a href="#distinctUntilChanged" class="headerlink" title="distinctUntilChanged"></a>distinctUntilChanged</h1><p>distinctUntilChanged 操作符将阻止 Observable 发出相同的元素。如果后一个元素和前一个元素是相同的，那么这个元素将不会被发出来。如果后一个元素和前一个元素不相同，那么这个元素才会被发出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Observable.of(&quot;🐱&quot;, &quot;🐷&quot;, &quot;🐱&quot;, &quot;🐱&quot;, &quot;🐱&quot;, &quot;🐵&quot;, &quot;🐱&quot;)</span><br><span class="line">    .distinctUntilChanged()</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">🐱</span><br><span class="line">🐷</span><br><span class="line">🐱</span><br><span class="line">🐵</span><br><span class="line">🐱</span><br></pre></td></tr></table></figure>
+<h1 id="do"><a href="#do" class="headerlink" title="do"></a>do</h1><p>当 Observable 的某些事件产生时，你可以使用 do 操作符来注册一些回调操作。这些回调会被单独调用，它们会和 Observable 原本的回调分离。</p>
+<h1 id="elementAt"><a href="#elementAt" class="headerlink" title="elementAt"></a>elementAt</h1><p>elementAt 操作符将拉取 Observable 序列中指定索引数的元素，然后将它作为唯一的元素发出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Observable.of(&quot;🐱&quot;, &quot;🐰&quot;, &quot;🐶&quot;, &quot;🐸&quot;, &quot;🐷&quot;, &quot;🐵&quot;)</span><br><span class="line">    .elementAt(3)</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">🐸</span><br></pre></td></tr></table></figure>
+<h1 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h1><p>empty 操作符将创建一个 Observable，这个 Observable 只有一个完成事件。</p>
+<h1 id="error"><a href="#error" class="headerlink" title="error"></a>error</h1><p>error 操作符将创建一个 Observable，这个 Observable 只会产生一个 error 事件。</p>
+<h1 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h1><p>filter 操作符将通过你提供的判定方法过滤一个 Observable。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Observable.of(2, 30, 22, 5, 60, 1)</span><br><span class="line">          .filter &#123; $0 &gt; 10 &#125;</span><br><span class="line">          .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">          .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">30</span><br><span class="line">22</span><br><span class="line">60</span><br></pre></td></tr></table></figure>
+<h1 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h1><p>flatMap 操作符将源 Observable 的每一个元素应用一个转换方法，将他们转换成 Observables。 然后将这些 Observables 的元素合并之后再发送出来。这个操作符是非常有用的，例如，当 Observable 的元素本身拥有其他的 Observable 时，你可以将所有子 Observables 的元素发送出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">let subject1 = BehaviorSubject(value: &quot;A&quot;)</span><br><span class="line">        let subject2 = BehaviorSubject(value: &quot;1&quot;)</span><br><span class="line">        </span><br><span class="line">        let variable = Variable(subject1)</span><br><span class="line">        </span><br><span class="line">        variable.asObservable()</span><br><span class="line">            .flatMap &#123; $0 &#125;</span><br><span class="line">            .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">        </span><br><span class="line">        subject1.onNext(&quot;B&quot;)</span><br><span class="line">        variable.value = subject2</span><br><span class="line">        subject2.onNext(&quot;2&quot;)</span><br><span class="line">        subject1.onNext(&quot;C&quot;)</span><br><span class="line">        </span><br><span class="line">运行结果:</span><br><span class="line">A</span><br><span class="line">B</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">C</span><br></pre></td></tr></table></figure>
+<h1 id="flatMapLatest"><a href="#flatMapLatest" class="headerlink" title="flatMapLatest"></a>flatMapLatest</h1><p>flatMapLatest 操作符将源 Observable 的每一个元素应用一个转换方法，将他们转换成 Observables。一旦转换出一个新的 Observable，就只发出它的元素，旧的 Observables 的元素将被忽略掉。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">let subject1 = BehaviorSubject(value: &quot;A&quot;)</span><br><span class="line">let subject2 = BehaviorSubject(value: &quot;1&quot;)</span><br><span class="line"> </span><br><span class="line">let variable = Variable(subject1)</span><br><span class="line"> </span><br><span class="line">variable.asObservable()</span><br><span class="line">    .flatMapLatest &#123; $0 &#125;</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"> </span><br><span class="line">subject1.onNext(&quot;B&quot;)</span><br><span class="line">variable.value = subject2</span><br><span class="line">subject2.onNext(&quot;2&quot;)</span><br><span class="line">subject1.onNext(&quot;C&quot;)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">A</span><br><span class="line">B</span><br><span class="line">1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<h1 id="from"><a href="#from" class="headerlink" title="from"></a>from</h1><p>当你在使用 Observable 时，如果能够直接将其他类型转换为 Observable，这将是非常省事的。from 操作符就提供了这种功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let numbers = Observable.from([0, 1, 2])</span><br></pre></td></tr></table></figure>
+<h1 id="groupBy"><a href="#groupBy" class="headerlink" title="groupBy"></a>groupBy</h1><p>groupBy 操作符将源 Observable 分解为多个子 Observable，然后将这些子 Observable 发送出来。它会将元素通过某个键进行分组，然后将分组后的元素序列以 Observable 的形态发送出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//将奇数偶数分成两组</span><br><span class="line">Observable&lt;Int&gt;.of(0, 1, 2, 3, 4, 5)</span><br><span class="line">    .groupBy(keySelector: &#123; (element) -&gt; String in</span><br><span class="line">        return element % 2 == 0 ? &quot;偶数&quot; : &quot;基数&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    .subscribe &#123; (event) in</span><br><span class="line">        switch event &#123;</span><br><span class="line">        case .next(let group):</span><br><span class="line">            group.asObservable().subscribe(&#123; (event) in</span><br><span class="line">                print(&quot;key：\(group.key)    event：\(event)&quot;)</span><br><span class="line">            &#125;)</span><br><span class="line">                .disposed(by: self.disposeBag)</span><br><span class="line">        default:</span><br><span class="line">            print(&quot;&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<h1 id="ignoreElements"><a href="#ignoreElements" class="headerlink" title="ignoreElements"></a>ignoreElements</h1><p>ignoreElements 操作符将阻止 Observable 发出 next 事件，但是允许他发出 error 或 completed 事件。</p>
+<h1 id="interval"><a href="#interval" class="headerlink" title="interval"></a>interval</h1><p>interval 操作符将创建一个 Observable，它每隔一段设定的时间，发出一个索引数的元素。它将发出无数个元素。</p>
+<h1 id="just"><a href="#just" class="headerlink" title="just"></a>just</h1><p>ust 操作符将某一个元素转换为 Observable。</p>
+<h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><p>map 操作符将源 Observable 的每个元素应用你提供的转换方法，然后返回含有转换结果的 Observable。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Observable.of(1, 2, 3)</span><br><span class="line">    .map &#123; $0 * 10 &#125;</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">10</span><br><span class="line">20</span><br><span class="line">30</span><br></pre></td></tr></table></figure>
+<h1 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h1><p>通过使用 merge 操作符你可以将多个 Observables 合并成一个，当某一个 Observable 发出一个元素时，他就将这个元素发出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">let subject1 = PublishSubject&lt;String&gt;()</span><br><span class="line">let subject2 = PublishSubject&lt;String&gt;()</span><br><span class="line"></span><br><span class="line">Observable.of(subject1, subject2)</span><br><span class="line">    .merge()</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">subject1.onNext(&quot;🅰️&quot;)</span><br><span class="line"></span><br><span class="line">subject1.onNext(&quot;🅱️&quot;)</span><br><span class="line"></span><br><span class="line">subject2.onNext(&quot;①&quot;)</span><br><span class="line"></span><br><span class="line">subject2.onNext(&quot;②&quot;)</span><br><span class="line"></span><br><span class="line">subject1.onNext(&quot;🆎&quot;)</span><br><span class="line"></span><br><span class="line">subject2.onNext(&quot;③&quot;)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">🅰️</span><br><span class="line">🅱️</span><br><span class="line">①</span><br><span class="line">②</span><br><span class="line">🆎</span><br><span class="line">③</span><br></pre></td></tr></table></figure>
+<h1 id="materialize"><a href="#materialize" class="headerlink" title="materialize"></a>materialize</h1><p>通常，一个有限的 Observable 将产生零个或者多个 onNext 事件，然后产生一个 onCompleted 或者 onError 事件。materialize 操作符将 Observable 产生的这些事件全部转换成元素，然后发送出来。</p>
+<h1 id="never"><a href="#never" class="headerlink" title="never"></a>never</h1><p>never 操作符将创建一个 Observable，这个 Observable 不会产生任何事件。</p>
+<h1 id="observeOn"><a href="#observeOn" class="headerlink" title="observeOn"></a>observeOn</h1><p>observeOn 操作符将指定一个不同的 Scheduler 来让 Observable 通知观察者。</p>
+<h1 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h1><p>publish 会将 Observable 转换为可被连接的 Observable。可被连接的 Observable 和普通的 Observable 十分相似，不过在被订阅后不会发出元素，直到 connect 操作符被应用为止。这样一来你可以控制 Observable 在什么时候开始发出元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance)</span><br><span class="line">    .publish()</span><br><span class="line"></span><br><span class="line">_ = intSequence</span><br><span class="line">    .subscribe(onNext: &#123; print(&quot;Subscription 1:, Event: \($0)&quot;) &#125;)</span><br><span class="line"></span><br><span class="line">DispatchQueue.main.asyncAfter(deadline: .now() + 2) &#123;</span><br><span class="line">    _ = intSequence.connect()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DispatchQueue.main.asyncAfter(deadline: .now() + 4) &#123;</span><br><span class="line">  _ = intSequence</span><br><span class="line">      .subscribe(onNext: &#123; print(&quot;Subscription 2:, Event: \($0)&quot;) &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DispatchQueue.main.asyncAfter(deadline: .now() + 6) &#123;</span><br><span class="line">  _ = intSequence</span><br><span class="line">      .subscribe(onNext: &#123; print(&quot;Subscription 3:, Event: \($0)&quot;) &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出结果:</span><br><span class="line">Subscription 1:, Event: 0</span><br><span class="line">Subscription 1:, Event: 1</span><br><span class="line">Subscription 2:, Event: 1</span><br><span class="line">Subscription 1:, Event: 2</span><br><span class="line">Subscription 2:, Event: 2</span><br><span class="line">Subscription 1:, Event: 3</span><br><span class="line">Subscription 2:, Event: 3</span><br><span class="line">Subscription 3:, Event: 3</span><br><span class="line">Subscription 1:, Event: 4</span><br><span class="line">Subscription 2:, Event: 4</span><br><span class="line">Subscription 3:, Event: 4</span><br><span class="line">Subscription 1:, Event: 5</span><br><span class="line">Subscription 2:, Event: 5</span><br><span class="line">Subscription 3:, Event: 5</span><br><span class="line">Subscription 1:, Event: 6</span><br><span class="line">Subscription 2:, Event: 6</span><br><span class="line">Subscription 3:, Event: 6</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h1 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h1><p>reduce 操作符将对第一个元素应用一个函数。然后，将结果作为参数填入到第二个元素的应用函数中。以此类推，直到遍历完全部的元素后发出最终结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let disposeBag = DisposeBag()</span><br><span class="line"></span><br><span class="line">Observable.of(10, 100, 1000)</span><br><span class="line">    .reduce(1, accumulator: +)</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">输出结果:</span><br><span class="line">1111</span><br></pre></td></tr></table></figure>
+<h1 id="refCount"><a href="#refCount" class="headerlink" title="refCount"></a>refCount</h1><p>refCount 操作符将自动连接和断开可被连接的 Observable。它将可被连接的 Observable 转换为普通 Observable。当第一个观察者对它订阅时，那么底层的 Observable 将被连接。当最后一个观察者离开时，那么底层的 Observable 将被断开连接。</p>
+<h1 id="repeatElement"><a href="#repeatElement" class="headerlink" title="repeatElement"></a>repeatElement</h1><p>epeatElement 操作符将创建一个 Observable，这个 Observable 将无止尽的发出同一个元素。</p>
+<h1 id="replay"><a href="#replay" class="headerlink" title="replay"></a>replay</h1><p>replay 操作符将 Observable 转换为可被连接的 Observable，并且这个可被连接的 Observable 将缓存最新的 n 个元素。当有新的观察者对它进行订阅时，它就把这些被缓存的元素发送给观察者。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance)</span><br><span class="line">    .replay(5)</span><br><span class="line"></span><br><span class="line">_ = intSequence</span><br><span class="line">    .subscribe(onNext: &#123; print(&quot;Subscription 1:, Event: \($0)&quot;) &#125;)</span><br><span class="line"></span><br><span class="line">DispatchQueue.main.asyncAfter(deadline: .now() + 2) &#123;</span><br><span class="line">    _ = intSequence.connect()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DispatchQueue.main.asyncAfter(deadline: .now() + 4) &#123;</span><br><span class="line">  _ = intSequence</span><br><span class="line">      .subscribe(onNext: &#123; print(&quot;Subscription 2:, Event: \($0)&quot;) &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DispatchQueue.main.asyncAfter(deadline: .now() + 8) &#123;</span><br><span class="line">  _ = intSequence</span><br><span class="line">      .subscribe(onNext: &#123; print(&quot;Subscription 3:, Event: \($0)&quot;) &#125;)</span><br><span class="line">&#125;</span><br><span class="line">输出结果:</span><br><span class="line">Subscription 1:, Event: 0</span><br><span class="line">Subscription 2:, Event: 0</span><br><span class="line">Subscription 1:, Event: 1</span><br><span class="line">Subscription 2:, Event: 1</span><br><span class="line">Subscription 1:, Event: 2</span><br><span class="line">Subscription 2:, Event: 2</span><br><span class="line">Subscription 1:, Event: 3</span><br><span class="line">Subscription 2:, Event: 3</span><br><span class="line">Subscription 1:, Event: 4</span><br><span class="line">Subscription 2:, Event: 4</span><br><span class="line">Subscription 3:, Event: 0</span><br><span class="line">Subscription 3:, Event: 1</span><br><span class="line">Subscription 3:, Event: 2</span><br><span class="line">Subscription 3:, Event: 3</span><br><span class="line">Subscription 3:, Event: 4</span><br><span class="line">Subscription 1:, Event: 5</span><br><span class="line">Subscription 2:, Event: 5</span><br><span class="line">Subscription 3:, Event: 5</span><br><span class="line">Subscription 1:, Event: 6</span><br><span class="line">Subscription 2:, Event: 6</span><br><span class="line">Subscription 3:, Event: 6</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h1 id="retry"><a href="#retry" class="headerlink" title="retry"></a>retry</h1><p>retry 操作符将不会将 error 事件，传递给观察者，然而，它会从新订阅源 Observable，给这个 Observable 一个重试的机会，让它有机会不产生 error 事件。retry 总是对观察者发出 next 事件，即便源序列产生了一个 error 事件，所以这样可能会产生重复的元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">var count = 1</span><br><span class="line"></span><br><span class="line">let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in</span><br><span class="line">    observer.onNext(&quot;🍎&quot;)</span><br><span class="line">    observer.onNext(&quot;🍐&quot;)</span><br><span class="line">    observer.onNext(&quot;🍊&quot;)</span><br><span class="line"></span><br><span class="line">    if count == 1 &#123;</span><br><span class="line">        observer.onError(TestError.test)</span><br><span class="line">        print(&quot;Error encountered&quot;)</span><br><span class="line">        count += 1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    observer.onNext(&quot;🐶&quot;)</span><br><span class="line">    observer.onNext(&quot;🐱&quot;)</span><br><span class="line">    observer.onNext(&quot;🐭&quot;)</span><br><span class="line">    observer.onCompleted()</span><br><span class="line"></span><br><span class="line">    return Disposables.create()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sequenceThatErrors</span><br><span class="line">    .retry()</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line">输出结果:</span><br><span class="line">🍎</span><br><span class="line">🍐</span><br><span class="line">🍊</span><br><span class="line">Error encountered</span><br><span class="line">🍎</span><br><span class="line">🍐</span><br><span class="line">🍊</span><br><span class="line">🐶</span><br><span class="line">🐱</span><br><span class="line">🐭</span><br></pre></td></tr></table></figure>
+<h1 id="sample"><a href="#sample" class="headerlink" title="sample"></a>sample</h1><p>sample 操作符将不定期的对源 Observable 进行取样操作。通过第二个 Observable 来控制取样时机。一旦第二个 Observable 发出一个元素，就从源 Observable 中取出最后产生的元素。</p>
+<h1 id="scan"><a href="#scan" class="headerlink" title="scan"></a>scan</h1><p>scan 操作符将对第一个元素应用一个函数，将结果作为第一个元素发出。然后，将结果作为参数填入到第二个元素的应用函数中，创建第二个元素。以此类推，直到遍历完全部的元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Observable.of(10, 100, 1000)</span><br><span class="line">    .scan(1) &#123; aggregateValue, newValue in</span><br><span class="line">        aggregateValue + newValue</span><br><span class="line">    &#125;</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">输出结果:</span><br><span class="line">11</span><br><span class="line">111</span><br><span class="line">1111</span><br></pre></td></tr></table></figure>
+<h1 id="shareReplay"><a href="#shareReplay" class="headerlink" title="shareReplay"></a>shareReplay</h1><p>shareReplay 操作符将使得观察者共享源 Observable，并且缓存最新的 n 个元素，将这些元素直接发送给新的观察者。</p>
+<h1 id="single"><a href="#single" class="headerlink" title="single"></a>single</h1><p>single 操作符将限制 Observable 只产生一个元素。如果 Observable 只有一个元素，它将镜像这个 Observable 。如果 Observable 没有元素或者元素数量大于一，它将产生一个 error 事件。</p>
+<h1 id="skip"><a href="#skip" class="headerlink" title="skip"></a>skip</h1><p>skip 操作符可以让你跳过 Observable 中头 n 个元素，只关注后面的元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Observable.of(&quot;🐱&quot;, &quot;🐰&quot;, &quot;🐶&quot;, &quot;🐸&quot;, &quot;🐷&quot;, &quot;🐵&quot;)</span><br><span class="line">    .skip(2)</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">输出结果:</span><br><span class="line">🐶</span><br><span class="line">🐸</span><br><span class="line">🐷</span><br><span class="line">🐵</span><br></pre></td></tr></table></figure>
+<h1 id="skipUntil"><a href="#skipUntil" class="headerlink" title="skipUntil"></a>skipUntil</h1><p>skipUntil 操作符可以让你忽略源 Observable 中头几个元素，直到另一个 Observable 发出一个元素后，它才镜像源 Observable。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">let sourceSequence = PublishSubject&lt;String&gt;()</span><br><span class="line">let referenceSequence = PublishSubject&lt;String&gt;()</span><br><span class="line"></span><br><span class="line">sourceSequence</span><br><span class="line">    .skipUntil(referenceSequence)</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">sourceSequence.onNext(&quot;🐱&quot;)</span><br><span class="line">sourceSequence.onNext(&quot;🐰&quot;)</span><br><span class="line">sourceSequence.onNext(&quot;🐶&quot;)</span><br><span class="line"></span><br><span class="line">referenceSequence.onNext(&quot;🔴&quot;)</span><br><span class="line"></span><br><span class="line">sourceSequence.onNext(&quot;🐸&quot;)</span><br><span class="line">sourceSequence.onNext(&quot;🐷&quot;)</span><br><span class="line">sourceSequence.onNext(&quot;🐵&quot;)</span><br><span class="line"></span><br><span class="line">输出结果:</span><br><span class="line">🐸</span><br><span class="line">🐷</span><br><span class="line">🐵</span><br></pre></td></tr></table></figure>
+<h1 id="skipWhile"><a href="#skipWhile" class="headerlink" title="skipWhile"></a>skipWhile</h1><p>skipWhile 操作符可以让你忽略源 Observable 中头几个元素，直到元素的判定为否后，它才镜像源 Observable。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Observable.of(1, 2, 3, 4, 3, 2, 1)</span><br><span class="line">    .skipWhile &#123; $0 &lt; 4 &#125;</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">输出结果:</span><br><span class="line">4</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<h1 id="startWith"><a href="#startWith" class="headerlink" title="startWith"></a>startWith</h1><p>startWith 操作符会在 Observable 头部插入一些元素。（如果你想在尾部加入一些元素可以用concat）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Observable.of(&quot;🐶&quot;, &quot;🐱&quot;, &quot;🐭&quot;, &quot;🐹&quot;)</span><br><span class="line">    .startWith(&quot;1&quot;)</span><br><span class="line">    .startWith(&quot;2&quot;)</span><br><span class="line">    .startWith(&quot;3&quot;, &quot;🅰️&quot;, &quot;🅱️&quot;)</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">输出结果:</span><br><span class="line">3</span><br><span class="line">🅰️</span><br><span class="line">🅱️</span><br><span class="line">2</span><br><span class="line">1</span><br><span class="line">🐶</span><br><span class="line">🐱</span><br><span class="line">🐭</span><br><span class="line">🐹</span><br></pre></td></tr></table></figure>
+<h1 id="subscribeOn"><a href="#subscribeOn" class="headerlink" title="subscribeOn"></a>subscribeOn</h1><p>指定 Observable 在那个 Scheduler 执行</p>
+<h1 id="take"><a href="#take" class="headerlink" title="take"></a>take</h1><p>通过 take 操作符你可以只发出头 n 个元素。并且忽略掉后面的元素，直接结束序列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Observable.of(&quot;🐱&quot;, &quot;🐰&quot;, &quot;🐶&quot;, &quot;🐸&quot;, &quot;🐷&quot;, &quot;🐵&quot;)</span><br><span class="line">    .take(3)</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">🐱</span><br><span class="line">🐰</span><br><span class="line">🐶</span><br></pre></td></tr></table></figure>
+<h1 id="takeLast"><a href="#takeLast" class="headerlink" title="takeLast"></a>takeLast</h1><p>通过 takeLast 操作符你可以只发出尾部 n 个元素。并且忽略掉前面的元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Observable.of(&quot;🐱&quot;, &quot;🐰&quot;, &quot;🐶&quot;, &quot;🐸&quot;, &quot;🐷&quot;, &quot;🐵&quot;)</span><br><span class="line">    .takeLast(3)</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">🐸</span><br><span class="line">🐷</span><br><span class="line">🐵</span><br></pre></td></tr></table></figure>
+<h1 id="takeUntil"><a href="#takeUntil" class="headerlink" title="takeUntil"></a>takeUntil</h1><p>takeUntil 操作符将镜像源 Observable，它同时观测第二个 Observable。一旦第二个 Observable 发出一个元素或者产生一个终止事件，那个镜像的 Observable 将立即终止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">let sourceSequence = PublishSubject&lt;String&gt;()</span><br><span class="line">let referenceSequence = PublishSubject&lt;String&gt;()</span><br><span class="line"></span><br><span class="line">sourceSequence</span><br><span class="line">    .takeUntil(referenceSequence)</span><br><span class="line">    .subscribe &#123; print($0) &#125;</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">sourceSequence.onNext(&quot;🐱&quot;)</span><br><span class="line">sourceSequence.onNext(&quot;🐰&quot;)</span><br><span class="line">sourceSequence.onNext(&quot;🐶&quot;)</span><br><span class="line"></span><br><span class="line">referenceSequence.onNext(&quot;🔴&quot;)</span><br><span class="line"></span><br><span class="line">sourceSequence.onNext(&quot;🐸&quot;)</span><br><span class="line">sourceSequence.onNext(&quot;🐷&quot;)</span><br><span class="line">sourceSequence.onNext(&quot;🐵&quot;)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">next(🐱)</span><br><span class="line">next(🐰)</span><br><span class="line">next(🐶)</span><br><span class="line">completed</span><br></pre></td></tr></table></figure>
+<h1 id="takeWhile"><a href="#takeWhile" class="headerlink" title="takeWhile"></a>takeWhile</h1><p>takeWhile 操作符将镜像源 Observable 直到某个元素的判定为 false。此时，这个镜像的 Observable 将立即终止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Observable.of(1, 2, 3, 4, 3, 2, 1)</span><br><span class="line">    .takeWhile &#123; $0 &lt; 4 &#125;</span><br><span class="line">    .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<h1 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h1><p>如果 Observable 在一段时间内没有产生元素，timeout 操作符将使它发出一个 error 事件。</p>
+<h1 id="timer"><a href="#timer" class="headerlink" title="timer"></a>timer</h1><p>timer 操作符将创建一个 Observable，它在经过设定的一段时间后，产生唯一的一个元素。</p>
+<h1 id="using"><a href="#using" class="headerlink" title="using"></a>using</h1><p>通过使用 using 操作符创建 Observable 时，同时创建一个可被清除的资源，一旦 Observable 终止了，那么这个资源就会被清除掉了。</p>
+<h1 id="window"><a href="#window" class="headerlink" title="window"></a>window</h1><p>window 操作符和 buffer 十分相似，buffer 周期性的将缓存的元素集合发送出来，而 window 周期性的将元素集合以 Observable 的形态发送出来。buffer 要等到元素搜集完毕后，才会发出元素序列。而 window 可以实时发出元素序列。</p>
+<h1 id="withLatestFrom"><a href="#withLatestFrom" class="headerlink" title="withLatestFrom"></a>withLatestFrom</h1><p>withLatestFrom 操作符将两个 Observables 中最新的元素通过一个函数组合起来，然后将这个组合的结果发出来。当第一个 Observable 发出一个元素时，就立即取出第二个 Observable 中最新的元素，通过一个组合函数将两个最新的元素合并后发送出去。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">let firstSubject = PublishSubject&lt;String&gt;()</span><br><span class="line">let secondSubject = PublishSubject&lt;String&gt;()</span><br><span class="line"></span><br><span class="line">firstSubject</span><br><span class="line">     .withLatestFrom(secondSubject)</span><br><span class="line">     .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">     .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">firstSubject.onNext(&quot;🅰️&quot;)</span><br><span class="line">firstSubject.onNext(&quot;🅱️&quot;)</span><br><span class="line">secondSubject.onNext(&quot;1&quot;)</span><br><span class="line">secondSubject.onNext(&quot;2&quot;)</span><br><span class="line">firstSubject.onNext(&quot;🆎&quot;)</span><br><span class="line"></span><br><span class="line">输出结果:</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line">firstSubject</span><br><span class="line">     .withLatestFrom(secondSubject) &#123;</span><br><span class="line">          (first, second) in</span><br><span class="line">          return first + second</span><br><span class="line">     &#125;</span><br><span class="line">     .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">     .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">firstSubject.onNext(&quot;🅰️&quot;)</span><br><span class="line">firstSubject.onNext(&quot;🅱️&quot;)</span><br><span class="line">secondSubject.onNext(&quot;1&quot;)</span><br><span class="line">secondSubject.onNext(&quot;2&quot;)</span><br><span class="line">firstSubject.onNext(&quot;🆎&quot;)</span><br><span class="line"></span><br><span class="line">输出结果:</span><br><span class="line">🆎2</span><br></pre></td></tr></table></figure>
+<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>zip 操作符将多个(最多不超过8个) Observables 的元素通过一个函数组合起来，然后将这个组合的结果发出来。它会严格的按照序列的索引数进行组合。例如，返回的 Observable 的第一个元素，是由每一个源 Observables 的第一个元素组合出来的。它的第二个元素 ，是由每一个源 Observables 的第二个元素组合出来的。它的第三个元素 ，是由每一个源 Observables 的第三个元素组合出来的，以此类推。它的元素数量等于源 Observables 中元素数量最少的那个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">let first = PublishSubject&lt;String&gt;()</span><br><span class="line">let second = PublishSubject&lt;String&gt;()</span><br><span class="line"></span><br><span class="line">Observable.zip(first, second) &#123; $0 + $1 &#125;</span><br><span class="line">          .subscribe(onNext: &#123; print($0) &#125;)</span><br><span class="line">          .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">first.onNext(&quot;1&quot;)</span><br><span class="line">second.onNext(&quot;A&quot;)</span><br><span class="line">first.onNext(&quot;2&quot;)</span><br><span class="line">second.onNext(&quot;B&quot;)</span><br><span class="line">second.onNext(&quot;C&quot;)</span><br><span class="line">second.onNext(&quot;D&quot;)</span><br><span class="line">first.onNext(&quot;3&quot;)</span><br><span class="line">first.onNext(&quot;4&quot;)</span><br><span class="line"></span><br><span class="line">输出结果:</span><br><span class="line">1A</span><br><span class="line">2B</span><br><span class="line">3C</span><br><span class="line">4D</span><br></pre></td></tr></table></figure>
+
+    </div>
+</article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'Fri Nov 03 2017 20:11:42 GMT+0800'
+    }
+</script>
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            Levin Luo
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/avatar.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"><p>Stay hungry、stay foolish.</p>
+</p>
+        </div>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/23/快速定位目标控制器/">快速定位目标控制器</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/18/iOS优质博客/">iOS优质博客</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/11/03/RxSwift操作符/">RxSwift操作符</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/10/20/RxSwift核心概念/">RxSwift核心概念</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/10/14/iOS组件化/">路由协议</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/09/26/多线程使用/">多线程使用</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/09/15/多线程/">多线程</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/08/11/runloop实践/">runloop实践</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/08/07/runloop/">runloop</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+                <li class="">
+                    <a href="/2017/11/03/RxSwift操作符/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                <li class="">
+                    <a href="/2017/11/03/RxSwift操作符/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                </li>
+                <li class="">
+                    <a href="/2017/11/03/RxSwift操作符/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/RxSwift/" style="font-size: 14.254765284184675px;" class="tag-cloud-link">RxSwift</a>
+    
+    <a href="/tags/Tip/" style="font-size: 18.204560279436894px;" class="tag-cloud-link">Tip</a>
+    
+    <a href="/tags/UI篇/" style="font-size: 9.387485481227895px;" class="tag-cloud-link">UI篇</a>
+    
+    <a href="/tags/iOS优质博客/" style="font-size: 15.929563684190235px;" class="tag-cloud-link">iOS优质博客</a>
+    
+    <a href="/tags/runloop/" style="font-size: 18.190977778410918px;" class="tag-cloud-link">runloop</a>
+    
+    <a href="/tags/runtime/" style="font-size: 10.477401271014042px;" class="tag-cloud-link">runtime</a>
+    
+    <a href="/tags/线程/" style="font-size: 15.939957100372226px;" class="tag-cloud-link">线程</a>
+    
+    <a href="/tags/工具篇/" style="font-size: 17.990047510326306px;" class="tag-cloud-link">工具篇</a>
+    
+</div>
+                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
+    
+    <li>
+        <a href="http://www.levinluo.com" target="_blank">Levin Luo</a>
+    </li>
+    
+</div>
+                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
+    
+    <li>
+        <a href="http://www.levinluo.com" target="_blank">Levin Luo</a>
+    </li>
+    
+</div>
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2017 Levin Luo Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+</body>
+<script src="/js/activate-power-mode.js"></script>
+<script>
+    // 配置highslide
+  hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+</script>
+<script>
+  POWERMODE.colorful = 'true';    // make power mode colorful
+  POWERMODE.shake = 'true';       // turn off shake
+  // TODO 这里根据具体情况修改
+  document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '/imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '6'
+    }
+</script>
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+
+
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    if(window.commentConfig) {
+      window.commentConfig.id = 'Fri Nov 03 2017 20:11:42 GMT+0800'
+      window.commentConfig.owner = 'PuShengLuo'
+      window.commentConfig.repo = 'PuShengLuo.github.io'
+      window.commentConfig.client_id = 'cc1a44fe73dbdbe0edb7'
+      window.commentConfig.client_secret = 'b101ced75c5c8a67aff6dd02e85125eb775ffd1c'
+      window.commentConfig.redirect_uri = ''
+    } else {
+      window.commentConfig = {
+        id: 'Fri Nov 03 2017 20:11:42 GMT+0800',
+        owner: 'PuShengLuo',
+        repo: 'PuShengLuo.github.io',
+        client_id: 'cc1a44fe73dbdbe0edb7',
+        client_secret: 'b101ced75c5c8a67aff6dd02e85125eb775ffd1c',
+        redirect_uri: ''
+      }
+    }
+</script>
+<script src="/js/comment/gitment.js"></script>
+
+</html>
