@@ -12,7 +12,7 @@
     
     
     
-    <title>非著名不专业程序员必备工具 | One Piece</title>
+    <title>iOS性能优化 | One Piece</title>
     <link href=”http://levinluo.com“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -170,26 +170,19 @@
         <i class="fa fa-home"></i>
         <a href="http://levinluo.com">One Piece</a>
         >
-        <span>非著名不专业程序员必备工具</span>
+        <span>iOS性能优化</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
+                <a href="/2018/05/15/iOS性能优化/">iOS性能优化</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/工具篇/">工具篇</a>
-                
-            </span>
-            
-            <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2018-03-20
+                <i class="fa fa-calendar"></i> 2018-05-15
             </span>
             
         </div>
@@ -199,36 +192,45 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
+                    <a href="/2018/05/15/iOS性能优化/">iOS性能优化</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2018-03-20
+                <i class="fa fa-calendar"></i> 2018-05-15
             </p>
             <p>
-                
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/工具篇/">工具篇</a>
-                
                 
                 
             </p>
         </center>
     </div>
     <div class="content-article">
-        <h1 id="智能搜索工具Alfred"><a href="#智能搜索工具Alfred" class="headerlink" title="智能搜索工具Alfred"></a>智能搜索工具Alfred</h1><p> 作为一名非著名不专业程序员，搜索几乎占据我们大部分时间。而这款软件可以堪称是利器，无论是谷歌百度还是快捷打开软件都可以大量节省我们时间。<br><br>推荐 Alfred 插件：<br><br>1. CodeVar : 可以让英文稀烂的你一样能写出一个标准英文变量名<br><br>2. Kill Process: 快捷杀死程序</p>
-<h1 id="编程语言Api文档-Dash"><a href="#编程语言Api文档-Dash" class="headerlink" title="编程语言Api文档 Dash"></a>编程语言Api文档 Dash</h1><p>  Dash for mac是使用与Mac OS平台的软件编程文档管理工具，可以浏览API文档，以及管理代码片段工具。Dash自带了丰富的API文档，涉及各种主流的编程语言和框架。</p>
-<h1 id="接口调试工具-postman"><a href="#接口调试工具-postman" class="headerlink" title="接口调试工具 postman"></a>接口调试工具 postman</h1><p> 引用官网一句话： Developers use Postman to build modern software for the API-first world.</p>
-<h1 id="代码管理可视化工具"><a href="#代码管理可视化工具" class="headerlink" title="代码管理可视化工具"></a>代码管理可视化工具</h1><ul>
-<li>SVN： 使用cornerstone</li>
-<li>Git: 使用Sourcetree</li>
+        <h1 id="卡顿优化"><a href="#卡顿优化" class="headerlink" title="卡顿优化"></a>卡顿优化</h1><p>通常来说,计算机系统中 CPU、GPU、显示器是以上面这种方式协同工作的.CPU 计算好显示内容提交到 GPU,GPU 渲染完成后将渲染结果放入帧缓冲区,随后视频控制器会按照 VSync 信号逐行读取帧缓冲区的数据,经过可能的数模转换传递给显示器显示.</p>
+<p><a href="https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="noopener">iOS 保持界面流畅的技巧</a></p>
+<h1 id="编译优化"><a href="#编译优化" class="headerlink" title="编译优化"></a>编译优化</h1><h2 id="增加XCode执行的线程数"><a href="#增加XCode执行的线程数" class="headerlink" title="增加XCode执行的线程数"></a>增加XCode执行的线程数</h2><p>XCode默认使用与CPU核数相同的线程来进行编译, 但由于编译过程中的IO操作往往比CPU运算要多, 因此适当的提升线程数可以在一定程度上加快编译速度. 在终端输入defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES开启多线程, 更改线程数设置defaults write com.apple.Xcode PBXNumberOfParallelBuildSubtasks 5.</p>
+<h2 id="将Debug-Information-Format改为DWARF"><a href="#将Debug-Information-Format改为DWARF" class="headerlink" title="将Debug Information Format改为DWARF"></a>将Debug Information Format改为DWARF</h2><p>将Target-&gt;Build Settings中, 找到Debug Information Format这一项, 将Debug时的DWARF with dSYM file改为DWARF.</p>
+<p>这一项设置的是是否将调试信息加入到可执行文件中, 改为DWARF后, 如果程序崩溃, 将无法输出崩溃位置对应的函数堆栈, 但由于Debug模式下可以在XCode中查看调试信息, 所以改为DWARF影响并不大. 这一项更改完之后, 可以大幅提升编译速度.<br>将Debug Information Format改为DWARF之后, 会导致在Debug窗口无法查看相关类类型的成员变量的值. 当需要查看这些值时, 可以将Debug Information Format改回DWARF with dSYM file, clean(必须)之后重新编译.</p>
+<h2 id="将Build-Active-Architecture-Only改为Yes"><a href="#将Build-Active-Architecture-Only改为Yes" class="headerlink" title="将Build Active Architecture Only改为Yes"></a>将Build Active Architecture Only改为Yes</h2><p>将Target-&gt;Build Settings中, 找到Build Active Architecture Only这一项, 将Debug时的 NO 改为 YES.</p>
+<p>需要注意的是, 此选项在Release模式下必须为NO, 否则发布的ipa在部分设备上将不能运行. 这一项更改完之后, 可以显著提高编译速度.</p>
+<h2 id="设计编译优化等级"><a href="#设计编译优化等级" class="headerlink" title="设计编译优化等级"></a>设计编译优化等级</h2><p>不要再项目中或者静态库中使用-O4, 因为这会让Clang链接Link Time Optimizations (LTO)使得编译更慢, 通常使用-O3. 在设置编译优化之后, XCode断点和调试信息会不正常, 所以一般静态库或者其他Target这样设置.</p>
+<h2 id="将常用的代码及文件打包成静态库"><a href="#将常用的代码及文件打包成静态库" class="headerlink" title="将常用的代码及文件打包成静态库"></a>将常用的代码及文件打包成静态库</h2><p>我们用Cocoapods来管理第三方包, 我们可以将第三方包打包成静态库, 也可以提升编译速度. 也可以将第三方包打包成二进制文件, 但是这样不方便调试.</p>
+<h1 id="启动优化"><a href="#启动优化" class="headerlink" title="启动优化"></a>启动优化</h1><p>App总启动时间 = t1(main()之前的加载时间) + t2(main()之后的加载时间).<br>t1 = 系统dylib(动态链接库)和自身App可执行文件的加载;<br>t2 = main方法执行之后到AppDelegate类中的- (BOOL)Application:(UIApplication <em>)Application didFinishLaunchingWithOptions:(NSDictionary </em>)launchOptions方法执行结束前这段时间, 主要是构建第一个界面, 并完成渲染展示.</p>
+<p><a href="https://techblog.toutiao.com/2017/01/17/iosspeed/#more" target="_blank" rel="noopener">今日头条iOS客户端启动速度优化</a></p>
+<h1 id="瘦身优化"><a href="#瘦身优化" class="headerlink" title="瘦身优化"></a>瘦身优化</h1><h2 id="资源瘦身"><a href="#资源瘦身" class="headerlink" title="资源瘦身"></a>资源瘦身</h2><p>资源瘦身主要是去掉无用资源和压缩资源, 资源包括图片, 音视频文件, 配置文件以及多语言wording. 资源压缩主要对png进行无损压缩.</p>
+<h2 id="编译选项优化"><a href="#编译选项优化" class="headerlink" title="编译选项优化"></a>编译选项优化</h2><ul>
+<li>Optimization Level 使用Fastest, Smalllest. 该选项对安装包大小影响几无，但可以提高app的性能</li>
+<li>Strip Linked Product 设置为YES, 需要注意的是Strip Linked Product也受到Deployment Postprocessing设置选项的影响. 在Build Settings中, 我们可以看到， Strip Linked Product是在Deployment这栏中的, 而Deployment Postprocessing相当于是Deployment的总开关. 记得把Deployment Postprocessing也设置为YES.</li>
+<li>Symbols Hidden by Default设置为YES</li>
+<li>Make Strings Read-Only 设置为YES</li>
 </ul>
-<h1 id="Finder扩展工具-TotalFinder"><a href="#Finder扩展工具-TotalFinder" class="headerlink" title="Finder扩展工具 TotalFinder"></a>Finder扩展工具 TotalFinder</h1><p> TotalFinder是mac搜索增强工具，具有多标签式浏览、拷贝路径、剪切文件、显示隐藏文件、双窗口模式等功能，让你浏览和搜索文件更加方便</p>
-<h1 id="MarkDown笔记编写工具-FaIcon"><a href="#MarkDown笔记编写工具-FaIcon" class="headerlink" title="MarkDown笔记编写工具 FaIcon"></a>MarkDown笔记编写工具 FaIcon</h1><p> 如果你像我一样比较懒不喜欢记MarkDown语法，那么就可以使用这款MarkDown 工具，内置常用语法标签按钮</p>
-<h1 id="邮件应用-Airmail"><a href="#邮件应用-Airmail" class="headerlink" title="邮件应用 Airmail"></a>邮件应用 Airmail</h1><p> 如果你像我一样喜欢根据个人习惯来定制应用，以求效率最大化的人，Airmail 高度的可定制性一定会让你欣喜若狂。只要你上手体验几分钟，你也会像我一样得出「Airmail 是现在 iOS 上可自定义程度最高的邮件应用」</p>
-<h1 id="强大的终端工具-ITerm2"><a href="#强大的终端工具-ITerm2" class="headerlink" title="强大的终端工具 ITerm2"></a>强大的终端工具 ITerm2</h1><p>  如果你像我一样也喜欢搞些花里胡哨的界面，还可以配合oh-my-zsh插件做一些自定义配色方案</p>
-<p>~~~~<br>最后送给大家两个Mac破解软件的网站大部分破解软件都能搜索到。<br><a href="http://xclient.info/" target="_blank" rel="noopener">精品MAC应用分享</a><br><a href="http://www.sdifen.com/" target="_blank" rel="noopener">史蒂芬周的博客</a></p>
+<h2 id="二进制安装包"><a href="#二进制安装包" class="headerlink" title="二进制安装包"></a>二进制安装包</h2><p>二进制包是由各种代码文件, 静态库 动态库 经过编译后生成的可执行文件.</p>
+<ul>
+<li>XCode开启编译选项Write Link Map File XCode -&gt; target -&gt; Build Settings -&gt; 搜map -&gt; 把Write Link Map File选项设为yes, 并指定好linkMap的存储位置.</li>
+<li>编译后到编译目录里找到该txt文件, 文件名和路径就是上述的Path to Link Map File.<br>~/Library/Developer/Xcode/DerivedData/XXX-eumsvrzbvgfofvbfsoqokmjprvuh/Build/Intermediates/XXX.build/Debug-iphoneos/XXX.build/. 这个LinkMap里展示了整个可执行文件的全貌, 列出了编译后的每一个.o目标文件的信息(包括静态链接库.a里的), 以及每一个目标文件的代码段, 数据段存储详情.</li>
+<li>到<a href="https://github.com/huanxsd/LinkMap下载这个mac工程" target="_blank" rel="noopener">https://github.com/huanxsd/LinkMap下载这个mac工程</a>, 然后运行, 对文件进行分析.</li>
+<li>通过对上面的文件进行分析, 就知道每个类在最终的可执行文件中占据的大小. 然后有针对性的进行优化就可以了.</li>
+</ul>
+<h2 id="删除一些无用文件"><a href="#删除一些无用文件" class="headerlink" title="删除一些无用文件"></a>删除一些无用文件</h2><p>查找无用selector, 无用OC类, 扫描重复代码.</p>
 
     </div>
 </article>
@@ -239,7 +241,7 @@
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = 'Tue Mar 20 2018 11:45:13 GMT+0800'
+      window.commentConfig.title = 'Tue May 15 2018 14:30:48 GMT+0800'
     }
 </script>
 
@@ -356,35 +358,35 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/2018/03/20/非著名不专业程序员必备工具/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2018/05/15/iOS性能优化/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/2018/03/20/非著名不专业程序员必备工具/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2018/05/15/iOS性能优化/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/2018/03/20/非著名不专业程序员必备工具/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2018/05/15/iOS性能优化/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/RxSwift/" style="font-size: 18.93062721550379px;" class="tag-cloud-link">RxSwift</a>
+    <a href="/tags/RxSwift/" style="font-size: 17.624585690944016px;" class="tag-cloud-link">RxSwift</a>
     
-    <a href="/tags/Tip/" style="font-size: 11.638499293949733px;" class="tag-cloud-link">Tip</a>
+    <a href="/tags/Tip/" style="font-size: 18.303625737925017px;" class="tag-cloud-link">Tip</a>
     
-    <a href="/tags/UI篇/" style="font-size: 10.50454638355227px;" class="tag-cloud-link">UI篇</a>
+    <a href="/tags/UI篇/" style="font-size: 18.72849687131375px;" class="tag-cloud-link">UI篇</a>
     
-    <a href="/tags/RxSWift/" style="font-size: 10.332162655087323px;" class="tag-cloud-link">RxSWift</a>
+    <a href="/tags/RxSWift/" style="font-size: 19.71599502329668px;" class="tag-cloud-link">RxSWift</a>
     
-    <a href="/tags/iOS优质博客/" style="font-size: 17.446497470687707px;" class="tag-cloud-link">iOS优质博客</a>
+    <a href="/tags/iOS优质博客/" style="font-size: 17.90650392949496px;" class="tag-cloud-link">iOS优质博客</a>
     
-    <a href="/tags/runloop/" style="font-size: 19.913518615995056px;" class="tag-cloud-link">runloop</a>
+    <a href="/tags/runloop/" style="font-size: 9.940562364880849px;" class="tag-cloud-link">runloop</a>
     
-    <a href="/tags/runtime/" style="font-size: 11.08251469943425px;" class="tag-cloud-link">runtime</a>
+    <a href="/tags/runtime/" style="font-size: 11.305779955859741px;" class="tag-cloud-link">runtime</a>
     
-    <a href="/tags/线程/" style="font-size: 16.268320002850437px;" class="tag-cloud-link">线程</a>
+    <a href="/tags/线程/" style="font-size: 9.787273767521235px;" class="tag-cloud-link">线程</a>
     
-    <a href="/tags/工具篇/" style="font-size: 17.13004398061883px;" class="tag-cloud-link">工具篇</a>
+    <a href="/tags/工具篇/" style="font-size: 8.83560433917344px;" class="tag-cloud-link">工具篇</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -472,7 +474,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = 'Tue Mar 20 2018 11:45:13 GMT+0800'
+      window.commentConfig.id = 'Tue May 15 2018 14:30:48 GMT+0800'
       window.commentConfig.owner = 'PuShengLuo'
       window.commentConfig.repo = 'PuShengLuo.github.io'
       window.commentConfig.client_id = 'cc1a44fe73dbdbe0edb7'
@@ -480,7 +482,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-        id: 'Tue Mar 20 2018 11:45:13 GMT+0800',
+        id: 'Tue May 15 2018 14:30:48 GMT+0800',
         owner: 'PuShengLuo',
         repo: 'PuShengLuo.github.io',
         client_id: 'cc1a44fe73dbdbe0edb7',
