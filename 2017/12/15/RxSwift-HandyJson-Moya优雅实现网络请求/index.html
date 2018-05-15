@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Levin Luo">
+    
+    <meta name="description" content="Stay hungry、stay foolish.">
+    
+    
+    
+    
+    
+    
+    <title>RxSwift+HandyJson+Moya优雅实现网络请求 | One Piece</title>
+    <link href=”http://levinluo.com“ rel=”prefetch” />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" href="/js/highslide/highslide.css">
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/avatar.jpg'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+</head>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="http://levinluo.com">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">One Piece</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="http://www.levinluo.com">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/categories">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                </li>
+                
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/RxSwift/">RxSwift</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/RxSWift/">RxSWift</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/Tip/">Tip</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="/tags">...</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="http://levinluo.com">One Piece</a>
+        >
+        <span>RxSwift+HandyJson+Moya优雅实现网络请求</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2017/12/15/RxSwift-HandyJson-Moya优雅实现网络请求/">RxSwift+HandyJson+Moya优雅实现网络请求</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/RxSwift/">RxSwift</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2017-12-15
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2017/12/15/RxSwift-HandyJson-Moya优雅实现网络请求/">RxSwift+HandyJson+Moya优雅实现网络请求</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2017-12-15
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/RxSwift/">RxSwift</a>
+                
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <p>首先在podfile文件中导入需要用到的库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pod  &apos;Moya/RxSwift&apos;</span><br><span class="line">pod  &apos;HandyJSON&apos;</span><br></pre></td></tr></table></figure>
+<p>因为Moya/RxSwift中包含了RxSwift所以不必再导入RxSwift库,<a href="https://github.com/Moya/Moya" target="_blank" rel="noopener">Moya</a>和<a href="https://github.com/alibaba/HandyJSON" target="_blank" rel="noopener">HandyJSON</a>库的使用这里就不介绍了.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;code&quot;: 10000,</span><br><span class="line">    &quot;msg&quot;: &quot;&quot;,</span><br><span class="line">    &quot;tips&quot;: &quot;&quot;,</span><br><span class="line">    &quot;data&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;code&quot;: 10000,</span><br><span class="line">    &quot;msg&quot;: &quot;&quot;,</span><br><span class="line">    &quot;tips&quot;: &quot;&quot;,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">       &quot;total_page&quot;: 1,</span><br><span class="line">       &quot;list&quot;: [ ]</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面是我们服务端约定返回的两种json格式.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">import HandyJSON</span><br><span class="line"></span><br><span class="line">enum RxSwiftMoyaError: Error &#123;</span><br><span class="line">    case RxSwiftMoyaNoRepresentor</span><br><span class="line">    case RxSwiftMoyaNotSuccessfulHTTP</span><br><span class="line">    case RxSwiftMoyaNoData</span><br><span class="line">    case RxSwiftMoyaCouldNotMakeObjectError</span><br><span class="line">    case RxSwiftMoyaBizError(resultCode: Int?, resultMsg: String?)</span><br><span class="line">    case RXSwiftMoyaNoNetwork</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class BaseModel&lt;T: HandyJSON&gt;: HandyJSON &#123;</span><br><span class="line">    </span><br><span class="line">    var code: UInt?</span><br><span class="line">    </span><br><span class="line">    var msg: String?</span><br><span class="line">    </span><br><span class="line">    var tips: String?</span><br><span class="line">    </span><br><span class="line">    var data: T?</span><br><span class="line">    </span><br><span class="line">    var success: Bool &#123;</span><br><span class="line">        </span><br><span class="line">        guard let cd = code, cd == 10000 else &#123;</span><br><span class="line">            return false</span><br><span class="line">        &#125;</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    required public init() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class BaseListModel&lt;T: HandyJSON&gt;: HandyJSON &#123;</span><br><span class="line"></span><br><span class="line">    var total_page: UInt?</span><br><span class="line">    </span><br><span class="line">    var list: [T]?</span><br><span class="line">    </span><br><span class="line">    required public init() &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面是根据json返回的格式定义的BaseModel和网络请求的错误枚举</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">import Foundation</span><br><span class="line">import RxSwift</span><br><span class="line">import Moya</span><br><span class="line">import HandyJSON</span><br><span class="line">import Alamofire</span><br><span class="line"></span><br><span class="line">extension ObservableType where E == Response &#123;</span><br><span class="line">    </span><br><span class="line">    public func mapBaseModel&lt;T: HandyJSON&gt;(_ type: T.Type ) -&gt; Observable&lt;BaseModel&lt;T&gt;&gt; &#123;</span><br><span class="line">        return flatMap &#123; response -&gt; Observable&lt;BaseModel&lt;T&gt;&gt; in</span><br><span class="line">            </span><br><span class="line">            let ele: BaseModel&lt;T&gt; = try response.mapBaseModel(T.self)</span><br><span class="line">                return Observable.just(ele)</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public func mapBaseModelArray&lt;T: HandyJSON&gt;(_ type: T.Type ) -&gt; Observable&lt;BaseModel&lt;BaseListModel&lt;T&gt;&gt;&gt; &#123;</span><br><span class="line">        </span><br><span class="line">        return flatMap &#123; response -&gt; Observable&lt;BaseModel&lt;BaseListModel&lt;T&gt;&gt;&gt; in</span><br><span class="line">            return Observable.just(try response.mapBaseModelArray(T.self))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extension Response &#123;</span><br><span class="line"></span><br><span class="line"> func mapBaseModel&lt;T: HandyJSON&gt;(_ type: T.Type) throws -&gt; BaseModel&lt;T&gt; &#123;</span><br><span class="line">        </span><br><span class="line">        // check http status</span><br><span class="line">        </span><br><span class="line">        guard -1001 != self.statusCode else &#123;</span><br><span class="line">            throw RxSwiftMoyaError.RXSwiftMoyaNoNetwork</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        guard ((200...209) ~= self.statusCode) else &#123;</span><br><span class="line">            throw RxSwiftMoyaError.RxSwiftMoyaNotSuccessfulHTTP</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        let jsonString = String.init(data: data, encoding: .utf8)</span><br><span class="line">        </span><br><span class="line">        let baseModel = JSONDeserializer&lt;BaseModel&lt;T&gt;&gt;.deserializeFrom(json: jsonString)</span><br><span class="line">        </span><br><span class="line">        guard let model = baseModel else &#123;</span><br><span class="line">            </span><br><span class="line">            throw RxSwiftMoyaError.RxSwiftMoyaCouldNotMakeObjectError</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        guard model.success else&#123;</span><br><span class="line">            </span><br><span class="line">            throw RxSwiftMoyaError.RxSwiftMoyaBizError(resultCode:model.code,resultMsg:model.msg)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        guard (model.data != nil)  else &#123;</span><br><span class="line">            </span><br><span class="line">            throw RxSwiftMoyaError.RxSwiftMoyaNoData</span><br><span class="line">        &#125;</span><br><span class="line">        return model</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> func mapBaseModelArray&lt;T: HandyJSON&gt;(_ type: T.Type) throws -&gt; BaseModel&lt;BaseListModel&lt;T&gt;&gt; &#123;</span><br><span class="line">        // check http status</span><br><span class="line">        guard -1001 != self.statusCode else &#123;</span><br><span class="line">            throw RxSwiftMoyaError.RXSwiftMoyaNoNetwork</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        guard ((200...209) ~= self.statusCode) else &#123;</span><br><span class="line">            throw RxSwiftMoyaError.RxSwiftMoyaNotSuccessfulHTTP</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        let jsonString = String.init(data: data, encoding: .utf8)</span><br><span class="line">        </span><br><span class="line">        guard let baseModel =  JSONDeserializer&lt;BaseModel&lt;BaseListModel&lt;T&gt;&gt;&gt;.deserializeFrom(json: jsonString) else &#123;</span><br><span class="line">            </span><br><span class="line">            throw RxSwiftMoyaError.RxSwiftMoyaCouldNotMakeObjectError</span><br><span class="line">        &#125;</span><br><span class="line">                </span><br><span class="line">        guard baseModel.success else&#123;</span><br><span class="line">            </span><br><span class="line">            throw RxSwiftMoyaError.RxSwiftMoyaBizError(resultCode:baseModel.code,resultMsg:baseModel.msg)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        guard let count = baseModel.data?.list?.count,count &gt; 0  else &#123;</span><br><span class="line">            </span><br><span class="line">            throw RxSwiftMoyaError.RxSwiftMoyaNoData</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return baseModel</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">provider.request(.api()).mapBaseModelArray(apiModel.self).subscribe(</span><br><span class="line">                onNext: &#123; model in</span><br><span class="line">                    </span><br><span class="line">                   //这里面的model是baseModel</span><br><span class="line">                 </span><br><span class="line">                   //model -&gt; data -&gt; list 是个 apiModel数组</span><br><span class="line">                   </span><br><span class="line">                  //如果将mapBaseModelArray改为mapBaseModel,那么 model -&gt; data 就是apiModel</span><br><span class="line">                    </span><br><span class="line">            &#125;, onError: &#123; error in</span><br><span class="line"> </span><br><span class="line">                let myError: RxSwiftMoyaError? = error as? RxSwiftMoyaError</span><br><span class="line">                guard let err = myError else &#123;</span><br><span class="line">                    print(error.localizedDescription)</span><br><span class="line">                    return</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                switch err &#123;</span><br><span class="line">                case .RxSwiftMoyaNoData:</span><br><span class="line">                    debugPrint(&quot;no data&quot;)</span><br><span class="line">                case .RxSwiftMoyaBizError( _,let resultMsg):</span><br><span class="line">                    debugPrint(&quot;\(String(describing: resultMsg))&quot;)</span><br><span class="line">                case .RXSwiftMoyaNoNetwork:  //没有网络的情况下</span><br><span class="line">                    debugPrint(&quot;没有网络&quot;)</span><br><span class="line">                default:</span><br><span class="line">                    print(err)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ).addDisposableTo(self.dispose)</span><br></pre></td></tr></table></figure>
+<p>需要注意的是provider要使用RxMoyaProvider定义</p>
+
+    </div>
+</article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'Fri Dec 15 2017 10:13:15 GMT+0800'
+    }
+</script>
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            Levin Luo
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/avatar.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"><p>Stay hungry、stay foolish.</p>
+</p>
+        </div>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/23/快速定位目标控制器/">快速定位目标控制器</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/20/非著名不专业程序员必备工具/">非著名不专业程序员必备工具</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/18/iOS优质博客/">iOS优质博客</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/12/15/RxSwift-HandyJson-Moya优雅实现网络请求/">RxSwift+HandyJson+Moya优雅实现网络请求</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/11/07/RxSwift操作符选择/">RxSwift操作符选择</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/11/03/RxSwift操作符/">RxSwift操作符</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/10/20/RxSwift核心概念/">RxSwift核心概念</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/10/14/iOS组件化/">路由协议</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/09/26/多线程使用/">多线程使用</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/09/15/多线程/">多线程</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+                <li class="">
+                    <a href="/2017/12/15/RxSwift-HandyJson-Moya优雅实现网络请求/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                <li class="">
+                    <a href="/2017/12/15/RxSwift-HandyJson-Moya优雅实现网络请求/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                </li>
+                <li class="">
+                    <a href="/2017/12/15/RxSwift-HandyJson-Moya优雅实现网络请求/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/RxSwift/" style="font-size: 17.027465597001957px;" class="tag-cloud-link">RxSwift</a>
+    
+    <a href="/tags/RxSWift/" style="font-size: 16.870351803683405px;" class="tag-cloud-link">RxSWift</a>
+    
+    <a href="/tags/Tip/" style="font-size: 14.441254980366779px;" class="tag-cloud-link">Tip</a>
+    
+    <a href="/tags/UI篇/" style="font-size: 17.510941645936743px;" class="tag-cloud-link">UI篇</a>
+    
+    <a href="/tags/iOS优质博客/" style="font-size: 10.276252840443979px;" class="tag-cloud-link">iOS优质博客</a>
+    
+    <a href="/tags/runloop/" style="font-size: 9.979029288341879px;" class="tag-cloud-link">runloop</a>
+    
+    <a href="/tags/runtime/" style="font-size: 18.770306373762942px;" class="tag-cloud-link">runtime</a>
+    
+    <a href="/tags/线程/" style="font-size: 18.924286190769966px;" class="tag-cloud-link">线程</a>
+    
+    <a href="/tags/工具篇/" style="font-size: 19.08982676991624px;" class="tag-cloud-link">工具篇</a>
+    
+</div>
+                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
+    
+    <li>
+        <a href="http://www.levinluo.com" target="_blank">Levin Luo</a>
+    </li>
+    
+</div>
+                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
+    
+    <li>
+        <a href="http://www.levinluo.com" target="_blank">Levin Luo</a>
+    </li>
+    
+</div>
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2017 Levin Luo Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+</body>
+<script src="/js/activate-power-mode.js"></script>
+<script>
+    // 配置highslide
+  hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+</script>
+<script>
+  POWERMODE.colorful = 'true';    // make power mode colorful
+  POWERMODE.shake = 'true';       // turn off shake
+  // TODO 这里根据具体情况修改
+  document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '/imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '6'
+    }
+</script>
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+
+
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    if(window.commentConfig) {
+      window.commentConfig.id = 'Fri Dec 15 2017 10:13:15 GMT+0800'
+      window.commentConfig.owner = 'PuShengLuo'
+      window.commentConfig.repo = 'PuShengLuo.github.io'
+      window.commentConfig.client_id = 'cc1a44fe73dbdbe0edb7'
+      window.commentConfig.client_secret = 'b101ced75c5c8a67aff6dd02e85125eb775ffd1c'
+      window.commentConfig.redirect_uri = ''
+    } else {
+      window.commentConfig = {
+        id: 'Fri Dec 15 2017 10:13:15 GMT+0800',
+        owner: 'PuShengLuo',
+        repo: 'PuShengLuo.github.io',
+        client_id: 'cc1a44fe73dbdbe0edb7',
+        client_secret: 'b101ced75c5c8a67aff6dd02e85125eb775ffd1c',
+        redirect_uri: ''
+      }
+    }
+</script>
+<script src="/js/comment/gitment.js"></script>
+
+</html>
